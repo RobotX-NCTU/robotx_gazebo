@@ -18,7 +18,7 @@ $ catkin_make
 ### Launch the world 
 the world is about coarse approximation of the RobotX competition area, Sand Island, Honolulu, HI.
 ```
-	$ roslaunch robotx_gazebo sandisland.launch 
+$ roslaunch robotx_gazebo sandisland.launch 
 ```
 ### Control the WAM-V 
 there are 3 ways that can control the WAM-V

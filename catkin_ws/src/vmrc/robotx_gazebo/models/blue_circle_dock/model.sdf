@@ -1,0 +1,52 @@
+<?xml version="1.0" ?>
+<sdf version="1.4">
+  <model name="blue_circle_dock"> 
+    <gazebo>
+      <static>false</static>
+    </gazebo>
+    <link name="link">
+      <pose>0 0 0 0 0 0</pose>
+      <collision name="collision">
+        <geometry>
+          <mesh>
+            <scale>2.5 3.0 2.0</scale>
+            <uri>model://blue_circle_dock/meshes/dock_gate_blue_circle.dae</uri>
+          </mesh>  
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <scale>2.5 3.0 2.0</scale>
+            <uri>model://blue_circle_dock/meshes/dock_gate_blue_circle.dae</uri>
+          </mesh>         
+        </geometry>
+      </visual>
+      <inertial>
+      	<origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+        <mass>10</mass>
+        <inertia>
+          <ixx>10</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>10</iyy>
+          <iyz>0</iyz>
+          <izz>10</izz>
+        </inertia>
+      </inertial>
+    </link>
+    <plugin name="BuoyancyPlugin" filename="libbuoyancy_gazebo_plugin.so">
+      <fluid_density>1000</fluid_density>
+      <fluid_level>0.0</fluid_level>
+      <fluid_drag>50</fluid_drag>
+      <link>
+        <name>link</name>
+        <center_of_volume>0 0 0.1</center_of_volume>
+        <area>0.1</area>
+        <height>0.3</height>
+      </link>
+    </plugin>
+  </model>
+</sdf>

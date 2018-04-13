@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <sdf version="1.6">
-  <model name="surmark950410">
+  <model name="green_buoy">
     <link name="buoyl">
       <pose>0 0 0 0 0 0</pose>
       <velocity_decay>
@@ -21,7 +21,7 @@
       </inertial>
       <collision name="buoyc">
         <geometry>
-	  <mesh><uri>model://surmark950410/mesh/surmark950410.dae</uri></mesh>
+	  <mesh><uri>model://green_buoy/mesh/green_buoy.dae</uri></mesh>
           <cylinder>
             <radius>0.25</radius>
             <length>1.0</length>
@@ -30,12 +30,12 @@
       </collision>
       <visual name="buoyv">
         <geometry>
-	<mesh><uri>model://surmark950410/mesh/surmark950410.dae</uri></mesh>
+	<mesh><uri>model://green_buoy/mesh/green_buoy.dae</uri></mesh>
         </geometry>
         <material>
           <script>
             <uri>file://media/materials/scripts/gazebo.material</uri>
-            <name>Gazebo/Red</name>
+            <name>Gazebo/Green</name>
           </script>
         </material>
       </visual>
@@ -48,7 +48,7 @@
         <name>buoyl</name>
         <center_of_volume>0 0 0.5</center_of_volume>
         <area>0.63</area>
-        <height>1.05</height>
+        <height>0.70</height>
       </link>
     </plugin>
   </model>

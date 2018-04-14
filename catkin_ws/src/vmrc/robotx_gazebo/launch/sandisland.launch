@@ -55,7 +55,7 @@
       <remap from="in_topic" to="/gazebo/model_states" />
       <remap from="out_topic" to="wamv_rpy" />
       <param name="input_msg_type" value="ModelStates" />
-      <param name="modelstates_index" value="3" type="int" />
+      <param name="modelstates_index" value="4" type="int" />
   </node>
 
 </launch>

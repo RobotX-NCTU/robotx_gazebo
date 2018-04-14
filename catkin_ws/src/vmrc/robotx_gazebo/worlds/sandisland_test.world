@@ -47,6 +47,5 @@
       <uri>model://models/red_cross_dock</uri>      
     </include>
 
-
   </world>
 </sdf>

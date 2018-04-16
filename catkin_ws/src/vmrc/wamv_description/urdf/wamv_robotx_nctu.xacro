@@ -32,12 +32,19 @@
       </xacro:wamv_HDL32E_lidar>
   </xacro:if>
 
-  <!-- Attach GPS and imu plugin -->    
+  <!-- Attach GPS plugin -->    
   <xacro:if value="$(arg gps)">
       <xacro:include filename="$(find robotx_gazebo)/urdf/wamv_gazebo_gps_plugin.xacro" />
       <xacro:wamv_gps name="wamv_gps" latitude="21.30996" longitude="-157.8901" altitude="2.5">
         <origin xyz="0.2 0.0 2.5" rpy="0 0 0" />
       </xacro:wamv_gps>
+  </xacro:if>
+
+  <!-- Attach IMU plugin -->    
+  <xacro:if value="$(arg imu)">
+      <xacro:include filename="$(find robotx_gazebo)/urdf/wamv_gazebo_imu_plugin.xacro" />
+      <xacro:wamv_imu name="wamv_imu">
+      </xacro:wamv_imu>
   </xacro:if>
 
 </robot>

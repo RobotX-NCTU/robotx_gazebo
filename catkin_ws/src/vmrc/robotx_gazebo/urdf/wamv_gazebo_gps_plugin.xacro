@@ -7,9 +7,6 @@
       <visual>
         <geometry>
           <box size="0.2 1.4 0.2" />
-          <material name="Green">
-          	<color rgba="0 1.0 0.0 1.0"/>
-          </material>
         </geometry>
       </visual>
     </link>

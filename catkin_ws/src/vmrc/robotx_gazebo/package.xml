@@ -25,6 +25,8 @@
   <depend>std_msgs</depend>
   <depend>wamv_description</depend>
 
+  <exec_depend>urdf</exec_depend>
+  <exec_depend>xacro</exec_depend>
   <exec_depend>message_runtime</exec_depend>
 
   <export>

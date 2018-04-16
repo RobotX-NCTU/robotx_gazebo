@@ -49,9 +49,6 @@ generate_messages(
   std_msgs
 )
 
-###################################
-## catkin specific configuration ##
-###################################
 
 catkin_package(
   INCLUDE_DIRS include
@@ -59,9 +56,6 @@ catkin_package(
   LIBRARIES
 )
 
-###########
-## Build ##
-###########
 
 include_directories( include
   ${catkin_INCLUDE_DIRS}
@@ -102,6 +96,7 @@ install(TARGETS usv_gazebo_dynamics_plugin
   LIBRARY DESTINATION lib
   RUNTIME DESTINATION bin
 )
+
 
 ## Declare a C++ library
 add_library(usv_gazebo_thrust_plugin

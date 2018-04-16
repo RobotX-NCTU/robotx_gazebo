@@ -10,14 +10,9 @@
    -->
   <!-- Command line arguments -->
 
-  <arg name="world" default="sandisland_buoys.world" />
+  <arg name="world" default="sandisland_test.world"/>
 
-  <arg name="name" default="WAMV" />
-  <arg name="imu" default="true" />
-  <arg name="gps" default="true" />
-  <arg name="p3d" default="true" />
-
-  <arg name="microstrain" default="false" />
+  <arg name="name" default="WAMV"/>
 
   <!-- Initial USV location and attitude-->
   <arg name="x" default="0" />
@@ -27,6 +22,13 @@
   <arg name="R" default="0" />
   <arg name="Y" default="0" />
 
+  <!-- The switch about sensors and wind -->
+  <arg name="front_stereo_camera" default="false"/>
+  <arg name="gps" default="false"/>
+  <arg name="imu" default="false"/>
+  <arg name="lidar" default="true"/>
+  <arg name="wind" default="false"/> 
+
 
   <param name="use_sim_time" value="true" />
   <!-- Start Gazebo with the world file -->
@@ -35,12 +37,19 @@
     <arg name="verbose" value="true"/>
     <arg name="paused" value="false"/>
     <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
   </include>
 
   <!-- Load robot model -->
-  <arg name="urdf" default="$(find wamv_description)/urdf/wamv_robotx.xacro"/>
+  <arg name="urdf" default="$(find wamv_description)/urdf/wamv_robotx_nctu.xacro"/>
   <!--<arg name="urdf" default="$(find nps_robotx)/urdf/nps_wamv.xacro"/> -->
-  <param name="robot_description" command="$(find xacro)/xacro --inorder $(arg urdf)"/>
+  <param name="robot_description" command="$(find xacro)/xacro --inorder $(arg urdf) wind:=$(arg wind) 
+  front_stereo_camera:=$(arg front_stereo_camera) lidar:=$(arg lidar)"/>
+
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+    <param name="publish_frequency" type="double" value="30.0" />
+  </node>
 
   <!-- Spawn model in Gazebo -->
   <node name="spawn_model" pkg="gazebo_ros" type="spawn_model"
@@ -55,7 +64,7 @@
       <remap from="in_topic" to="/gazebo/model_states" />
       <remap from="out_topic" to="wamv_rpy" />
       <param name="input_msg_type" value="ModelStates" />
-      <param name="modelstates_index" value="4" type="int" />
+      <param name="modelstates_index" value="3" type="int" />
   </node>
 
 </launch>

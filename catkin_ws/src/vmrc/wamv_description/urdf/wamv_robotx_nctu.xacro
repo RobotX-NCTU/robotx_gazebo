@@ -47,4 +47,11 @@
       </xacro:wamv_imu>
   </xacro:if>
 
+  <!-- Attach p3d Plugin -->
+  <xacro:if value="$(arg p3d)">
+      <xacro:include filename="$(find robotx_gazebo)/urdf/wamv_gazebo_p3d_plugin.xacro" />
+      <xacro:wamv_p3d name="wamv_p3d">
+      </xacro:wamv_p3d>
+  </xacro:if> 
+
 </robot>

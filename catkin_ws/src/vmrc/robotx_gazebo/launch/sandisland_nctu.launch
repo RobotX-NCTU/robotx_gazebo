@@ -28,7 +28,7 @@
   <arg name="imu" default="true"/>
   <arg name="lidar" default="true"/>
   <arg name="wind" default="true"/> 
-
+  <arg name="p3d" default="true"/> 
 
   <param name="use_sim_time" value="true" />
   <!-- Start Gazebo with the world file -->
@@ -45,7 +45,8 @@
   <arg name="urdf" default="$(find wamv_description)/urdf/wamv_robotx_nctu.xacro"/>
   <!--<arg name="urdf" default="$(find nps_robotx)/urdf/nps_wamv.xacro"/> -->
   <param name="robot_description" command="$(find xacro)/xacro --inorder $(arg urdf) wind:=$(arg wind) 
-  front_stereo_camera:=$(arg front_stereo_camera) lidar:=$(arg lidar) gps:=$(arg gps) imu:=$(arg imu)"/>
+  front_stereo_camera:=$(arg front_stereo_camera) lidar:=$(arg lidar) gps:=$(arg gps) imu:=$(arg imu)
+   p3d:=$(arg p3d)"/>
 
   <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
     <param name="publish_frequency" type="double" value="30.0" />

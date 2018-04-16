@@ -36,9 +36,9 @@ robotx_gazebo usv_diffdrive.launch
 ```
 
 ## Remind
-* Add sensors on robot
+* Add sensors on robot </br>
 please make the xacro file under vmrc/robotx_gazebo/urdf, and include the file in wamv_description/wamv_robotx_nctu.xacro </br>
-* Build the worlds about task
+* Build the worlds about task </br>
 please save the file under vmrc/robotx_gazebo/worlds and chanege the arg "world" in vmrc/robotx_gazebo/sandisland_nctu.launch </br>
-* Add models or 3D file such like buoys, *.dae ......
+* Add models or 3D file such like buoys, *.dae ...... </br>
  please save the file under vmrc/robotx_gazebo/models

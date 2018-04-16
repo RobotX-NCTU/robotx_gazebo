@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:macro name="wamv_gps" params="*origin name longitude:=-157.8901 latitude:=21.30996 altitude:=1.5">
+
+    <link name="${name}">
+      <xacro:insert_block name="origin" />
+      <visual>
+        <geometry>
+          <box size="0.2 1.4 0.2" />
+          <material name="Green">
+          	<color rgba="0 1.0 0.0 1.0"/>
+          </material>
+        </geometry>
+      </visual>
+    </link>
+    <joint name="${name}_joint" type="fixed">
+      <xacro:insert_block name="origin"/>
+      <parent link="base_link"/>
+      <child link="${name}"/>
+    </joint>
+    <gazebo>
+      <plugin name="gps_plugin_${name}" filename="libhector_gazebo_ros_gps.so">
+		<updateRate>5.0</updateRate>
+		<alwaysOn>true</alwaysOn>
+	        <bodyName>${name}</bodyName>
+	        <frameId>gps</frameId>
+		<topicName>gps</topicName>
+    	<velocityTopicName>fix_velocity</velocityTopicName>
+
+		<!-- Location of origin of Gazebo Sand Island map -->
+		<referenceLatitude>${latitude}</referenceLatitude>
+		<referenceLongitude>${longitude}</referenceLongitude>
+		<referenceAltitude>${altitude}</referenceAltitude>
+	        <referenceHeading>90</referenceHeading>
+
+		<offset>0.0 0.0 0.0</offset>
+		<drift>0.0 0.0 0.0</drift>
+	        <gaussianNoise>0.01 0.01 0.05</gaussianNoise>
+
+		<velocityOffset>0.0 0.0 0.0</velocityOffset>
+		<velocityDrift>0.0 0.0 0.0</velocityDrift>
+		<velocityGaussianNoise>0.0 0.0 0.0</velocityGaussianNoise>
+
+      </plugin>
+    </gazebo>  
+  </xacro:macro>
+</robot>

@@ -3,7 +3,6 @@
   <xacro:macro name="wamv_gps" params="*origin name longitude:=-157.8901 latitude:=21.30996 altitude:=1.5">
 
     <link name="${name}">
-      <xacro:insert_block name="origin" />
       <visual>
         <geometry>
           <box size="0.2 1.4 0.2" />

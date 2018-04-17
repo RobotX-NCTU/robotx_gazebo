@@ -18,10 +18,11 @@
   <xacro:include filename="$(find robotx_gazebo)/urdf/wamv_gazebo_thrust_plugin.xacro" />
   <xacro:usv_thrust_gazebo name="wamv_thrust_plugin"/>
 
-  <!-- Attach camera plugin --> 
-  <xacro:if value="$(arg front_stereo_camera)">
-      <xacro:include filename="$(find robotx_gazebo)/urdf/wamv_gazebo_front_stereo_camera_plugin.xacro" />
-      <xacro:wamv_front_stereo_camera name="wamv_front_stereo_camera"/>
+  <!-- Attach front camera plugin --> 
+  <xacro:if value="$(arg front_camera)">
+      <xacro:include filename="$(find robotx_gazebo)/urdf/wamv_gazebo_front_camera_plugin.xacro" />
+      <xacro:wamv_front_camera name="wamv_front_camera">
+      </xacro:wamv_front_camera>
   </xacro:if>
 
   <!-- Attach LiDAR plugin -->

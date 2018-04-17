@@ -13,6 +13,15 @@ $ source dependencies_common.sh
 $ cd ~/robotx_gazebo/catkin_ws/
 $ catkin_make
 ```
+## Hardware and Model
+- WAM-V </br>
+  - Hardware
+    - HDL32E LiDAR (not yet)
+    - GPS
+    - IMU
+    - Front camera * 2 (1280*720) 
+  - Software
+    - p3d (3D Position Interface for Ground Truth)
 
 ## How to run the example
 ### Launch the world 

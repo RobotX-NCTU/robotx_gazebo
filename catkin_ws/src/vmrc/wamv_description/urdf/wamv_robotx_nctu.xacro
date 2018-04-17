@@ -25,13 +25,19 @@
       </xacro:wamv_front_camera>
   </xacro:if>
 
+
   <!-- Attach LiDAR plugin -->
   <xacro:if value="$(arg lidar)">
       <xacro:include filename="$(find robotx_gazebo)/urdf/wamv_gazebo_lidar_plugin.xacro" />
-      <xacro:wamv_HDL32E_lidar parent="base_link" name="velodyne" topic="/velodyne_points" hz="10" samples="220" min_range="5" max_range="50.0" min_angle="-1.57" max_angle="1.57" noise="0.1" >
+      <xacro:wamv_HDL32E_lidar parent="base_link" name="velodyne" topic="/velodyne_points" hz="10" samples="220" min_range="5" max_range="50.0" min_angle="-1.57" max_angle="1.57" noise="0.1">
         <origin xyz="0.5 0 1.3" rpy="0 0 0" />
       </xacro:wamv_HDL32E_lidar>
+      <!--xacro:include filename="$(find velodyne_description)/urdf/VLP-16.urdf.xacro"/>
+      <VLP-16 parent="base_link" name="velodyne" topic="/velodyne_points">
+        <origin xyz="0.6 0 1.3" rpy="0 0 0" />
+      </VLP-16-->
   </xacro:if>
+
 
   <!-- Attach GPS plugin -->    
   <xacro:if value="$(arg gps)">
@@ -48,7 +54,7 @@
       </xacro:wamv_imu>
   </xacro:if>
 
-  <!-- Attach p3d Plugin -->
+  <!-- Attach p3d odometry plugin -->
   <xacro:if value="$(arg p3d)">
       <xacro:include filename="$(find robotx_gazebo)/urdf/wamv_gazebo_p3d_plugin.xacro" />
       <xacro:wamv_p3d name="wamv_p3d">

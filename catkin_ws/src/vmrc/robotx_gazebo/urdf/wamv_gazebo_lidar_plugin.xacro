@@ -54,7 +54,7 @@
     <gazebo reference="${name}">
       <sensor type="ray" name="${name}_HDL32E">
         <pose>0 0 0 0 0 0</pose>
-        <visualize>true</visualize>
+        <visualize>false</visualize>
         <update_rate>${hz}</update_rate>
         <ray>
           <scan>
@@ -64,12 +64,7 @@
               <min_angle>${min_angle}</min_angle>
               <max_angle>${max_angle}</max_angle>
             </horizontal>
-            <vertical>
-              <samples>${lasers}</samples>
-              <resolution>1</resolution>
-              <min_angle>-0.52359</min_angle>
-              <max_angle>0.17453</max_angle>
-            </vertical>
+
           </scan>
           <range>
             <min>${collision_range}</min>

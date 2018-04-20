@@ -13,6 +13,24 @@ $ source dependencies_common.sh
 $ cd ~/robotx_gazebo/catkin_ws/
 $ catkin_make
 ```
+## Hardware and Model
+- WAM-V 
+  - Hardware
+    - HDL32E LiDAR (not yet)
+    - GPS
+    - IMU
+    - Front rgb camera * 2 (1280*720) 
+    - dynamincs and thruster
+  - Software
+    - p3d (3D Position Interface for Ground Truth)
+    - wind 
+- Tasks Models
+  - Ocean
+  - sandisland
+  - Green buoys 
+  - Red buoys
+  - Black buoys with A3, A5, A7
+  - Dock (not real size)
 
 ## How to run the example
 ### Launch the world 

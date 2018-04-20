@@ -42,10 +42,6 @@
       <uri>model://models/ocean</uri>      
     </include>
 
-    <include>
-      <pose> 5 5 0 0 0 0 </pose>
-      <uri>model://models/red_cross_dock</uri>      
-    </include>
 
   </world>
 </sdf>

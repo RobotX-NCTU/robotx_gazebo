@@ -48,7 +48,7 @@ $ rostopic pub --once /cmd_drive robotx_gazebo/UsvDrive '{left: 0.5, right: -0.5
 ```
 roslaunch robotx_gazebo usv_keydrive.launch
 ```
-3. Joytick by using F310
+3. Joytick by using XBOX
 ``` 
 robotx_gazebo usv_diffdrive.launch
 ```

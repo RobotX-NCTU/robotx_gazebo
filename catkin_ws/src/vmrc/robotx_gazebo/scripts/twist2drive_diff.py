@@ -25,8 +25,10 @@ class Node():
         # scaling factors
         linfac = self.linear_scaling
         angfac = self.angular_scaling
-        self.driveMsg.left = data.linear.x
-        self.driveMsg.right = data.angular.z
+        self.driveMsg.left = data.linear.x * linfac
+        self.driveMsg.right = data.linear.x * linfac
+        self.driveMsg.left-=data.angular.z * angfac
+        self.driveMsg.right+=data.angular.z * angfac
 
         rospy.logdebug("TX: Drive ")
         rospy.logdebug("\tleft:%f, right:%f"%(self.driveMsg.left,
@@ -43,9 +45,9 @@ if __name__ == '__main__':
     in_topic = rospy.get_param('~input_topic','cmd_vel')
     out_topic = rospy.get_param('~output_topic','cmd_drive')
     # Scaling from Twist.linear.x to (left+right)
-    linear_scaling = rospy.get_param('~linear_scaling',0.2)
+    linear_scaling = rospy.get_param('~linear_scaling',1)
     # Scaling from Twist.angular.z to (right-left)
-    angular_scaling = rospy.get_param('~angular_scaling',0.05)
+    angular_scaling = rospy.get_param('~angular_scaling',0.7)
 
     rospy.loginfo("Subscribing to <%s>, Publishing to <%s>"%(in_topic,out_topic))
     rospy.loginfo("Linear scaling=%f, Angular scaling=%f"%(linear_scaling,angular_scaling))

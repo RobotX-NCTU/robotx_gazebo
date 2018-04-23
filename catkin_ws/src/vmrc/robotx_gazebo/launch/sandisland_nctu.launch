@@ -10,7 +10,7 @@
    -->
   <!-- Command line arguments -->
 
-  <arg name="world" default="sandisland_test.world"/>
+  <arg name="world" default="sandisland_task1.world"/>
 
   <arg name="name" default="WAMV"/>
 
@@ -48,15 +48,15 @@
   front_camera:=$(arg front_camera) lidar:=$(arg lidar) gps:=$(arg gps) imu:=$(arg imu)
    p3d:=$(arg p3d)"/>
 
-  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
-    <param name="publish_frequency" type="double" value="30.0" />
-  </node>
-
   <!-- Spawn model in Gazebo -->
   <node name="spawn_model" pkg="gazebo_ros" type="spawn_model"
 	args="-x $(arg x) -y $(arg y) -z $(arg z)
 	      -R $(arg R) -P $(arg P) -Y $(arg Y)
-	      -urdf -param robot_description -model wamv"/>
+	      -unpause -urdf -param robot_description -model wamv"/>
+
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+    <param name="publish_frequency" type="double" value="10.0" />
+  </node>
 
   <!--<include file="$(find robotx_gazebo)/launch/usv_diffdrive.launch"/>-->
 
@@ -65,7 +65,7 @@
       <remap from="in_topic" to="/gazebo/model_states" />
       <remap from="out_topic" to="wamv_rpy" />
       <param name="input_msg_type" value="ModelStates" />
-      <param name="modelstates_index" value="2" type="int" />
+      <param name="modelstates_index" value="1" type="int" />
   </node>
 
 </launch>

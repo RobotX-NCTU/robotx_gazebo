@@ -1,17 +1,17 @@
 <?xml version="1.0" ?>
 <sdf version="1.4">
   <world name="SandIsland">
-    <scene>
+    <!--scene>
       <sky>
         <clouds>
           <speed>12</speed>
         </clouds>
       </sky>
-    </scene>
+    </scene-->
 
-    <wind>
+    <!--wind>
       <linear_velocity>10 0 0</linear_velocity> <!-- Wind linear velocity -->
-    </wind>
+    <!--/wind >
     
     <!-- A global light source -->
     <include>
@@ -27,13 +27,13 @@
 
      
     <!-- The models below should be included in kingfisher_gazebo package -->
-    <include>
+    <!--include-->
       <!-- Note - the pose tag doesn't seem to work for heightmaps, so you need
       to go into the model file to change the altitutde/height!-->
-      <pose> 0 0 0 0 0 0 </pose>
+      <!--pose> 0 0 0 0 0 0 </pose>
       <uri>model://models/sandisland</uri>
       <!--<uri>model://models/lake</uri>-->
-    </include>
+    <!--/include>
 
     <!-- Should be at the same height as the water level in USV and buoyancy 
     plugin configurations -->

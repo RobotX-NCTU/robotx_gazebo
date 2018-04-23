@@ -6,7 +6,7 @@
       <collision name="collision">
         <geometry>
           <mesh>
-            <uri>model://buoy_A7/meshes/a7.dae</uri>
+            <uri>model://buoy_a7/meshes/a7.dae</uri>
           </mesh>  
         </geometry>
       </collision>
@@ -14,7 +14,7 @@
         <cast_shadows>false</cast_shadows>
         <geometry>
           <mesh>
-            <uri>model://buoy_A7/meshes/a7.dae</uri>
+            <uri>model://buoy_a7/meshes/a7.dae</uri>
           </mesh>         
         </geometry>
         <material>

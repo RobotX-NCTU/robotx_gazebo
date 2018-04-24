@@ -1,0 +1,3 @@
+[submodule "catkin_ws/src/moos-ros-bridge"]
+	path = catkin_ws/src/moos-ros-bridge
+	url = git@github.com:RobotX-NCTU/moos-ros-bridge.git

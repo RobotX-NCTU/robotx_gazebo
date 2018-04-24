@@ -10,7 +10,7 @@
    -->
   <!-- Command line arguments -->
 
-  <arg name="world" default="sandisland_task1.world"/>
+  <arg name="world" default="sandisland_task.world"/>
 
   <arg name="name" default="WAMV"/>
 

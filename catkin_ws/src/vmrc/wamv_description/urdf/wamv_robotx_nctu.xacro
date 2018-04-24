@@ -30,7 +30,7 @@
   <!-- Attach LiDAR plugin -->
   <xacro:if value="$(arg lidar)">
       <xacro:include filename="$(find robotx_gazebo)/urdf/wamv_gazebo_lidar_plugin.xacro" />
-      <xacro:wamv_HDL32E_lidar parent="base_link" name="velodyne" topic="/velodyne_points" hz="5" samples="500" min_range="5" max_range="50.0" min_angle="-1.57" max_angle="1.57" noise="0.1">
+      <xacro:wamv_HDL32E_lidar parent="base_link" name="velodyne" topic="/velodyne_points" hz="7" samples="500" min_range="5" max_range="50.0" min_angle="-1.57" max_angle="1.57" noise="0.01">
         <origin xyz="0.3 0 1.8" rpy="0 0 0" />
       </xacro:wamv_HDL32E_lidar>
   </xacro:if>

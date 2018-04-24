@@ -41,7 +41,7 @@
     </link>
     <plugin name="BuoyancyPlugin" filename="libbuoyancy_gazebo_plugin.so">
       <fluid_density>1000</fluid_density>
-      <fluid_level>0.0</fluid_level>
+      <fluid_level>0.25</fluid_level>
       <fluid_drag>50</fluid_drag>
       <link>
         <name>link</name>

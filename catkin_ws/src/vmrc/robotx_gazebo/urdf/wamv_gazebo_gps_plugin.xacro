@@ -35,7 +35,7 @@
 
 		<velocityOffset>0.0 0.0 0.0</velocityOffset>
 		<velocityDrift>0.0 0.0 0.0</velocityDrift>
-		<velocityGaussianNoise>0.0 0.0 0.0</velocityGaussianNoise>
+		<velocityGaussianNoise>0.01 0.01 0.05</velocityGaussianNoise>
 
       </plugin>
     </gazebo>  

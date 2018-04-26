@@ -22,7 +22,8 @@
         <rateDriftFrequency>0.00027 0.00027 0.000027</rateDriftFrequency>
         <rateGaussianNoise>0.05 0.05 0.05</rateGaussianNoise>
 
-        <yawOffset>1.57079</yawOffset>
+        <!--yawOffset>1.57079</yawOffset-->
+        <yawOffset>0</yawOffset>
         <yawDrift>0.0</yawDrift>
         <yawDriftFrequency>0.00027</yawDriftFrequency>
         <yawGaussianNoise>0.05</yawGaussianNoise>

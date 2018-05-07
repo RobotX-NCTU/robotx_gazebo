@@ -1,13 +1,13 @@
 <?xml version="1.0" ?>
 <sdf version="1.4">
   <world name="SandIsland">
-    <scene>
+    <!--scene>
       <sky>
         <clouds>
           <speed>12</speed>
         </clouds>
       </sky>
-    </scene>
+    </scene-->
 
     <wind>
       <linear_velocity>10 0 0</linear_velocity> <!-- Wind linear velocity -->

@@ -128,6 +128,14 @@ install(TARGETS usv_gazebo_wind_plugin
   RUNTIME DESTINATION bin
 )
 
+## Declare a C++ library
+add_library(Blink SHARED src/BlinkVisualPlugin.cc)
+target_link_libraries(Blink 
+  ${catkin_LIBRARIES}
+  ${GAZEBO_LIBRARIES}
+)
+
+
 #############
 ## Install ##
 #############

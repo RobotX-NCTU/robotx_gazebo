@@ -40,8 +40,7 @@
     <include>
       <pose> 0 0 0 0 0 0 </pose>
       <uri>model://models/ocean</uri>      
-    </include>
-
+    </include>   
 
   </world>
 </sdf>

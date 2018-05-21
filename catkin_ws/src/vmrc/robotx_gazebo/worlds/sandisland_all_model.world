@@ -96,6 +96,12 @@
       <uri>model://models/buoy_a7</uri>      
     </include>
 
+    <!-- Light buoy -->
+    <include>
+      <pose> 10 30 0 0 0 0 </pose>
+      <uri>model://models/light_buoy</uri>      
+    </include> 
+
   </world>
 
 </sdf>

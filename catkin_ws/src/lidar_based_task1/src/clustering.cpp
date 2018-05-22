@@ -68,13 +68,14 @@ void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& input)
       cloud_in->points[i].r = 0;
       cloud_in->points[i].g = 0;
       cloud_in->points[i].b = 0;
-
+      /*
       const float bad_point = std::numeric_limits<float>::quiet_NaN();
       float distance = sqrt(cloud_in->points[i].x*cloud_in->points[i].x + cloud_in->points[i].y*cloud_in->points[i].y + cloud_in->points[i].z*cloud_in->points[i].z);
       if (distance>=10){
         cloud_in->points[i].x = bad_point;
         cloud_in->points[i].y = bad_point;
         cloud_in->points[i].z = bad_point;
+      */
       }
     }
     //point cloud clustering

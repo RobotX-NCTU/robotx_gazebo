@@ -1,7 +1,7 @@
 # RobotX Gazebo
 ## Introduction
-This is the gazeo simulation of RobotX competition
-![all_models](http://url/to/all_model.png)
+This is the gazeo simulation of RobotX competition </br>
+![all_models](https://github.com/RobotX-NCTU/robotx_gazebo/blob/master/all_model.png)
 
 ## Prerequisites
 1. Install dependencies 

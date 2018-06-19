@@ -1,6 +1,7 @@
 # RobotX Gazebo
 ## Introduction
 This is the gazeo simulation of RobotX competition
+![all_models](http://url/to/all_model.png)
 
 ## Prerequisites
 1. Install dependencies 
@@ -16,21 +17,24 @@ $ catkin_make
 ## Hardware and Model
 - WAM-V 
   - Hardware
-    - HDL32E LiDAR (not yet)
+    - HDL32E LiDAR 
     - GPS
     - IMU
-    - Front rgb camera * 2 (1280*720) 
-    - dynamincs and thruster
+    - Front rgb camera * 3 (1280*720) 
+    - dynamincs and thruster * 2
   - Software
     - p3d (3D Position Interface for Ground Truth)
+  - Environment
     - wind 
+    - wave
 - Tasks Models
   - Ocean
+  - Sky
   - sandisland
-  - Green buoys 
-  - Red buoys
+  - Green, Yellow, Red, Green buoys 
+  - Light buoys
   - Black buoys with A3, A5, A7
-  - Dock (not real size)
+  - Dock
 
 ## How to run the example
 ### Launch the world 

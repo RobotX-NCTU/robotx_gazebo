@@ -64,3 +64,6 @@ please make the xacro file under vmrc/robotx_gazebo/urdf, and include the file i
 please save the file under vmrc/robotx_gazebo/worlds and chanege the arg "world" in vmrc/robotx_gazebo/sandisland_nctu.launch </br>
 * Add models or 3D file such like buoys, *.dae ...... </br>
  please save the file under vmrc/robotx_gazebo/models
+
+## Contacts
+* Tony Hsiao <tonycar12002@gmail.com>

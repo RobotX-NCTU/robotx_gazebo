@@ -57,25 +57,11 @@
 
     <!-- Task 6 Docking  -->
    <include>
-    <pose> 40 3 0 0 0 3.14 </pose>
-    <name>blue_circle_dock</name>
-    <uri>model://models/blue_circle_dock</uri> 
+    <pose> 40 0 0 0 0 -1.57 </pose>
+    <name>three_docks_v2</name>
+    <uri>model://models/three_docks_v2</uri> 
   	<static>1</static>       
-   </include> 
-
-   <include>
-    <pose> 40 8.3 0 0 0 3.14 </pose>
-    <name>red_cross_dock</name>
-    <uri>model://models/red_cross_dock</uri> 
-  	<static>1</static>       
-   </include> 
-
-   <include>
-    <pose> 40 -2.3 0 0 0 3.14 </pose>
-    <name>green_triangle_dock</name>
-    <uri>model://models/green_triangle_dock</uri> 
-  	<static>1</static>       
-   </include> 
+  </include>
 
   </world>
 </sdf>

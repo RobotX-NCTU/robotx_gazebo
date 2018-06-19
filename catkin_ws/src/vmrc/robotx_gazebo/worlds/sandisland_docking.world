@@ -1,0 +1,67 @@
+<?xml version="1.0" ?>
+<sdf version="1.4">
+  <world name="SandIsland">
+    <scene>
+      <sky>
+        <clouds>
+          <speed>12</speed>
+        </clouds>
+      </sky>
+    </scene>
+
+    <wind>
+      <linear_velocity>10 0 0</linear_velocity> <!-- Wind linear velocity -->
+    </wind >
+    
+    <!-- A global light source -->
+    <light type="directional" name="sun_0">
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>3000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.5 0.1 -0.9</direction>
+    </light>
+    <light type="directional" name="sun_1">
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>3000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.5 0.1 -0.9</direction>
+    </light>
+
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose>240.235 110.553 61.4147 0 0.304 -2.78</pose>
+        <view_controller>orbit</view_controller>
+      </camera>
+    </gui>
+
+
+    <include>
+      <pose> 0 0 0 0 0 0 </pose>
+      <uri>model://models/ocean</uri>      
+    </include>   
+
+
+    <!-- Task 6 Docking  -->
+   <include>
+    <pose> 40 0 0 0 0 -1.57 </pose>
+    <name>three_docks_v2</name>
+    <uri>model://models/three_docks_v2</uri> 
+  	<static>1</static>       
+  </include>
+
+  </world>
+</sdf>

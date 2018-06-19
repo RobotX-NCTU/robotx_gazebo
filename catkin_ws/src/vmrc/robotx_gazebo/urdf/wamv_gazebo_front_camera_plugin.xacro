@@ -54,7 +54,7 @@
         <alwaysOn>true</alwaysOn>
         <updateRate>0.0</updateRate>
         <cameraName>zed1/rgb</cameraName>
-        <imageTopicName>image_rect</imageTopicName>
+        <imageTopicName>image_rect_color</imageTopicName>
         <cameraInfoTopicName>camera_info</cameraInfoTopicName>
         <frameName>zed1</frameName>
         <hackBaseline>0.07</hackBaseline>
@@ -108,7 +108,7 @@
         <alwaysOn>true</alwaysOn>
         <updateRate>0.0</updateRate>
         <cameraName>zed3/rgb</cameraName>
-        <imageTopicName>image_rect</imageTopicName>
+        <imageTopicName>image_rect_color</imageTopicName>
         <cameraInfoTopicName>camera_info</cameraInfoTopicName>
         <frameName>zed3</frameName>
         <hackBaseline>0.07</hackBaseline>
@@ -163,7 +163,7 @@
         <alwaysOn>true</alwaysOn>
         <updateRate>0.0</updateRate>
         <cameraName>zed2/rgb</cameraName>
-        <imageTopicName>image_rect</imageTopicName>
+        <imageTopicName>image_rect_color</imageTopicName>
         <cameraInfoTopicName>camera_info</cameraInfoTopicName>
         <frameName>zed2</frameName>
         <hackBaseline>0.07</hackBaseline>

@@ -1,6 +1,6 @@
 # RobotX Gazebo
 ## Introduction
-This repo is the gazeo simulation of RobotX competition and is based on vmrc(https://bitbucket.org/osrf/vmrc/overview)</br>
+This repo is the gazeo simulation of RobotX competition and is based on [vmrc](https://bitbucket.org/osrf/vmrc/overview)</br>
 
 ![all_models](https://github.com/RobotX-NCTU/robotx_gazebo/blob/master/all_model.png)
 

@@ -1,6 +1,8 @@
 # RobotX Gazebo
 ## Introduction
-This is the gazeo simulation of RobotX competition
+This repo is the gazeo simulation of RobotX competition and is based on [vmrc](https://bitbucket.org/osrf/vmrc/overview)</br>
+
+![all_models](https://github.com/RobotX-NCTU/robotx_gazebo/blob/master/all_model.png)
 
 ## Prerequisites
 1. Install dependencies 
@@ -16,21 +18,24 @@ $ catkin_make
 ## Hardware and Model
 - WAM-V 
   - Hardware
-    - HDL32E LiDAR (not yet)
+    - HDL32E LiDAR 
     - GPS
     - IMU
-    - Front rgb camera * 2 (1280*720) 
-    - dynamincs and thruster
+    - Front rgb camera * 3 (1280*720) 
+    - dynamincs and thruster * 2
   - Software
     - p3d (3D Position Interface for Ground Truth)
+  - Environment
     - wind 
+    - wave
 - Tasks Models
   - Ocean
+  - Sky
   - sandisland
-  - Green buoys 
-  - Red buoys
+  - Green, Yellow, Red, Green buoys 
+  - Light buoys
   - Black buoys with A3, A5, A7
-  - Dock (not real size)
+  - Dock
 
 ## How to run the example
 ### Launch the world 
@@ -60,3 +65,6 @@ please make the xacro file under vmrc/robotx_gazebo/urdf, and include the file i
 please save the file under vmrc/robotx_gazebo/worlds and chanege the arg "world" in vmrc/robotx_gazebo/sandisland_nctu.launch </br>
 * Add models or 3D file such like buoys, *.dae ...... </br>
  please save the file under vmrc/robotx_gazebo/models
+
+## Contacts
+* Tony Hsiao <tonycar12002@gmail.com>

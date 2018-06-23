@@ -27,7 +27,7 @@
 
     <!-- Task 5 Scan the code  -->
    <include>
-    <pose> 6 3 0 0 0 0 </pose>
+    <pose> 20 3 0 0 0 0 </pose>
     <name>scan_light_buoy</name>
     <uri>model://models/light_buoy</uri>        
    </include> 

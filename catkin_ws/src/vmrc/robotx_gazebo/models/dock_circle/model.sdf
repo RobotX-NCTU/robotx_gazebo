@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <sdf version="1.4">
-  <model name="three_docks_v2"> 
+  <model name="dock_circle"> 
     <gazebo>
       <static>false</static>
     </gazebo>
@@ -9,20 +9,21 @@
       <collision name="collision">
         <geometry>
           <mesh>
-            <uri>model://three_docks_v2/meshes/dock_v2.dae</uri>
+            <uri>model://dock_circle/meshes/dock_circle_blue.dae</uri>
           </mesh>  
         </geometry>
       </collision>
       <visual name="visual">
         <geometry>
           <mesh>
-            <uri>model://three_docks_v2/meshes/dock_v2.dae</uri>
+            <uri>model://dock_circle/meshes/dock_circle_blue.dae</uri>
           </mesh>         
         </geometry>
         <material>
           <lighting>1</lighting>
         </material>
       </visual>
+
       <inertial>
       	<origin
         xyz="0 0 0"

@@ -140,7 +140,7 @@
         <cast_shadows>1</cast_shadows>
         <plugin name="blink" filename="libBlink.so">
 
-            <color_a>1 0 0 1</color_a>
+            <color_a>1 1 0 1</color_a>
 
             <color_b>0 0 1 1</color_b>
 
@@ -250,7 +250,7 @@
         <cast_shadows>1</cast_shadows>
         <plugin name="blink" filename="libBlink.so">
 
-            <color_a>1 0 0 1</color_a>
+            <color_a>1 1 0 1</color_a>
 
             <color_b>0 0 1 1</color_b>
 
@@ -360,7 +360,7 @@
         <cast_shadows>1</cast_shadows>
         <plugin name="blink" filename="libBlink.so">
 
-            <color_a>1 0 0 1</color_a>
+            <color_a>1 1 0 1</color_a>
 
             <color_b>0 0 1 1</color_b>
 

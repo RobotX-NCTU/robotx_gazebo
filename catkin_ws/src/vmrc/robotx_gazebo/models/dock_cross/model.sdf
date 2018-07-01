@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <sdf version="1.4">
-  <model name="three_docks_v1"> 
+  <model name="dock_cross"> 
     <gazebo>
       <static>false</static>
     </gazebo>
@@ -9,14 +9,14 @@
       <collision name="collision">
         <geometry>
           <mesh>
-            <uri>model://three_docks_v1/meshes/dock_v1.dae</uri>
+            <uri>model://dock_cross/meshes/dock_cross_red.dae</uri>
           </mesh>  
         </geometry>
       </collision>
       <visual name="visual">
         <geometry>
           <mesh>
-            <uri>model://three_docks_v1/meshes/dock_v1.dae</uri>
+            <uri>model://dock_cross/meshes/dock_cross_red.dae</uri>
           </mesh>         
         </geometry>
         <material>

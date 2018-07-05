@@ -32,7 +32,6 @@
       to go into the model file to change the altitutde/height!-->
       <pose> 50 50 10 0 0 0 </pose>
       <uri>model://models/sandisland</uri>
-      <!--<uri>model://models/lake</uri>-->
     </include>
 
     <!-- Should be at the same height as the water level in USV and buoyancy 
@@ -101,6 +100,35 @@
       <pose> 10 30 0 0 0 0 </pose>
       <uri>model://models/light_buoy</uri>      
     </include> 
+
+    <!-- Dock -->
+    <light type="point" name="point1">
+      <pose> 7 -20 1 0 0 0</pose>
+    </light>
+
+    <include>
+      <pose> 10 -30 0 0 0 -1.57 </pose>
+      <uri>model://models/dock_cross</uri>      
+    </include> 
+
+    <include>
+      <pose> 10 -20 0 0 0 -1.57 </pose>
+      <uri>model://models/dock_circle</uri>      
+    </include> 
+
+    <include>
+      <pose> 10 -10 0 0 0 -1.57 </pose>
+      <uri>model://models/dock_triangle</uri>      
+    </include> 
+
+    <!-- Deliever buoy -->
+    <light type="point" name="point2">
+      <pose> 20 0 1 0 0 0</pose>
+    </light>
+    <include>
+      <pose> 20 0 0 0 0 0 </pose>
+      <uri>model://models/deliever_buoy</uri>      
+    </include>     
 
   </world>
 

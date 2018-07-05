@@ -4,8 +4,8 @@
         <contributor>
             <authoring_tool>SketchUp 17.2.2555</authoring_tool>
         </contributor>
-        <created>2018-07-01T05:36:10Z</created>
-        <modified>2018-07-01T05:36:10Z</modified>
+        <created>2018-07-05T06:41:21Z</created>
+        <modified>2018-07-05T06:41:21Z</modified>
         <unit meter="0.0254" name="inch" />
         <up_axis>Z_UP</up_axis>
     </asset>
@@ -174,7 +174,7 @@
                     </bind_material>
                 </instance_geometry>
                 <node name="skp_camera_Last_Saved_SketchUp_View">
-                    <matrix>-0.9916694 0.04346955 -0.1212528 32.16136 -0.1288093 -0.3346608 0.9334936 500.1527 -6.938894e-18 0.9413355 0.3374721 164.606 0 0 0 1</matrix>
+                    <matrix>-0.968859 0.1057366 -0.2239021 -40.69552 -0.2476134 -0.4137251 0.8760817 337.3166 -1.387779e-17 0.9042407 0.4270231 161.4521 0 0 0 1</matrix>
                     <instance_camera url="#ID1" />
                 </node>
             </node>
@@ -562,7 +562,7 @@
         <material id="ID12" name="Color_M00">
             <instance_effect url="#ID13" />
         </material>
-        <material id="ID23" name="Color_G06">
+        <material id="ID23" name="_0076_Green">
             <instance_effect url="#ID24" />
         </material>
         <material id="ID28" name="edge_color000255">
@@ -597,7 +597,7 @@
                 <technique sid="COMMON">
                     <lambert>
                         <diffuse>
-                            <color>0 0.8 0 1</color>
+                            <color>0 0.5019608 0 1</color>
                         </diffuse>
                     </lambert>
                 </technique>

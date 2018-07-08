@@ -42,6 +42,7 @@ $ catkin_make
 ### Launch the world 
 the world is about coarse approximation of the RobotX competition area, Sand Island, Honolulu, HI.
 ```
+$ source environment.sh
 $ roslaunch robotx_gazebo sandisland_nctu.launch
 ```
 ### Control the WAM-V 

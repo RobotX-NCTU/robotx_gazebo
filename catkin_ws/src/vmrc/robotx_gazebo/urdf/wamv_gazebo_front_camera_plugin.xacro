@@ -4,13 +4,13 @@
        
   <!-- camera position -->
   <xacro:property name="origin_left">
-    <origin xyz="0.65 -0.3 1.6" rpy="0 0 -0.785" />
-  </xacro:property>
-  <xacro:property name="origin_right">
     <origin xyz="0.65 0.3 1.6" rpy="0 0 0.785" />
   </xacro:property>
+  <xacro:property name="origin_right">
+    <origin xyz="0.65 -0.3 1.6" rpy="0 0 -0.785" />
+  </xacro:property>
   <xacro:property name="origin_mid">
-    <origin xyz="0.65 0 1.6" rpy="0 0 0" />
+    <origin xyz="0.65 0 1.6" rpy="-3.14 0 0" />
   </xacro:property>
 
   <!-- left camera -->
@@ -53,10 +53,10 @@
       <plugin name="camera_controller_front_left_front_camera" filename="libgazebo_ros_camera.so">
         <alwaysOn>true</alwaysOn>
         <updateRate>0.0</updateRate>
-        <cameraName>zed1/rgb</cameraName>
+        <cameraName>zed_left/rgb</cameraName>
         <imageTopicName>image_rect_color</imageTopicName>
         <cameraInfoTopicName>camera_info</cameraInfoTopicName>
-        <frameName>zed1</frameName>
+        <frameName>zed_left</frameName>
         <hackBaseline>0.07</hackBaseline>
         <distortionK1>0.0</distortionK1>
         <distortionK2>0.0</distortionK2>
@@ -107,10 +107,10 @@
       <plugin name="camera_controller_front_right_front_camera" filename="libgazebo_ros_camera.so">
         <alwaysOn>true</alwaysOn>
         <updateRate>0.0</updateRate>
-        <cameraName>zed3/rgb</cameraName>
+        <cameraName>zed_right/rgb</cameraName>
         <imageTopicName>image_rect_color</imageTopicName>
         <cameraInfoTopicName>camera_info</cameraInfoTopicName>
-        <frameName>zed3</frameName>
+        <frameName>zed_right</frameName>
         <hackBaseline>0.07</hackBaseline>
         <distortionK1>0.0</distortionK1>
         <distortionK2>0.0</distortionK2>
@@ -162,10 +162,10 @@
       <plugin name="camera_controller_front_right_front_camera" filename="libgazebo_ros_camera.so">
         <alwaysOn>true</alwaysOn>
         <updateRate>0.0</updateRate>
-        <cameraName>zed2/rgb</cameraName>
+        <cameraName>zed_mid/rgb</cameraName>
         <imageTopicName>image_rect_color</imageTopicName>
         <cameraInfoTopicName>camera_info</cameraInfoTopicName>
-        <frameName>zed2</frameName>
+        <frameName>zed_mid</frameName>
         <hackBaseline>0.07</hackBaseline>
         <distortionK1>0.0</distortionK1>
         <distortionK2>0.0</distortionK2>

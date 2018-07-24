@@ -35,12 +35,14 @@ $ catkin_make
   - Green, Yellow, Red, Green buoys 
   - Light buoys
   - Black buoys with A3, A5, A7
-  - Dock
+  - Dock with 3 colors and 3 shapes
+  - Detect and deliever buoy
 
 ## How to run the example
 ### Launch the world 
 the world is about coarse approximation of the RobotX competition area, Sand Island, Honolulu, HI.
 ```
+$ source environment.sh
 $ roslaunch robotx_gazebo sandisland_nctu.launch
 ```
 ### Control the WAM-V 

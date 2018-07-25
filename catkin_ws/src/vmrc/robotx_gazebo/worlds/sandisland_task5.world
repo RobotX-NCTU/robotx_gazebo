@@ -1,0 +1,36 @@
+ <?xml version="1.0" ?>
+<sdf version="1.4">
+  <world name="SandIsland">
+
+    <wind>
+      <linear_velocity>10 0 0</linear_velocity> <!-- Wind linear velocity -->
+    </wind >
+    
+    <!-- A global light source -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose>240.235 110.553 61.4147 0 0.304 -2.78</pose>
+        <view_controller>orbit</view_controller>
+      </camera>
+    </gui>
+
+
+    <include>
+      <pose> 0 0 0 0 0 0 </pose>
+      <uri>model://models/ocean</uri>      
+    </include>   
+
+
+    <!-- Task 5 Scan the code  -->
+   <include>
+    <pose> 20 3 0 0 0 0 </pose>
+    <name>scan_light_buoy</name>
+    <uri>model://models/light_buoy</uri>        
+   </include> 
+
+  </world>
+</sdf>

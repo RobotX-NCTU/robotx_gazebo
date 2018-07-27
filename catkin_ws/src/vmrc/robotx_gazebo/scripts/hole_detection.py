@@ -8,7 +8,7 @@ Hole ROI Extraction (Detect and Deliver)
 Subscribe: 
   /zed_mid/rgb/image_rect_color/compressed 		(sensor_msgs/CompressedImage)
 Publish:
-  /hole/compressed 								(sensor_msgs/CompressedImage)
+  /hole/compressed 					(sensor_msgs/CompressedImage)
 '''
 
 import numpy as np

@@ -1,0 +1,6 @@
+float32 waypointx
+float32 waypointy
+float32 yaw
+float32 vel
+---
+int32 waypoint_len

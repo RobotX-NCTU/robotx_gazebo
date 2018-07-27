@@ -35,6 +35,11 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GAZEBO_CXX_FLAGS} -std=c++11 -Wall -We
 ## Message generation ##
 ########################
 
+add_service_files(
+  FILES
+  waypoint.srv
+)
+
 # Generate messages in the 'msg' folder
 add_message_files(
   FILES
@@ -48,6 +53,7 @@ generate_messages(
   nav_msgs
   std_msgs
 )
+
 
 
 catkin_package(

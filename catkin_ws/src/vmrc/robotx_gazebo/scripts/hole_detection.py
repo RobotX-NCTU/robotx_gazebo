@@ -65,7 +65,7 @@ class hole_detection():
 				M = cv2.getRotationMatrix2D(center, angle180, scale)
 				img_rotated180 = cv2.warpAffine(crop_img, M, (width, height))
 
-		#### Create CompressedImage ####
+		#create CompressedImage msg
 		msg = CompressedImage()
 		msg.header.stamp = rospy.Time.now()
 		msg.format = "jpeg"
@@ -75,23 +75,23 @@ class hole_detection():
 		self.image_pub.publish(msg)
 
 
-	#get the white board
+	#get the white board contour
 	def get_white_board(self, img):
 		#convert to hsv
 		hsv_img = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
 
-		# define range of white color in HSV
+		#define range of white color in HSV
 		lower_white = np.array([0,0,0], dtype=np.uint8)
 		upper_white = np.array([0,0,255], dtype=np.uint8)
 
-		# Threshold the HSV image to get only white colors
+		#threshold the HSV image to get only white colors
 		frame_threshed = cv2.inRange(hsv_img, lower_white, upper_white)
 		
-		# morphological opening
+		#morphological opening
 		kernel = np.ones((5,5), np.uint8)
 		opening = cv2.morphologyEx(frame_threshed, cv2.MORPH_OPEN, kernel)
 
-		# threshold
+		#threshold
 		ret,thresh = cv2.threshold(opening,30,255,0)
 
 		filtered_contours = []
@@ -113,8 +113,7 @@ class hole_detection():
 			#remove noise
 			if cv2.contourArea(cnt)==0:
 				continue
-			#remove smaller boxes24462.0
-
+			#remove smaller boxes
 			if not(area > 100000): 
 				continue
 
@@ -127,19 +126,20 @@ class hole_detection():
 		return filtered_contours
 
 
-
+	#get holes contour
 	def get_hole_contours(self, img):
 		#convert to hsv
 		hsv_img = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
-
+		
+		#define range of black color in HSV
 		BLACK = [np.array(x, np.uint8) for x in [[0,0,0], [180, 255, 125]] ]
 		frame_threshed = cv2.inRange(hsv_img, BLACK[0], BLACK[1])
 
-		# morphological opening
+		#morphological opening
 		kernel = np.ones((5,5), np.uint8)
 		opening = cv2.morphologyEx(frame_threshed, cv2.MORPH_OPEN, kernel)
 
-		# threshold
+		#threshold
 		ret,thresh = cv2.threshold(opening,36,255,0)
 
 		filtered_contours = []

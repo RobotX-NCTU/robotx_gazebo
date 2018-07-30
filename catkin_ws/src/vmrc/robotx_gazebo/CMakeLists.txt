@@ -17,7 +17,10 @@ find_package(catkin REQUIRED COMPONENTS
   geometry_msgs
   hector_gazebo_plugins
   message_generation
+  pcl_conversions
+  pcl_ros
   nav_msgs
+  sensor_msgs
   roscpp
   std_msgs
   wamv_description
@@ -50,12 +53,15 @@ add_service_files(
 add_message_files(
   FILES
   UsvDrive.msg
+  ObstaclePose.msg
+  ObstaclePoseList.msg
 )
 
 ## Generate added messages and services with any dependencies listed here
 generate_messages(
   DEPENDENCIES
   geometry_msgs
+  sensor_msgs
   nav_msgs
   std_msgs
 )
@@ -64,7 +70,7 @@ generate_messages(
 
 catkin_package(
   INCLUDE_DIRS include
-  CATKIN_DEPENDS roscpp message_runtime std_msgs geometry_msgs nav_msgs
+  CATKIN_DEPENDS roscpp message_runtime std_msgs geometry_msgs nav_msgs sensor_msgs
   LIBRARIES gazebo_ros_color
 )
 
@@ -224,3 +230,7 @@ install(DIRECTORY launch/
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
+
+
+add_executable(clustering scripts/clustering.cpp)
+target_link_libraries(clustering ${catkin_LIBRARIES})

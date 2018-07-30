@@ -134,7 +134,7 @@
     <!-- The 2018 dock with the two placards -->
     <include>
       <uri>model://dock_2018</uri>
-      <pose>120 -2.75 0 0 0 0</pose>
+      <pose>35 -2.75 0 0 0 0</pose>
     </include> 
    
 

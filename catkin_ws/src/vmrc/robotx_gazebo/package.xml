@@ -23,6 +23,7 @@
   <depend>nav_msgs</depend>
   <depend>roscpp</depend>
   <depend>std_msgs</depend>
+  <depend>sensor_msgs</depend>
   <depend>wamv_description</depend>
 
   <exec_depend>urdf</exec_depend>

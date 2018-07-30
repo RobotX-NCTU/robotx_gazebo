@@ -65,7 +65,7 @@ generate_messages(
 catkin_package(
   INCLUDE_DIRS include
   CATKIN_DEPENDS roscpp message_runtime std_msgs geometry_msgs nav_msgs
-  LIBRARIES
+  LIBRARIES gazebo_ros_color
 )
 
 
@@ -77,6 +77,26 @@ include_directories( include
 link_directories(
   ${GAZEBO_LIBRARY_DIRS}
   ${catkin_LIBRARY_DIRS}
+)
+
+# Plugin for setting color of a gazebo visual through ROS
+add_library(gazebo_ros_color src/gazebo_ros_color.cc)
+target_link_libraries(gazebo_ros_color ${catkin_LIBRARIES})
+add_dependencies(gazebo_ros_color ${catkin_EXPORTED_TARGETS})
+install(TARGETS gazebo_ros_color
+  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
+# Plugin for controlling symbols
+add_library(symbol_controller src/symbol_controller.cc)
+target_link_libraries(symbol_controller ${catkin_LIBRARIES})
+add_dependencies(symbol_controller ${catkin_EXPORTED_TARGETS})
+install(TARGETS symbol_controller
+  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
 ## Declare a C++ library

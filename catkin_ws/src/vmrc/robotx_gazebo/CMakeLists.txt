@@ -1,6 +1,12 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(robotx_gazebo)
 
+# We need erb to process the .world.erb files.
+find_program(ERB_EXE_PATH erb)
+if(NOT ERB_EXE_PATH)
+  message(FATAL_ERROR "Could not find the `erb` tool.  Try `sudo apt-get install ruby`")
+endif()
+
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
@@ -11,7 +17,10 @@ find_package(catkin REQUIRED COMPONENTS
   geometry_msgs
   hector_gazebo_plugins
   message_generation
+  pcl_conversions
+  pcl_ros
   nav_msgs
+  sensor_msgs
   roscpp
   std_msgs
   wamv_description
@@ -44,12 +53,15 @@ add_service_files(
 add_message_files(
   FILES
   UsvDrive.msg
+  ObstaclePose.msg
+  ObstaclePoseList.msg
 )
 
 ## Generate added messages and services with any dependencies listed here
 generate_messages(
   DEPENDENCIES
   geometry_msgs
+  sensor_msgs
   nav_msgs
   std_msgs
 )
@@ -58,8 +70,8 @@ generate_messages(
 
 catkin_package(
   INCLUDE_DIRS include
-  CATKIN_DEPENDS roscpp message_runtime std_msgs geometry_msgs nav_msgs
-  LIBRARIES
+  CATKIN_DEPENDS roscpp message_runtime std_msgs geometry_msgs nav_msgs sensor_msgs
+  LIBRARIES gazebo_ros_color
 )
 
 
@@ -71,6 +83,26 @@ include_directories( include
 link_directories(
   ${GAZEBO_LIBRARY_DIRS}
   ${catkin_LIBRARY_DIRS}
+)
+
+# Plugin for setting color of a gazebo visual through ROS
+add_library(gazebo_ros_color src/gazebo_ros_color.cc)
+target_link_libraries(gazebo_ros_color ${catkin_LIBRARIES})
+add_dependencies(gazebo_ros_color ${catkin_EXPORTED_TARGETS})
+install(TARGETS gazebo_ros_color
+  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
+# Plugin for controlling symbols
+add_library(symbol_controller src/symbol_controller.cc)
+target_link_libraries(symbol_controller ${catkin_LIBRARIES})
+add_dependencies(symbol_controller ${catkin_EXPORTED_TARGETS})
+install(TARGETS symbol_controller
+  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
 ## Declare a C++ library
@@ -141,6 +173,25 @@ target_link_libraries(Blink
   ${GAZEBO_LIBRARIES}
 )
 
+# Model files that need to be processed with erb
+set (dock_erb_files
+  models/dock_2018_base/model.sdf.erb
+)
+
+# Process the erb files
+foreach(_erb ${dock_erb_files})
+  string(REGEX REPLACE ".sdf.erb" ".sdf" _model ${_erb})
+  set(_model ${CMAKE_CURRENT_SOURCE_DIR}/${_model})
+  add_custom_command(OUTPUT ${_model}
+                     COMMAND ${ERB_EXE_PATH} ${_erb} > ${_model}
+                     DEPENDS
+                       ${CMAKE_CURRENT_SOURCE_DIR}/${_erb}
+                       ${CMAKE_CURRENT_SOURCE_DIR}/dock_generator.erb
+                     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+
+  list(APPEND model_files ${_model})
+endforeach()
+add_custom_target(erb_generation ALL DEPENDS ${model_files})
 
 #############
 ## Install ##
@@ -179,3 +230,7 @@ install(DIRECTORY launch/
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
+
+
+add_executable(clustering scripts/clustering.cpp)
+target_link_libraries(clustering ${catkin_LIBRARIES})

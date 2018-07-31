@@ -53,8 +53,6 @@ add_service_files(
 add_message_files(
   FILES
   UsvDrive.msg
-  ObstaclePose.msg
-  ObstaclePoseList.msg
 )
 
 ## Generate added messages and services with any dependencies listed here
@@ -231,6 +229,3 @@ install(DIRECTORY launch/
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
 
-
-add_executable(clustering scripts/clustering.cpp)
-target_link_libraries(clustering ${catkin_LIBRARIES})

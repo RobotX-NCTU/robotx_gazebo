@@ -68,7 +68,7 @@ class pos_vel_PID:
 			self.wait_flag = 0
 		pos_error = np.sqrt((self.pos_SetPointx - x_pos)*(self.pos_SetPointx - x_pos)+(self.pos_SetPointy - y_pos)*(self.pos_SetPointy - y_pos))
 		#print pos_error, " ", x_pos, " ", self.pos_SetPointx, " ", y_pos, " ", self.pos_SetPointy
-		if np.abs(pos_error) < 3:
+		if np.abs(pos_error) < 3 and waypoints is not None:
 
 			if waypoint_index < waypoints.shape[0]-1:
 				if self.wait_flag == 0 and station_keep_flag == 0:
@@ -172,7 +172,7 @@ class ang_PID:
 		#print "delta t", time.time() - self.wait_start
 		error = np.arctan2((self.pos_SetPointy - y_pos),(self.pos_SetPointx - x_pos)) - yaw
 		pos_error = np.sqrt((self.pos_SetPointx - x_pos)*(self.pos_SetPointx - x_pos)+(self.pos_SetPointy - y_pos)*(self.pos_SetPointy - y_pos))
-		if np.abs(pos_error) < 2:        
+		if np.abs(pos_error) < 2 and waypoints is not None:        
 			
 			self.pos_SetPointx = (waypoints[waypoint_index][0])
 			self.pos_SetPointy = (waypoints[waypoint_index][1])
@@ -254,10 +254,11 @@ def pause_waypoint_handler(req):
 	return res
 
 def clear_waypoints_handler(req):
-	global waypoints, waypoint_index
+	global waypoints, waypoint_index, start_flag
 	print "clear waypoints"
 	waypoints = None
 	waypoint_index = 0
+	start_flag = 0
 	res = TriggerResponse()
 	res.success = True
 	res.message = "waypoints flushed"
@@ -346,7 +347,9 @@ if __name__ == "__main__":
 		if abs(ang_right) > 0.3:
 			ang_right = (ang_right/abs(ang_right))*0.3
 
-		print "linear: ", out, "angular: ", ang_left
+		#print "linear: ", out, "angular: ", ang_left
+		#print waypoints
+		#print waypoint_index
 		if start_flag == 0:
 			msg = UsvDrive()
 			msg.left = 0

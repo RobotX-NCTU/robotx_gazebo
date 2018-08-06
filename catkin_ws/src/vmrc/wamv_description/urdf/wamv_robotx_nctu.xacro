@@ -31,7 +31,7 @@
   <xacro:if value="$(arg lidar)">
       <xacro:include filename="$(find robotx_gazebo)/urdf/wamv_gazebo_lidar_plugin.xacro" />
       <xacro:wamv_HDL32E_lidar parent="base_link" name="velodyne" topic="/velodyne_points" hz="8" samples="1800" min_range="0" max_range="50.0" min_angle="-3.14" max_angle="3.14" noise="0.01">
-        <origin xyz="0.3 0 1.8" rpy="0 0 3.14" />
+        <origin xyz="0.3 0 1.8" rpy="0 0 -1.57" />
       </xacro:wamv_HDL32E_lidar>
   </xacro:if>
 
@@ -39,7 +39,7 @@
   <!-- Attach GPS plugin -->    
   <xacro:if value="$(arg gps)">
       <xacro:include filename="$(find robotx_gazebo)/urdf/wamv_gazebo_gps_plugin.xacro" />
-      <xacro:wamv_gps name="wamv_gps" latitude="21.30996" longitude="-157.8901" altitude="2.5">
+      <xacro:wamv_gps name="gps" latitude="21.30996" longitude="-157.8901" altitude="2.5">
         <origin xyz="0.2 0.0 2.5" rpy="0 0 0" />
       </xacro:wamv_gps>
   </xacro:if>
@@ -47,7 +47,7 @@
   <!-- Attach IMU plugin -->    
   <xacro:if value="$(arg imu)">
       <xacro:include filename="$(find robotx_gazebo)/urdf/wamv_gazebo_imu_plugin.xacro" />
-      <xacro:wamv_imu name="wamv_imu">
+      <xacro:wamv_imu name="imu">
       </xacro:wamv_imu>
   </xacro:if>
 

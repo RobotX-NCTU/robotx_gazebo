@@ -45,24 +45,24 @@
     <!-- Task 1 Demonstrate Navigation Control -- >
       <!-- The entrance (-30, 00) (-40, 0)-->
       <include>
-        <pose> -30 0 0 0 0 0 </pose>
+        <pose> 10 -5 0 0 0 0 </pose>
         <name>red_buoy_entrance</name>
         <uri>model://models/red_buoy</uri>       
       </include>
        <include>
-        <pose> -40 0 0 0 0 0 </pose>
+        <pose> 10 5 0 0 0 0 </pose>
         <name>green_buoy_entrance</name>
         <uri>model://models/green_buoy</uri>     
       </include>
 
       <!-- The exit (-30, 30) (-40, 30)-->
       <include>
-        <pose> -30 30 0 0 0 0 </pose>
+        <pose> 30 -5 0 0 0 0 </pose>
         <name>red_buoy_exit</name>
         <uri>model://models/red_buoy</uri>
       </include>
        <include>
-        <pose> -40 30 0 0 0 0 </pose>
+        <pose> 30 5 0 0 0 0 </pose>
         <name>green_buoy_exit</name>
         <uri>model://models/green_buoy</uri>       
       </include>
@@ -70,7 +70,7 @@
 
     <!-- Task 3&4 Find Totem and Avoid Obstalces -->
       <!-- The area by 4 white buoy (10, 50) (10, 70) (70, 50) (70, 100)-->
-      <include>
+      <!-- <include>
         <pose> 10 50 0 0 0 0 </pose>
         <name>white_buoy_mark_1</name>
         <uri>model://models/white_buoy</uri>         
@@ -89,10 +89,10 @@
         <pose> 70 110 0 0 0 0 </pose>
         <name>white_buoy_mark_4</name>
         <uri>model://models/white_buoy</uri>        
-      </include>  
+      </include>   -->
 
       <!-- Totem -->
-       <include>
+       <!-- <include>
         <pose> 20 80 0 0 0 0 </pose>
         <name>yellow_buoy_totem</name>
         <uri>model://models/yellow_buoy</uri>        
@@ -106,10 +106,10 @@
         <pose> 55 70 0 0 0 0 </pose>
         <name>green_buoy_totem</name>
         <uri>model://models/green_buoy</uri>        
-      </include>      
+      </include>   -->    
 
       <!-- Obstacle -->
-       <include>
+       <!-- <include>
         <pose> 15 65 0 0 0 0 </pose>
         <name>obstalce_1</name>
         <uri>model://models/buoy_a3</uri>        
@@ -153,6 +153,6 @@
         <pose> 68 65 0 0 0 0 </pose>
         <name>obstalce_9</name>
         <uri>model://models/buoy_a7</uri>        
-       </include> 
+       </include>  -->
   </world>
 </sdf>

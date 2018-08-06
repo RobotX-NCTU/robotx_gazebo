@@ -15,6 +15,7 @@ sudo apt install -y \
         ros-kinetic-serial \
         ros-kinetic-geometry2 \
         ros-kinetic-velodyne-* \
+        libignition-math2-dev \
 	ros-kinetic-hector-gazebo-plugins
 
 sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'

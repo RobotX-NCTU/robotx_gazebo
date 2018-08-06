@@ -67,7 +67,8 @@ class pos_vel_PID:
 		if time.time() - self.wait_start > 5:
 			self.wait_flag = 0
 		pos_error = np.sqrt((self.pos_SetPointx - x_pos)*(self.pos_SetPointx - x_pos)+(self.pos_SetPointy - y_pos)*(self.pos_SetPointy - y_pos))
-		if np.abs(pos_error) < 3:
+		#print pos_error, " ", x_pos, " ", self.pos_SetPointx, " ", y_pos, " ", self.pos_SetPointy
+		if np.abs(pos_error) < 3 and waypoints is not None:
 
 			if waypoint_index < waypoints.shape[0]-1:
 				if self.wait_flag == 0 and station_keep_flag == 0:
@@ -171,7 +172,7 @@ class ang_PID:
 		#print "delta t", time.time() - self.wait_start
 		error = np.arctan2((self.pos_SetPointy - y_pos),(self.pos_SetPointx - x_pos)) - yaw
 		pos_error = np.sqrt((self.pos_SetPointx - x_pos)*(self.pos_SetPointx - x_pos)+(self.pos_SetPointy - y_pos)*(self.pos_SetPointy - y_pos))
-		if np.abs(pos_error) < 2:        
+		if np.abs(pos_error) < 2 and waypoints is not None:        
 			
 			self.pos_SetPointx = (waypoints[waypoint_index][0])
 			self.pos_SetPointy = (waypoints[waypoint_index][1])
@@ -253,10 +254,11 @@ def pause_waypoint_handler(req):
 	return res
 
 def clear_waypoints_handler(req):
-	global waypoints, waypoint_index
+	global waypoints, waypoint_index, start_flag
 	print "clear waypoints"
 	waypoints = None
 	waypoint_index = 0
+	start_flag = 0
 	res = TriggerResponse()
 	res.success = True
 	res.message = "waypoints flushed"
@@ -284,10 +286,10 @@ def station_keep_unlock_handler(req):
 def cb_nav(msg):
 	global x_pos, x_vel, y_pos, y_vel, yaw
 	# get pos, vel
-	x_pos = -msg.pose.pose.position.y
-	y_pos = msg.pose.pose.position.x
-	x_vel = -msg.twist.twist.linear.y
-	y_vel = msg.twist.twist.linear.x
+	x_pos = msg.pose.pose.position.x
+	y_pos = msg.pose.pose.position.y
+	x_vel = msg.twist.twist.linear.x
+	y_vel = msg.twist.twist.linear.y
 	quaternion = (
 	msg.pose.pose.orientation.x,
 	msg.pose.pose.orientation.y,
@@ -325,8 +327,9 @@ if __name__ == "__main__":
 
 		
 		out = pos_vel_pid.vel_output
-		if out > 0.5:
-			out = 0.5
+		#print "linear: ", out, "angular: ", ang_pid.output
+		if out > 0.3:
+			out = 0.3
 
 
 		if abs(ang_pid.output) < 0.05:
@@ -334,15 +337,19 @@ if __name__ == "__main__":
 		ang_left = -ang_pid.output
 		ang_right = ang_pid.output
 
-		if abs(ang_left) > 0.5:
+		if abs(ang_left) > 0.3:
 			out = 0
 		else:
 			out = out
-		if abs(ang_left) > 0.5:
+
+		if abs(ang_left) > 0.3:
 			ang_left = (ang_left/abs(ang_left))*0.3
-		if abs(ang_right) > 0.5:
+		if abs(ang_right) > 0.3:
 			ang_right = (ang_right/abs(ang_right))*0.3
 
+		#print "linear: ", out, "angular: ", ang_left
+		#print waypoints
+		#print waypoint_index
 		if start_flag == 0:
 			msg = UsvDrive()
 			msg.left = 0

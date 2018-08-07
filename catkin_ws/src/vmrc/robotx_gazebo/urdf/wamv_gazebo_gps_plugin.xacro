@@ -18,7 +18,7 @@
       <plugin name="gps_plugin_${name}" filename="libhector_gazebo_ros_gps.so">
 		<updateRate>5.0</updateRate>
 		<alwaysOn>true</alwaysOn>
-	        <bodyName>base_link</bodyName>
+	        <bodyName>gps</bodyName>
 	        <frameId>gps</frameId>
 		<topicName>gps</topicName>
     	<velocityTopicName>fix_velocity</velocityTopicName>

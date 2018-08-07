@@ -39,7 +39,7 @@
   <!-- Attach GPS plugin -->    
   <xacro:if value="$(arg gps)">
       <xacro:include filename="$(find robotx_gazebo)/urdf/wamv_gazebo_gps_plugin.xacro" />
-      <xacro:wamv_gps name="gps" latitude="21.30996" longitude="-157.8901" altitude="2.5">
+      <xacro:wamv_gps name="gps" latitude="21.30996" longitude="-157.8901"  altitude="2.5">
         <origin xyz="0.2 0.0 2.5" rpy="0 0 0" />
       </xacro:wamv_gps>
   </xacro:if>
@@ -48,6 +48,7 @@
   <xacro:if value="$(arg imu)">
       <xacro:include filename="$(find robotx_gazebo)/urdf/wamv_gazebo_imu_plugin.xacro" />
       <xacro:wamv_imu name="imu">
+        <origin xyz="0.2 0.0 2.0" rpy="0 0 0" />
       </xacro:wamv_imu>
   </xacro:if>
 

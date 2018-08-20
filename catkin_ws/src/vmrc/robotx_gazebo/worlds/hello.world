@@ -1,0 +1,274 @@
+<?xml version="1.0" ?>
+<sdf version="1.4">
+  <world name="SandIsland">
+    <!--scene>
+      <sky>
+        <clouds>
+          <speed>12</speed>
+        </clouds>
+      </sky>
+    </scene-->
+
+    <wind>
+      <linear_velocity>10 0 0</linear_velocity> <!-- Wind linear velocity -->
+    </wind >
+    
+    <!-- A global light source -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose>240.235 110.553 61.4147 0 0.304 -2.78</pose>
+        <view_controller>orbit</view_controller>
+      </camera>
+    </gui>
+
+     
+    <!-- The models below should be included in kingfisher_gazebo package -->
+    <!--include-->
+      <!-- Note - the pose tag doesn't seem to work for heightmaps, so you need
+      to go into the model file to change the altitutde/height!-->
+      <!--pose> 0 0 0 0 0 0 </pose>
+      <uri>model://models/sandisland</uri>
+      <!--<uri>model://models/lake</uri>-->
+    <!--/include>
+
+    <!-- Should be at the same height as the water level in USV and buoyancy 
+    plugin configurations -->
+    <include>
+      <pose> 0 0 0 0 0 0 </pose>
+      <uri>model://models/ocean</uri>      
+    </include>
+
+    <!-- A global light source -->
+    <light type="directional" name="sun_0">
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>3000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.5 0.1 -0.9</direction>
+    </light>
+
+    <light type="point" name="point1">
+      <cast_shadows>false</cast_shadows>
+      <pose>40 -3 1 0 0 0</pose>
+      <diffuse>127 127 127 1</diffuse>
+      <specular>25 25 25 1</specular>
+      <attenuation>
+        <range>20</range>
+        <constant>0.5</constant>
+        <linear>0.01</linear>
+        <quadratic>0.00</quadratic>
+      </attenuation>
+    </light>
+    <light type="point" name="point2">
+      <cast_shadows>false</cast_shadows>
+      <pose>40 -6 1 0 0 0</pose>
+      <diffuse>127 127 127 1</diffuse>
+      <specular>25 25 25 1</specular>
+      <attenuation>
+        <range>20</range>
+        <constant>0.5</constant>
+        <linear>0.01</linear>
+        <quadratic>0.00</quadratic>
+      </attenuation>
+    </light>
+    <light type="point" name="point3">
+      <cast_shadows>false</cast_shadows>
+      <pose>40 3 1 0 0 0</pose>
+      <diffuse>127 127 127 1</diffuse>
+      <specular>25 25 25 1</specular>
+      <attenuation>
+        <range>20</range>
+        <constant>0.5</constant>
+        <linear>0.01</linear>
+        <quadratic>0.00</quadratic>
+      </attenuation>
+    </light>
+    <light type="point" name="point4">
+      <cast_shadows>false</cast_shadows>
+      <pose>40 6 1 0 0 0</pose>
+      <diffuse>127 127 127 1</diffuse>
+      <specular>25 25 25 1</specular>
+      <attenuation>
+        <range>20</range>
+        <constant>0.5</constant>
+        <linear>0.01</linear>
+        <quadratic>0.00</quadratic>
+      </attenuation>
+    </light>
+
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose>240.235 110.553 61.4147 0 0.304 -2.78</pose>
+        <view_controller>orbit</view_controller>
+      </camera>
+    </gui>
+
+
+    <include>
+      <pose> 0 0 0 0 0 0 </pose>
+      <uri>model://models/ocean</uri>      
+    </include>   
+
+
+    <!-- Task 6 Docking  -->
+   <include>
+    <pose> 40 0.1 0 0 0 0 </pose>
+    <name>dock_cross</name>
+    <uri>model://models/dock_circle</uri> 
+    <static>1</static>       
+   </include>
+
+   <include>
+    <pose> 40 -0.1 0 0 0 -3.14 </pose>
+    <name>dock_triangle</name>
+    <uri>model://models/dock_triangle</uri> 
+    <static>1</static>       
+   </include>
+
+    <!-- Task 1 Demonstrate Navigation Control -- >
+      <!-- The entrance (-30, 00) (-40, 0)-->
+    <!--
+      <include>
+        <pose> 10 -5 0 0 0 0 </pose>
+        <name>0</name>
+        <uri>model://models/dock_cross</uri>       
+      </include>
+      <include>
+        <pose> 5 -5 0 0 0 0 </pose>
+        <name>1</name>
+        <uri>model://models/dock_circle</uri>       
+      </include>
+      <include>
+        <pose> 10 5 0 0 0 0 </pose>
+        <name>2</name>
+        <uri>model://models/dock_triangle</uri>     
+      </include>
+      <include>
+        <pose> 10 10 0 0 0 0 </pose>
+        <name>3</name>
+        <uri>model://models/dock_cross</uri>     
+      </include>
+      <include>
+        <pose> 10 -10 0 0 0 0 </pose>
+        <name>4</name>
+        <uri>model://models/dock_circle</uri>     
+      </include>
+      <include>
+        <pose> 10 15 0 0 0 0 </pose>
+        <name>5</name>
+        <uri>model://models/dock_triangle</uri>     
+      </include>
+    -->
+
+
+      <!-- The exit (-30, 30) (-40, 30)-->
+      <!--include>
+        <pose> 30 -5 0 0 0 0 </pose>
+        <name>red_buoy_exit</name>
+        <uri>model://models/red_buoy</uri>
+      </include>
+      <include>
+        <pose> 30 5 0 0 0 0 </pose>
+        <name>green_buoy_exit</name>
+        <uri>model://models/green_buoy</uri>       
+      </include-->
+
+
+    <!-- Task 3&4 Find Totem and Avoid Obstalces -->
+      <!-- The area by 4 white buoy (10, 50) (10, 70) (70, 50) (70, 100)-->
+      <!-- <include>
+        <pose> 10 50 0 0 0 0 </pose>
+        <name>white_buoy_mark_1</name>
+        <uri>model://models/white_buoy</uri>         
+      </include>
+       <include>
+        <pose> 10 110 0 0 0 0 </pose>
+        <name>white_buoy_mark_2</name>
+        <uri>model://models/white_buoy</uri>        
+      </include>    
+      <include>
+        <pose> 70 50 0 0 0 0 </pose>
+        <name>white_buoy_mark_3</name>
+        <uri>model://models/white_buoy</uri>         
+      </include>
+       <include>
+        <pose> 70 110 0 0 0 0 </pose>
+        <name>white_buoy_mark_4</name>
+        <uri>model://models/white_buoy</uri>        
+      </include>   -->
+
+      <!-- Totem -->
+       <!-- <include>
+        <pose> 20 80 0 0 0 0 </pose>
+        <name>yellow_buoy_totem</name>
+        <uri>model://models/yellow_buoy</uri>        
+      </include>    
+      <include>
+        <pose> 35 95 0 0 0 0 </pose>
+        <name>blue_buoy_totem</name>
+        <uri>model://models/blue_buoy</uri>         
+      </include>
+       <include>
+        <pose> 55 70 0 0 0 0 </pose>
+        <name>green_buoy_totem</name>
+        <uri>model://models/green_buoy</uri>        
+      </include>   -->    
+
+      <!-- Obstacle -->
+       <!-- <include>
+        <pose> 15 65 0 0 0 0 </pose>
+        <name>obstalce_1</name>
+        <uri>model://models/buoy_a3</uri>        
+       </include>      
+       <include>
+        <pose> 20 100 0 0 0 0 </pose>
+        <name>obstalce_2</name>
+        <uri>model://models/buoy_a5</uri>        
+       </include> 
+       <include>
+        <pose> 28 87 0 0 0 0 </pose>
+        <name>obstalce_3</name>
+        <uri>model://models/buoy_a7</uri>        
+       </include> 
+       <include>
+        <pose> 30 70 0 0 0 0 </pose>
+        <name>obstalce_4</name>
+        <uri>model://models/buoy_a5</uri>        
+       </include> 
+       <include>
+        <pose> 43 55 0 0 0 0 </pose>
+        <name>obstalce_5</name>
+        <uri>model://models/buoy_a5</uri>        
+       </include> 
+       <include>
+        <pose> 50 83 0 0 0 0 </pose>
+        <name>obstalce_6</name>
+        <uri>model://models/buoy_a7</uri>        
+       </include> 
+       <include>
+        <pose> 53 100 0 0 0 0 </pose>
+        <name>obstalce_7</name>
+        <uri>model://models/buoy_a3</uri>        
+       </include> 
+       <include>
+        <pose> 65 90 0 0 0 0 </pose>
+        <name>obstalce_8</name>
+        <uri>model://models/buoy_a5</uri>        
+       </include>
+       <include>
+        <pose> 68 65 0 0 0 0 </pose>
+        <name>obstalce_9</name>
+        <uri>model://models/buoy_a7</uri>        
+       </include>  -->
+  </world>
+</sdf>

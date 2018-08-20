@@ -1,0 +1,25 @@
+[1mdiff --git a/catkin_ws/src/vmrc/robotx_gazebo/CMakeLists.txt b/catkin_ws/src/vmrc/robotx_gazebo/CMakeLists.txt[m
+[1mindex f1c8cfc..87f2bec 100644[m
+[1m--- a/catkin_ws/src/vmrc/robotx_gazebo/CMakeLists.txt[m
+[1m+++ b/catkin_ws/src/vmrc/robotx_gazebo/CMakeLists.txt[m
+[36m@@ -228,4 +228,3 @@[m [minstall(DIRECTORY launch/[m
+ [m
+ ## Add folders to be run by python nosetests[m
+ # catkin_add_nosetests(test)[m
+[31m-[m
+[1mdiff --git a/catkin_ws/src/vmrc/robotx_gazebo/worlds/sandisland_task.world b/catkin_ws/src/vmrc/robotx_gazebo/worlds/sandisland_task.world[m
+[1mindex 78005d8..7c7ee95 100644[m
+[1m--- a/catkin_ws/src/vmrc/robotx_gazebo/worlds/sandisland_task.world[m
+[1m+++ b/catkin_ws/src/vmrc/robotx_gazebo/worlds/sandisland_task.world[m
+[36m@@ -66,6 +66,11 @@[m
+         <name>green_buoy_exit</name>[m
+         <uri>model://models/green_buoy</uri>       [m
+       </include>[m
+[32m+[m[32m      <include>[m
+[32m+[m[32m        <pose> 25 8 0 0 0 0 </pose>[m
+[32m+[m[32m        <name>green_buoy_distract</name>[m
+[32m+[m[32m        <uri>model://models/green_buoy</uri>[m[41m       [m
+[32m+[m[32m      </include>[m
+ [m
+ [m
+     <!-- Task 3&4 Find Totem and Avoid Obstalces -->[m

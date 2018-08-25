@@ -172,17 +172,21 @@
 
 
       <!-- The exit (-30, 30) (-40, 30)-->
-      <!--include>
-        <pose> 30 -5 0 0 0 0 </pose>
+      <include>
+        <pose> 15 -5 0 0 0 0 </pose>
         <name>red_buoy_exit</name>
         <uri>model://models/red_buoy</uri>
       </include>
       <include>
-        <pose> 30 5 0 0 0 0 </pose>
+        <pose> 15 5 0 0 0 0 </pose>
         <name>green_buoy_exit</name>
         <uri>model://models/green_buoy</uri>       
-      </include-->
-
+      </include>
+      <include>
+        <pose> 28 87 0 0 0 0 </pose>
+        <name>obstalce_3</name>
+        <uri>model://models/buoy_a7</uri>        
+       </include> 
 
     <!-- Task 3&4 Find Totem and Avoid Obstalces -->
       <!-- The area by 4 white buoy (10, 50) (10, 70) (70, 50) (70, 100)-->

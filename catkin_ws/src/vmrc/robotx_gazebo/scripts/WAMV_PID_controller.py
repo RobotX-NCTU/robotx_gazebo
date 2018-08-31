@@ -22,7 +22,7 @@ waypoints = None
 class pos_vel_PID:
 	
 
-	def __init__(self, pos_P=0.2, pos_I=0.01, pos_D=0.2, vel_P=0.2, vel_I=0.0, vel_D=0.2):
+	def __init__(self, pos_P=0.5, pos_I=0.01, pos_D=0.2, vel_P=0.2, vel_I=0.0, vel_D=0.2):
 		self.wait_flag = 0
 		self.wait_start = 0
 		self.is_close_distance = 5
@@ -193,7 +193,7 @@ class ang_PID:
 		waypoint_error = np.sqrt((waypoints[waypoint_index][0] - x_pos)*(waypoints[waypoint_index][0] - x_pos)+(waypoints[waypoint_index][1] - y_pos)*(waypoints[waypoint_index][1] - y_pos))
 		if np.abs(waypoint_error) < 5 and station_keep_flag == 1:
 			# lock yaw
-			if waypoints[waypoint_index][2] != -1:
+			if waypoints[waypoint_index][2] != -10:
 				error = waypoints[waypoint_index][2] - yaw
 			else:
 				error = np.arctan2((waypoints[waypoint_index][1] - waypoints[waypoint_index-1][1]),(waypoints[waypoint_index][0] - waypoints[waypoint_index-1][0])) - yaw

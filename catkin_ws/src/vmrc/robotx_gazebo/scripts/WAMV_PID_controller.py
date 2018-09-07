@@ -22,10 +22,10 @@ waypoints = None
 class pos_vel_PID:
 	
 
-	def __init__(self, pos_P=0.2, pos_I=0.01, pos_D=0.2, vel_P=0.2, vel_I=0.0, vel_D=0.2):
+	def __init__(self, pos_P=0.5, pos_I=0.01, pos_D=0.2, vel_P=0.2, vel_I=0.0, vel_D=0.2):
 		self.wait_flag = 0
 		self.wait_start = 0
-		self.is_close_distance = 3
+		self.is_close_distance = 5
 		self.pos_Kp = pos_P
 		self.pos_Ki = pos_I
 		self.pos_Kd = pos_D
@@ -139,6 +139,7 @@ class pos_vel_PID:
 			self.vel_output = self.vel_PTerm + (self.vel_Ki * self.vel_ITerm) + (self.vel_Kd * self.vel_DTerm)
 			if np.abs(error) > np.pi/2:
 				self.vel_output = -self.vel_output
+			
 
 
 	def setWindup(self, windup):
@@ -188,10 +189,17 @@ class ang_PID:
 		if time.time() - self.wait_start > 10:
 			self.wait_flag = 0
 		#print "delta t", time.time() - self.wait_start
-		error = np.arctan2((self.pos_SetPointy - y_pos),(self.pos_SetPointx - x_pos)) - yaw
 		pos_error = np.sqrt((self.pos_SetPointx - x_pos)*(self.pos_SetPointx - x_pos)+(self.pos_SetPointy - y_pos)*(self.pos_SetPointy - y_pos))
 		waypoint_error = np.sqrt((waypoints[waypoint_index][0] - x_pos)*(waypoints[waypoint_index][0] - x_pos)+(waypoints[waypoint_index][1] - y_pos)*(waypoints[waypoint_index][1] - y_pos))
-
+		if np.abs(waypoint_error) < 5 and station_keep_flag == 1:
+			# lock yaw
+			if waypoints[waypoint_index][2] != -10:
+				error = waypoints[waypoint_index][2] - yaw
+			else:
+				error = np.arctan2((waypoints[waypoint_index][1] - waypoints[waypoint_index-1][1]),(waypoints[waypoint_index][0] - waypoints[waypoint_index-1][0])) - yaw
+		else:
+			error = np.arctan2((self.pos_SetPointy - y_pos),(self.pos_SetPointx - x_pos)) - yaw
+		
 
 		if waypoint_index >= 1:
 			last_waypointx = waypoints[waypoint_index-1][0]
@@ -226,7 +234,7 @@ class ang_PID:
 			dir_vectory = line_slope/np.sqrt(line_slope*line_slope+1)
 		#print dir_vectorx, dir_vectory
 		#print dist_to_line
-		proc_dist = np.sqrt(3*3-dist_to_line*dist_to_line)
+		proc_dist = np.sqrt(5*5-dist_to_line*dist_to_line)
 
 		aux_pointx = tmp_x + dir_vectorx * proc_dist
 		aux_pointy = tmp_y + dir_vectory * proc_dist
@@ -236,21 +244,16 @@ class ang_PID:
 			aux_pointy = tmp_y - dir_vectory * proc_dist
 
 		#print np.sqrt((tmp_x - x_pos)*(tmp_x - x_pos)+(tmp_y - y_pos)*(tmp_y - y_pos))
-		if np.sqrt((tmp_x - x_pos)*(tmp_x - x_pos)+(tmp_y - y_pos)*(tmp_y - y_pos)) < 3 :
+		if np.sqrt((tmp_x - x_pos)*(tmp_x - x_pos)+(tmp_y - y_pos)*(tmp_y - y_pos)) < 5 :
 			self.pos_SetPointx = aux_pointx
 			self.pos_SetPointy = aux_pointy
-			#print "aux", aux_pointx, aux_pointy
+			print "aux", aux_pointx, aux_pointy
 		else:
 			self.pos_SetPointx = tmp_x
 			self.pos_SetPointx = tmp_y
-			#print "tmp", tmp_x, tmp_y
-		if np.abs(waypoint_error) < 5 and station_keep_flag == 1:
-			# lock yaw				
-			self.pos_SetPointx = self.lock_aux_pointx
-			self.pos_SetPointx = self.lock_aux_pointy
-		else:
-			self.lock_aux_pointx = aux_pointx
-			self.lock_aux_pointy = aux_pointy
+			print "tmp", tmp_x, tmp_y
+					
+			
 		#print np.abs(waypoint_error)
 		if np.abs(waypoint_error) < 5 and waypoints is not None:
 			if waypoint_index < waypoints.shape[0]-1:
@@ -321,9 +324,9 @@ def add_waypoint_handler(req):
 	global waypoints
 	print "add waypoint:", req.waypointx, req.waypointy
 	if waypoints is None:
-		waypoints = np.array([[req.waypointx, req.waypointy]])
+		waypoints = np.array([[req.waypointx, req.waypointy, req.yaw]])
 	else:
-		waypoints = np.vstack((waypoints, np.array([req.waypointx, req.waypointy])))
+		waypoints = np.vstack((waypoints, np.array([req.waypointx, req.waypointy, req.yaw])))
 	return waypoints.shape[0]
 
 def start_waypoint_handler(req):

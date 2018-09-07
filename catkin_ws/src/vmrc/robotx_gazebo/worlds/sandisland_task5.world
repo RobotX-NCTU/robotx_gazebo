@@ -29,7 +29,7 @@
    <include>
     <pose> 20 3 0 0 0 0 </pose>
     <name>scan_light_buoy</name>
-    <uri>model://models/light_buoy</uri>        
+    <uri>model://models/robotx_light_buoy</uri>        
    </include> 
 
   </world>

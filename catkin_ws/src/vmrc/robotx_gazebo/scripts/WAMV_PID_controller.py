@@ -8,6 +8,8 @@ from robotx_gazebo.msg import UsvDrive
 from robotx_gazebo.srv import waypoint
 from std_srvs.srv import *
 import tf
+from visualization_msgs.msg import Marker
+from geometry_msgs.msg import Point
 start_flag = 0
 station_keep_flag = 0
 x_pos = 0.0000001	# to prevent divid by zero
@@ -29,7 +31,6 @@ class pos_vel_PID:
 		self.pos_Kp = pos_P
 		self.pos_Ki = pos_I
 		self.pos_Kd = pos_D
-		
 		self.vel_Kp = vel_P
 		self.vel_Ki = vel_I
 		self.vel_Kd = vel_D
@@ -163,6 +164,7 @@ class ang_PID:
 
 		self.lock_aux_pointx = 0
 		self.lock_aux_pointy = 0
+		self.pub_aux = rospy.Publisher("/aux_marker", Marker, queue_size = 10)
 
 		self.clear()
 
@@ -205,8 +207,8 @@ class ang_PID:
 			last_waypointx = waypoints[waypoint_index-1][0]
 			last_waypointy = waypoints[waypoint_index-1][1]
 		else:
-			last_waypointx = 0
-			last_waypointy = 0
+			last_waypointx = x_pos
+			last_waypointy = y_pos
 
 		if np.abs(waypoints[waypoint_index][0]-last_waypointx) < 1:
 			
@@ -248,11 +250,66 @@ class ang_PID:
 			self.pos_SetPointx = aux_pointx
 			self.pos_SetPointy = aux_pointy
 			print "aux", aux_pointx, aux_pointy
+
+			wpoints = []
+			for i in range(1):
+				p = Point()
+				p.x = aux_pointx
+				p.y = aux_pointy
+				p.z = 0
+				wpoints.append(p)
+			marker = Marker()
+			marker.header.frame_id = "/odom"
+
+			marker.type = marker.POINTS
+			marker.action = marker.ADD
+			marker.pose.orientation.w = 1
+
+			marker.points = wpoints;
+			t = rospy.Duration()
+			marker.lifetime = t
+			marker.scale.x = 0.4
+			marker.scale.y = 0.4
+			marker.scale.z = 0.4
+			marker.color.a = 1.0
+			marker.color.r = 0
+			marker.color.g = 0
+			marker.color.b = 1.0
+
+			self.pub_aux.publish(marker)
+
+			
 		else:
 			self.pos_SetPointx = tmp_x
 			self.pos_SetPointx = tmp_y
 			print "tmp", tmp_x, tmp_y
-					
+			
+			wpoints = []
+			for i in range(1):
+				p = Point()
+				p.x = tmp_x
+				p.y = tmp_y
+				p.z = 0
+				wpoints.append(p)
+			marker = Marker()
+			marker.header.frame_id = "/odom"
+
+			marker.type = marker.POINTS
+			marker.action = marker.ADD
+			marker.pose.orientation.w = 1
+
+			marker.points = wpoints;
+			t = rospy.Duration()
+			marker.lifetime = t
+			marker.scale.x = 0.4
+			marker.scale.y = 0.4
+			marker.scale.z = 0.4
+			marker.color.a = 1.0
+			marker.color.r = 0
+			marker.color.g = 1.0
+			marker.color.b = 0
+
+			self.pub_aux.publish(marker)	
 			
 		#print np.abs(waypoint_error)
 		if np.abs(waypoint_error) < 5 and waypoints is not None:
@@ -403,6 +460,7 @@ if __name__ == "__main__":
 	station_keep_srv = rospy.Service("/station_keep_unlock", Trigger, station_keep_unlock_handler)
 	clear_waypoints_srv = rospy.Service("/clear_waypoints", Trigger, clear_waypoints_handler)
 	add_waypoint_srv = rospy.Service("/add_waypoint", waypoint, add_waypoint_handler)
+	pub_marker = rospy.Publisher("/waypoint_marker", Marker, queue_size = 10)
 
 	print "waiting for start srv"
 	while start_flag == 0 and waypoints is None:	
@@ -417,6 +475,36 @@ if __name__ == "__main__":
 	ang_pid.pos_SetPointy = waypoints[waypoint_index][1]
 
 	while not rospy.is_shutdown():
+		rospy.sleep(0.1)
+
+		wpoints = []
+		while waypoints == None:
+			print "no waypoints"
+		for i in range(waypoints.shape[0]):
+			p = Point()
+			p.x = waypoints[i][0]
+			p.y = waypoints[i][1]
+			p.z = 0
+			wpoints.append(p)
+		marker = Marker()
+		marker.header.frame_id = "/odom"
+
+		marker.type = marker.POINTS
+		marker.action = marker.ADD
+		marker.pose.orientation.w = 1
+
+		marker.points = wpoints;
+		t = rospy.Duration()
+		marker.lifetime = t
+		marker.scale.x = 0.4
+		marker.scale.y = 0.4
+		marker.scale.z = 0.4
+		marker.color.a = 1.0
+		marker.color.r = 1.0
+		marker.color.g = 1.0
+		marker.color.b = 1.0
+
+		pub_marker.publish(marker)
 		pos_vel_pid.update(x_pos, y_pos, x_vel, y_vel, yaw)
 		ang_pid.update(x_pos, y_pos, yaw)
 

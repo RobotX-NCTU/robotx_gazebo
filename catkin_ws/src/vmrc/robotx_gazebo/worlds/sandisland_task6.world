@@ -91,20 +91,14 @@
     </include>   
 
 
-    <!-- Task 6 Docking  -->
+   <!-- Task 6 Docking  -->
    <include>
     <pose> 40 0.1 0 0 0 0 </pose>
-    <name>dock_cross</name>
-    <uri>model://models/dock_cross</uri> 
+    <name>dock_2018</name>
+    <uri>model://models/dock_2018</uri> 
     <static>1</static>       
    </include>
-
-   <include>
-    <pose> 40 -0.1 0 0 0 -3.14 </pose>
-    <name>dock_triangle</name>
-    <uri>model://models/dock_triangle</uri> 
-    <static>1</static>       
-   </include>
+        
 
   </world>
 </sdf>

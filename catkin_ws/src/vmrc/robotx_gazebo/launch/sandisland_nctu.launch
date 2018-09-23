@@ -30,6 +30,9 @@
   <arg name="wind" default="true"/> 
   <arg name="p3d" default="true"/> 
 
+  <!-- The switch about apriltags on WAM-V -->
+  <arg name="apriltags" default="false"/> 
+
   <param name="use_sim_time" value="true" />
   <!-- Start Gazebo with the world file -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
@@ -46,7 +49,7 @@
   <!--<arg name="urdf" default="$(find nps_robotx)/urdf/nps_wamv.xacro"/> -->
   <param name="robot_description" command="$(find xacro)/xacro --inorder $(arg urdf) wind:=$(arg wind) 
   front_camera:=$(arg front_camera) lidar:=$(arg lidar) gps:=$(arg gps) imu:=$(arg imu)
-   p3d:=$(arg p3d)"/>
+   p3d:=$(arg p3d) apriltags:=$(arg apriltags)"/>
 
   <!-- Spawn model in Gazebo -->
   <node name="spawn_model" pkg="gazebo_ros" type="spawn_model"

@@ -59,4 +59,12 @@
       </xacro:wamv_p3d>
   </xacro:if> 
 
+  <!-- Attach apriltags -->
+  <xacro:if value="$(arg apriltags)">
+      <xacro:include filename="$(find robotx_gazebo)/urdf/wamv_gazebo_apriltags_plugin.xacro" />
+      <xacro:wamv_apriltags name="wamv_apriltags">
+        <origin xyz="-0.95 0.0 1.0" rpy="0 0 0" />
+      </xacro:wamv_apriltags>
+  </xacro:if> 
+
 </robot>

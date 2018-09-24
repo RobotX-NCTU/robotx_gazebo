@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
-  <xacro:macro name="wamv_front_camera" params="name">
+  <xacro:macro name="wamv_front_camera" params="name robot_name:=/ ">
        
   <!-- camera position -->
   <xacro:property name="origin_left">
@@ -53,7 +53,7 @@
       <plugin name="camera_controller_front_left_front_camera" filename="libgazebo_ros_camera.so">
         <alwaysOn>true</alwaysOn>
         <updateRate>0.0</updateRate>
-        <cameraName>zed_left/rgb</cameraName>
+        <cameraName>${robot_name}/zed_left/rgb</cameraName>
         <imageTopicName>image_rect_color</imageTopicName>
         <cameraInfoTopicName>camera_info</cameraInfoTopicName>
         <frameName>zed_left</frameName>
@@ -107,7 +107,7 @@
       <plugin name="camera_controller_front_right_front_camera" filename="libgazebo_ros_camera.so">
         <alwaysOn>true</alwaysOn>
         <updateRate>0.0</updateRate>
-        <cameraName>zed_right/rgb</cameraName>
+        <cameraName>${robot_name}/zed_right/rgb</cameraName>
         <imageTopicName>image_rect_color</imageTopicName>
         <cameraInfoTopicName>camera_info</cameraInfoTopicName>
         <frameName>zed_right</frameName>
@@ -162,7 +162,7 @@
       <plugin name="camera_controller_front_right_front_camera" filename="libgazebo_ros_camera.so">
         <alwaysOn>true</alwaysOn>
         <updateRate>0.0</updateRate>
-        <cameraName>zed_mid/rgb</cameraName>
+        <cameraName>${robot_name}/zed_mid/rgb</cameraName>
         <imageTopicName>image_rect_color</imageTopicName>
         <cameraInfoTopicName>camera_info</cameraInfoTopicName>
         <frameName>zed_mid</frameName>

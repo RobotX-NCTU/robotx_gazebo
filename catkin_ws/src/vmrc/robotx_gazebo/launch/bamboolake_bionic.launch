@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+
+<launch>
+
+  <env name="ROSCONSOLE_CONFIG_FILE" value="$(find robotx_gazebo)/config/custom_rosconsole.conf"/>
+
+  <!-- For setting debug level to debug -->
+  <!--<env name="ROSCONSOLE_CONFIG_FILE"
+       value="$(find kingfisher_gazebo)/config/custom_rosconsole.conf"/>
+   -->
+  <!-- Command line arguments -->
+
+  <arg name="world" default="sandisland_task.world"/>
+
+  <arg name="name" default="WAMV"/>
+
+  <!-- Initial USV location and attitude-->
+  <arg name="x" default="10" />
+  <arg name="y" default="0" />
+  <arg name="z" default="0.1" />
+  <arg name="P" default="0" />
+  <arg name="R" default="0" />
+  <arg name="Y" default="0" />
+
+  <!-- The switch about sensors and wind -->
+  <arg name="front_camera" default="true"/>
+  <arg name="gps" default="true"/>
+  <arg name="imu" default="true"/>
+  <arg name="lidar" default="true"/>
+  <arg name="wind" default="true"/> 
+  <arg name="p3d" default="true"/> 
+
+  <!-- The switch about apriltags on WAM-V -->
+  <arg name="apriltags" default="false"/> 
+
+  <param name="use_sim_time" value="true" />
+  <!-- Start Gazebo with the world file -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find robotx_gazebo)/worlds/$(arg world)"/>
+    <arg name="verbose" value="true"/>
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+  </include>
+
+  <!-- Load robot model -->
+  <arg name="urdf" default="$(find wamv_description)/urdf/wamv_robotx_nctu.xacro"/>
+  <!--<arg name="urdf" default="$(find nps_robotx)/urdf/nps_wamv.xacro"/> -->
+  <param name="robot_description" command="$(find xacro)/xacro --inorder $(arg urdf) wind:=$(arg wind) 
+  front_camera:=$(arg front_camera) lidar:=$(arg lidar) gps:=$(arg gps) imu:=$(arg imu)
+   p3d:=$(arg p3d) apriltags:=$(arg apriltags)"/>
+
+  <!-- Load robot model -->
+  <arg name="urdf_watchtower_a" default="$(find wamv_description)/urdf/watchtower.xacro"/>
+  <!--<arg name="urdf" default="$(find nps_robotx)/urdf/nps_wamv.xacro"/> -->
+  <param name="watchtower_a_description" command="$(find xacro)/xacro --inorder $(arg urdf_watchtower_a) wind:=$(arg wind) 
+  front_camera:=$(arg front_camera) lidar:=$(arg lidar) gps:=$(arg gps) imu:=$(arg imu)
+   p3d:=$(arg p3d) apriltags:=$(arg apriltags) robot_name:=watchtower_a"/>
+
+  <!-- Load robot model -->
+  <arg name="urdf_watchtower_b" default="$(find wamv_description)/urdf/watchtower.xacro"/>
+  <!--<arg name="urdf" default="$(find nps_robotx)/urdf/nps_wamv.xacro"/> -->
+  <param name="watchtower_b_description" command="$(find xacro)/xacro --inorder $(arg urdf_watchtower_b) wind:=$(arg wind) 
+  front_camera:=$(arg front_camera) lidar:=$(arg lidar) gps:=$(arg gps) imu:=$(arg imu)
+   p3d:=$(arg p3d) apriltags:=$(arg apriltags) robot_name:=watchtower_b"/>
+
+  <!-- Spawn model in Gazebo -->
+  <node name="spawn_model" pkg="gazebo_ros" type="spawn_model"
+	args="-x $(arg x) -y $(arg y) -z $(arg z)
+	      -R $(arg R) -P $(arg P) -Y $(arg Y)
+	      -unpause -urdf -param robot_description -model wamv"/>
+
+  <node name="spawn_model_watchtower_a" pkg="gazebo_ros" type="spawn_model"
+  args="-x -10 -y $(arg y) -z $(arg z)
+        -R $(arg R) -P $(arg P) -Y 0
+        -unpause -urdf -param watchtower_a_description -model watchtower_a"/>
+
+  <node name="spawn_model_watchtower_b" pkg="gazebo_ros" type="spawn_model"
+  args="-x 50 -y $(arg y) -z $(arg z)
+        -R $(arg R) -P $(arg P) -Y 3.1412
+        -unpause -urdf -param watchtower_b_description -model watchtower_b"/>
+    
+
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+    <param name="publish_frequency" type="double" value="10.0" />
+  </node>
+
+  <!--<include file="$(find robotx_gazebo)/launch/usv_diffdrive.launch"/>-->
+
+  <!-- Utility for publishing rpy for plotting -->
+  <node pkg="robotx_gazebo" type="quat2rpy.py" name="quat2rpy" output="screen">
+      <remap from="in_topic" to="/gazebo/model_states" />
+      <remap from="out_topic" to="wamv_rpy" />
+      <param name="input_msg_type" value="ModelStates" />
+      <param name="modelstates_index" value="1" type="int" />
+  </node>
+
+</launch>

@@ -185,6 +185,12 @@ include_directories(
 ## Testing ##
 #############
 
+find_package(roslaunch)
+
+foreach(dir config launch meshes urdf)
+	install(DIRECTORY ${dir}/
+		DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/${dir})
+endforeach(dir)
 ## Add gtest based cpp test target and link libraries
 # catkin_add_gtest(${PROJECT_NAME}-test test/test_wamv_description.cpp)
 # if(TARGET ${PROJECT_NAME}-test)

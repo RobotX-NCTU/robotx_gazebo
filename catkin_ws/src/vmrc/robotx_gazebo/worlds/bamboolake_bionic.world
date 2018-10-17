@@ -45,114 +45,66 @@
     <!-- Task 1 Demonstrate Navigation Control -- >
       <!-- The entrance (-30, 00) (-40, 0)-->
       <include>
-        <pose> 10 -5 0 0 0 0 </pose>
-        <name>red_buoy_entrance</name>
+        <pose> 9.75 -4.75 0.3 0 0 0 </pose>
+        <name>origin_float</name>
         <uri>model://models/dock_block_2x2</uri>       
       </include>
-       <include>
-        <pose> 10 5 0 0 0 0 </pose>
-        <name>green_buoy_entrance</name>
+
+      <include>
+        <pose> 9.5 -3.5 0.8 0 0 0 </pose>
+        <name>tag_o0</name>
+        <uri>model://models/apriltag</uri>       
+      </include>      
+
+      <include>
+        <pose> 8.5 -5.5 0.8 0 0 1.57 </pose>
+        <name>tag_o1</name>
+        <uri>model://models/apriltag</uri>       
+      </include>  
+
+      <include>
+        <pose> 9.75 5.25 0.3 0 0 0 </pose>
+        <name>x_float</name>
         <uri>model://models/dock_block_2x2</uri>     
+      </include>
+
+      <include>
+        <pose> 9.5 6.5 0.8 0 0 0 </pose>
+        <name>tag_x0</name>
+        <uri>model://models/apriltag</uri>       
+      </include>
+
+      <include>
+        <pose> 8.5 4.5 0.8 0 0 1.57 </pose>
+        <name>tag_x1</name>
+        <uri>model://models/apriltag</uri>       
       </include>
 
       <!-- The exit (-30, 30) (-40, 30)-->
       <include>
-        <pose> 30 -5 0 0 0 0 </pose>
-        <name>red_buoy_exit</name>
+        <pose> 39.75 -4.75 0.3 0 0 0 </pose>
+        <name>y_float</name>
         <uri>model://models/dock_block_2x2</uri>
       </include>
+
+      <include>
+        <pose> 39.5 -3.5 0.8 0 0 0 </pose>
+        <name>tag_y0</name>
+        <uri>model://models/apriltag</uri>       
+      </include>      
+
+      <include>
+        <pose> 38.5 -5.5 0.8 0 0 1.57 </pose>
+        <name>tag_y1</name>
+        <uri>model://models/apriltag</uri>       
+      </include> 
+
+
        <include>
-        <pose> 30 5 0 0 0 0 </pose>
-        <name>green_buoy_exit</name>
+        <pose> 39.75 5.25 0.3 0 0 0 </pose>
+        <name>xy_float</name>
         <uri>model://models/dock_block_2x2</uri>       
       </include>
 
-
-    <!-- Task 3&4 Find Totem and Avoid Obstalces -->
-      <!-- The area by 4 white buoy (10, 50) (10, 70) (70, 50) (70, 100)-->
-      <!-- <include>
-        <pose> 10 50 0 0 0 0 </pose>
-        <name>white_buoy_mark_1</name>
-        <uri>model://models/white_buoy</uri>         
-      </include>
-       <include>
-        <pose> 10 110 0 0 0 0 </pose>
-        <name>white_buoy_mark_2</name>
-        <uri>model://models/white_buoy</uri>        
-      </include>    
-      <include>
-        <pose> 70 50 0 0 0 0 </pose>
-        <name>white_buoy_mark_3</name>
-        <uri>model://models/white_buoy</uri>         
-      </include>
-       <include>
-        <pose> 70 110 0 0 0 0 </pose>
-        <name>white_buoy_mark_4</name>
-        <uri>model://models/white_buoy</uri>        
-      </include>   -->
-
-      <!-- Totem -->
-       <!-- <include>
-        <pose> 20 80 0 0 0 0 </pose>
-        <name>yellow_buoy_totem</name>
-        <uri>model://models/yellow_buoy</uri>        
-      </include>    
-      <include>
-        <pose> 35 95 0 0 0 0 </pose>
-        <name>blue_buoy_totem</name>
-        <uri>model://models/blue_buoy</uri>         
-      </include>
-       <include>
-        <pose> 55 70 0 0 0 0 </pose>
-        <name>green_buoy_totem</name>
-        <uri>model://models/green_buoy</uri>        
-      </include>   -->    
-
-      <!-- Obstacle -->
-       <!-- <include>
-        <pose> 15 65 0 0 0 0 </pose>
-        <name>obstalce_1</name>
-        <uri>model://models/buoy_a3</uri>        
-       </include>      
-       <include>
-        <pose> 20 100 0 0 0 0 </pose>
-        <name>obstalce_2</name>
-        <uri>model://models/buoy_a5</uri>        
-       </include> 
-       <include>
-        <pose> 28 87 0 0 0 0 </pose>
-        <name>obstalce_3</name>
-        <uri>model://models/buoy_a7</uri>        
-       </include> 
-       <include>
-        <pose> 30 70 0 0 0 0 </pose>
-        <name>obstalce_4</name>
-        <uri>model://models/buoy_a5</uri>        
-       </include> 
-       <include>
-        <pose> 43 55 0 0 0 0 </pose>
-        <name>obstalce_5</name>
-        <uri>model://models/buoy_a5</uri>        
-       </include> 
-       <include>
-        <pose> 50 83 0 0 0 0 </pose>
-        <name>obstalce_6</name>
-        <uri>model://models/buoy_a7</uri>        
-       </include> 
-       <include>
-        <pose> 53 100 0 0 0 0 </pose>
-        <name>obstalce_7</name>
-        <uri>model://models/buoy_a3</uri>        
-       </include> 
-       <include>
-        <pose> 65 90 0 0 0 0 </pose>
-        <name>obstalce_8</name>
-        <uri>model://models/buoy_a5</uri>        
-       </include>
-       <include>
-        <pose> 68 65 0 0 0 0 </pose>
-        <name>obstalce_9</name>
-        <uri>model://models/buoy_a7</uri>        
-       </include>  -->
   </world>
 </sdf>

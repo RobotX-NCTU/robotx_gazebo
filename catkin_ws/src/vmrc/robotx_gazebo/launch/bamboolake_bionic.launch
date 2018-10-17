@@ -31,7 +31,7 @@
   <arg name="p3d" default="true"/> 
 
   <!-- The switch about apriltags on WAM-V -->
-  <arg name="apriltags" default="false"/> 
+  <arg name="apriltags" default="true"/> 
 
   <param name="use_sim_time" value="true" />
   <!-- Start Gazebo with the world file -->

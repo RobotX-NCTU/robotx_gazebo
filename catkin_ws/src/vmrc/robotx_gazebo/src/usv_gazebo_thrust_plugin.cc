@@ -193,7 +193,7 @@ double UsvThrust::glfThrustCmd(double cmd)
   else{
     val = 0.0;
   }
-  ROS_INFO_STREAM_THROTTLE(0.5,cmd << ": " << val << " / " << val/param_max_force_fwd_);
+  //ROS_INFO_STREAM_THROTTLE(0.5,cmd << ": " << val << " / " << val/param_max_force_fwd_);
   return val;
 
 }
@@ -208,7 +208,7 @@ void UsvThrust::UpdateChild()
   double dcmd = (time_now - last_cmd_drive_time_).Double();
   if ( (dcmd > cmd_timeout_) && (cmd_timeout_ > 0.0) )
   {
-    ROS_INFO_STREAM_THROTTLE(1.0,"Command timeout!");
+    //ROS_INFO_STREAM_THROTTLE(1.0,"Command timeout!");
     last_cmd_drive_left_ = 0.0;
     last_cmd_drive_right_ = 0.0;
   }

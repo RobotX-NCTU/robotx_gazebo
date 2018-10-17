@@ -61,9 +61,20 @@
 
   <!-- Attach apriltags -->
   <xacro:if value="$(arg apriltags)">
+
       <xacro:include filename="$(find robotx_gazebo)/urdf/wamv_gazebo_apriltags_plugin.xacro" />
-      <xacro:wamv_apriltags name="wamv_apriltags">
-        <origin xyz="-0.95 0.0 1.0" rpy="0 0 0" />
+      <xacro:wamv_apriltags name="wamv_right_apriltag" tag_id="2" tag_size="0.80">
+        <origin xyz="-0.45 -0.5 1.5" rpy="0 0 -1.57079"/>
+      </xacro:wamv_apriltags>
+
+      <xacro:include filename="$(find robotx_gazebo)/urdf/wamv_gazebo_apriltags_plugin.xacro" />
+      <xacro:wamv_apriltags name="wamv_back_apriltag" tag_id="1" tag_size="0.80">
+        <origin xyz="-0.95 0.0 1.5" rpy="0 0 0"/>
+      </xacro:wamv_apriltags>
+
+      <xacro:include filename="$(find robotx_gazebo)/urdf/wamv_gazebo_apriltags_plugin.xacro" />
+      <xacro:wamv_apriltags name="wamv_left_apriltag" tag_id="0" tag_size="0.80">
+        <origin xyz="-0.45 0.5 1.5" rpy="0 0 1.57079"/>
       </xacro:wamv_apriltags>
   </xacro:if> 
 

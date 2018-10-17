@@ -1,0 +1,110 @@
+<?xml version="1.0" ?>
+<sdf version="1.4">
+  <world name="SandIsland">
+    <!--scene>
+      <sky>
+        <clouds>
+          <speed>12</speed>
+        </clouds>
+      </sky>
+    </scene-->
+
+    <wind>
+      <linear_velocity>10 0 0</linear_velocity> <!-- Wind linear velocity -->
+    </wind >
+    
+    <!-- A global light source -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose>240.235 110.553 61.4147 0 0.304 -2.78</pose>
+        <view_controller>orbit</view_controller>
+      </camera>
+    </gui>
+
+     
+    <!-- The models below should be included in kingfisher_gazebo package -->
+    <!--include-->
+      <!-- Note - the pose tag doesn't seem to work for heightmaps, so you need
+      to go into the model file to change the altitutde/height!-->
+      <!--pose> 0 0 0 0 0 0 </pose>
+      <uri>model://models/sandisland</uri>
+      <!--<uri>model://models/lake</uri>-->
+    <!--/include>
+
+    <!-- Should be at the same height as the water level in USV and buoyancy 
+    plugin configurations -->
+    <include>
+      <pose> 0 0 0 0 0 0 </pose>
+      <uri>model://models/ocean</uri>      
+    </include>
+
+    <!-- Task 1 Demonstrate Navigation Control -- >
+      <!-- The entrance (-30, 00) (-40, 0)-->
+      <include>
+        <pose> 9.75 -4.75 0.3 0 0 0 </pose>
+        <name>origin_float</name>
+        <uri>model://models/dock_block_2x2</uri>       
+      </include>
+
+      <include>
+        <pose> 9.5 -3.5 0.8 0 0 0 </pose>
+        <name>tag_o0</name>
+        <uri>model://models/apriltag</uri>       
+      </include>      
+
+      <include>
+        <pose> 8.5 -5.5 0.8 0 0 1.57 </pose>
+        <name>tag_o1</name>
+        <uri>model://models/apriltag</uri>       
+      </include>  
+
+      <include>
+        <pose> 9.75 5.25 0.3 0 0 0 </pose>
+        <name>x_float</name>
+        <uri>model://models/dock_block_2x2</uri>     
+      </include>
+
+      <include>
+        <pose> 9.5 6.5 0.8 0 0 0 </pose>
+        <name>tag_x0</name>
+        <uri>model://models/apriltag</uri>       
+      </include>
+
+      <include>
+        <pose> 8.5 4.5 0.8 0 0 1.57 </pose>
+        <name>tag_x1</name>
+        <uri>model://models/apriltag</uri>       
+      </include>
+
+      <!-- The exit (-30, 30) (-40, 30)-->
+      <include>
+        <pose> 39.75 -4.75 0.3 0 0 0 </pose>
+        <name>y_float</name>
+        <uri>model://models/dock_block_2x2</uri>
+      </include>
+
+      <include>
+        <pose> 39.5 -3.5 0.8 0 0 0 </pose>
+        <name>tag_y0</name>
+        <uri>model://models/apriltag</uri>       
+      </include>      
+
+      <include>
+        <pose> 38.5 -5.5 0.8 0 0 1.57 </pose>
+        <name>tag_y1</name>
+        <uri>model://models/apriltag</uri>       
+      </include> 
+
+
+       <include>
+        <pose> 39.75 5.25 0.3 0 0 0 </pose>
+        <name>xy_float</name>
+        <uri>model://models/dock_block_2x2</uri>       
+      </include>
+
+  </world>
+</sdf>

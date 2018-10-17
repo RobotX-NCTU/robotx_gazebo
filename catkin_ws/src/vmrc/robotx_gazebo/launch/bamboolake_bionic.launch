@@ -10,7 +10,7 @@
    -->
   <!-- Command line arguments -->
 
-  <arg name="world" default="sandisland_task.world"/>
+  <arg name="world" default="bamboolake_bionic.world"/>
 
   <arg name="name" default="WAMV"/>
 
@@ -31,7 +31,7 @@
   <arg name="p3d" default="true"/> 
 
   <!-- The switch about apriltags on WAM-V -->
-  <arg name="apriltags" default="false"/> 
+  <arg name="apriltags" default="true"/> 
 
   <param name="use_sim_time" value="true" />
   <!-- Start Gazebo with the world file -->
@@ -44,25 +44,25 @@
     <arg name="headless" value="false"/>
   </include>
 
-  <!-- Load robot model -->
+  <!-- Load WAM-V robot model -->
   <arg name="urdf" default="$(find wamv_description)/urdf/wamv_robotx_nctu.xacro"/>
   <!--<arg name="urdf" default="$(find nps_robotx)/urdf/nps_wamv.xacro"/> -->
   <param name="robot_description" command="$(find xacro)/xacro --inorder $(arg urdf) wind:=$(arg wind) 
   front_camera:=$(arg front_camera) lidar:=$(arg lidar) gps:=$(arg gps) imu:=$(arg imu)
    p3d:=$(arg p3d) apriltags:=$(arg apriltags)"/>
 
-  <!-- Load robot model -->
+  <!-- Load watchtower_a robot model -->
   <arg name="urdf_watchtower_a" default="$(find wamv_description)/urdf/watchtower.xacro"/>
   <!--<arg name="urdf" default="$(find nps_robotx)/urdf/nps_wamv.xacro"/> -->
   <param name="watchtower_a_description" command="$(find xacro)/xacro --inorder $(arg urdf_watchtower_a) wind:=$(arg wind) 
-  front_camera:=$(arg front_camera) lidar:=$(arg lidar) gps:=$(arg gps) imu:=$(arg imu)
+  front_camera:=$(arg front_camera) lidar:=false gps:=$(arg gps) imu:=$(arg imu)
    p3d:=$(arg p3d) apriltags:=$(arg apriltags) robot_name:=watchtower_a"/>
 
-  <!-- Load robot model -->
+  <!-- Load watchtower_b robot model  -->
   <arg name="urdf_watchtower_b" default="$(find wamv_description)/urdf/watchtower.xacro"/>
   <!--<arg name="urdf" default="$(find nps_robotx)/urdf/nps_wamv.xacro"/> -->
   <param name="watchtower_b_description" command="$(find xacro)/xacro --inorder $(arg urdf_watchtower_b) wind:=$(arg wind) 
-  front_camera:=$(arg front_camera) lidar:=$(arg lidar) gps:=$(arg gps) imu:=$(arg imu)
+  front_camera:=$(arg front_camera) lidar:=false gps:=$(arg gps) imu:=$(arg imu)
    p3d:=$(arg p3d) apriltags:=$(arg apriltags) robot_name:=watchtower_b"/>
 
   <!-- Spawn model in Gazebo -->
@@ -77,8 +77,8 @@
         -unpause -urdf -param watchtower_a_description -model watchtower_a"/>
 
   <node name="spawn_model_watchtower_b" pkg="gazebo_ros" type="spawn_model"
-  args="-x 50 -y $(arg y) -z $(arg z)
-        -R $(arg R) -P $(arg P) -Y 3.1412
+  args="-x 20 -y -25 -z $(arg z)
+        -R $(arg R) -P $(arg P) -Y 1.57079
         -unpause -urdf -param watchtower_b_description -model watchtower_b"/>
     
 

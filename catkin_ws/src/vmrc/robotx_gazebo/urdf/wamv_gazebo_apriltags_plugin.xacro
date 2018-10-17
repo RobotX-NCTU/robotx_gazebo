@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
-  <xacro:macro name="wamv_apriltags" params="*origin name longitude:=-157.8901 latitude:=21.30996 altitude:=1.5">
-  <xacro:arg name="tag_id" default="0"/>
-  <xacro:arg name="tag_size" default="0.54"/>
+  <xacro:macro name="wamv_apriltags" params="*origin name longitude:=-157.8901 latitude:=21.30996 altitude:=1.5 tag_id:=0 tag_size:=0.54">
+  <!--xacro:arg name="tag_id" default="0"/-->
+  <xacro:property name="size" value="${tag_size}"/>
 
     <link name="${name}">
         <gravity>0</gravity>
@@ -26,7 +26,7 @@
                 xyz="0 0 0"
                 rpy="0 0 0" />
             <geometry>
-                <box size="0.01 $(arg tag_size) $(arg tag_size)"/>
+                <box size="0.01 ${size} ${size}"/>
             </geometry>
             <!--<material name="Hope"/>-->
         </visual>
@@ -35,7 +35,8 @@
                 xyz="0 0 0"
                 rpy="0 0 0" />
             <geometry>
-                <box size="0.01 $(arg tag_size) $(arg tag_size)"/>
+                <box size="0.01 ${size} ${size}"/>
+                <!--box size="0.01 $(arg tag_size) $(arg tag_size)"/-->
             </geometry>
         </collision>
     </link>
@@ -48,7 +49,7 @@
 
     <gazebo reference="${name}">
         <turnGravityOff>true</turnGravityOff>
-        <material>a_$(arg tag_id)/Image</material>
+        <material>a_${tag_id}/Image</material>
     </gazebo> 
   </xacro:macro>
 </robot>

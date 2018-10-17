@@ -15,7 +15,7 @@
       <visual name="visual">
         <geometry>
           <mesh>
-            <uri>file://dock_block_4x4/mesh/dock_block_4x4.dae</uri>
+            <uri>model://dock_block_4x4/mesh/dock_block_4x4.dae</uri>
           </mesh>
         </geometry>
       </visual>

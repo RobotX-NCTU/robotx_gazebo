@@ -54,16 +54,12 @@
   <!-- Load watchtower_a robot model -->
   <arg name="urdf_watchtower_a" default="$(find wamv_description)/urdf/watchtower.xacro"/>
   <!--<arg name="urdf" default="$(find nps_robotx)/urdf/nps_wamv.xacro"/> -->
-  <param name="watchtower_a_description" command="$(find xacro)/xacro --inorder $(arg urdf_watchtower_a) wind:=$(arg wind) 
-  front_camera:=$(arg front_camera) lidar:=false gps:=$(arg gps) imu:=$(arg imu)
-   p3d:=$(arg p3d) apriltags:=$(arg apriltags) robot_name:=watchtower_a"/>
+  <param name="watchtower_a_description" command="$(find xacro)/xacro --inorder $(arg urdf_watchtower_a) wind:=$(arg wind) lidar:=false p3d:=$(arg p3d) robot_name:=watchtower_a"/>
 
   <!-- Load watchtower_b robot model  -->
   <arg name="urdf_watchtower_b" default="$(find wamv_description)/urdf/watchtower.xacro"/>
   <!--<arg name="urdf" default="$(find nps_robotx)/urdf/nps_wamv.xacro"/> -->
-  <param name="watchtower_b_description" command="$(find xacro)/xacro --inorder $(arg urdf_watchtower_b) wind:=$(arg wind) 
-  front_camera:=$(arg front_camera) lidar:=false gps:=$(arg gps) imu:=$(arg imu)
-   p3d:=$(arg p3d) apriltags:=$(arg apriltags) robot_name:=watchtower_b"/>
+  <param name="watchtower_b_description" command="$(find xacro)/xacro --inorder $(arg urdf_watchtower_b) wind:=$(arg wind) lidar:=false p3d:=$(arg p3d) robot_name:=watchtower_b"/>
 
   <!-- Spawn model in Gazebo -->
   <node name="spawn_model" pkg="gazebo_ros" type="spawn_model"

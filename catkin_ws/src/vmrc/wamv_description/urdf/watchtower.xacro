@@ -16,11 +16,9 @@
   </xacro:if>
 
   <!-- Attach front camera plugin --> 
-  <xacro:if value="$(arg front_camera)">
-      <xacro:include filename="$(find robotx_gazebo)/urdf/wamv_gazebo_front_camera_plugin.xacro" />
-      <xacro:wamv_front_camera name="$(arg robot_name)_front_camera" robot_name="$(arg robot_name)">
-      </xacro:wamv_front_camera>
-  </xacro:if>
+      <xacro:include filename="$(find robotx_gazebo)/urdf/watchtower_gazebo_camera_plugin.xacro" />
+      <xacro:watchtower_camera name="$(arg robot_name)_front_camera" robot_name="$(arg robot_name)">
+      </xacro:watchtower_camera>
 
   <!-- Attach LiDAR plugin -->
   <xacro:if value="$(arg lidar)">

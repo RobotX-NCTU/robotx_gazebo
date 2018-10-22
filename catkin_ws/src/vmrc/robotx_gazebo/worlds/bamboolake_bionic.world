@@ -44,30 +44,13 @@
 
 
     <!-- AprilTag -->
+    
     <include>
-      <pose> 30 -10 0.8 0 0 0 </pose>
+      <pose> 300 -10 0.8 0 0 0 </pose>
       <name>top_left</name>
       <uri>model://models/apriltag</uri>
       <param>value 2</param>    
     </include>   
-
-    <include>
-      <pose> 30 10 0.8 0 0 0 </pose>
-      <name>top_right</name>
-      <uri>model://models/apriltag</uri>       
-    </include>   
-
-    <include>
-      <pose> 5 -10 0.8 0 0 0 </pose>
-      <name>down_left</name>
-      <uri>model://models/apriltag</uri>       
-    </include>   
-
-    <include>
-      <pose> 5 10 0.8 0 0 0 </pose>
-      <name>down_right</name>
-      <uri>model://models/apriltag</uri>       
-    </include> 
 
   </world>
 </sdf>

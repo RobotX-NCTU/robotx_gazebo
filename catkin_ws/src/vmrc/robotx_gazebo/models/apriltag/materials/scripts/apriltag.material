@@ -10,7 +10,7 @@ material a_0/Image
 
       texture_unit
       {
-        texture a_00.png
+        texture 36h11_0.png
         filtering none
       }
     }
@@ -29,7 +29,7 @@ material a_1/Image
 
       texture_unit
       {
-        texture a_01.png
+        texture 36h11_1.png
         filtering none
       }
     }
@@ -48,7 +48,7 @@ material a_2/Image
 
       texture_unit
       {
-        texture a_02.png
+        texture 36h11_2.png
         filtering none
       }
     }
@@ -67,7 +67,140 @@ material a_3/Image
 
       texture_unit
       {
-        texture a_03.png
+        texture 36h11_3.png
+        filtering none
+      }
+    }
+  }
+}
+
+material a_501/Image
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.5 0.5 0.5 1.0
+      diffuse 1.0 1.0 1.0 1.0
+      specular 0.0 0.0 0.0 1.0 0.5
+
+      texture_unit
+      {
+        texture 36h11_501.png
+        filtering none
+      }
+    }
+  }
+}
+
+material a_502/Image
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.5 0.5 0.5 1.0
+      diffuse 1.0 1.0 1.0 1.0
+      specular 0.0 0.0 0.0 1.0 0.5
+
+      texture_unit
+      {
+        texture 36h11_502.png
+        filtering none
+      }
+    }
+  }
+}
+
+material a_503/Image
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.5 0.5 0.5 1.0
+      diffuse 1.0 1.0 1.0 1.0
+      specular 0.0 0.0 0.0 1.0 0.5
+
+      texture_unit
+      {
+        texture 36h11_503.png
+        filtering none
+      }
+    }
+  }
+}
+
+material a_504/Image
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.5 0.5 0.5 1.0
+      diffuse 1.0 1.0 1.0 1.0
+      specular 0.0 0.0 0.0 1.0 0.5
+
+      texture_unit
+      {
+        texture 36h11_504.png
+        filtering none
+      }
+    }
+  }
+}
+
+material a_505/Image
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.5 0.5 0.5 1.0
+      diffuse 1.0 1.0 1.0 1.0
+      specular 0.0 0.0 0.0 1.0 0.5
+
+      texture_unit
+      {
+        texture 36h11_505.png
+        filtering none
+      }
+    }
+  }
+}
+
+material a_506/Image
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.5 0.5 0.5 1.0
+      diffuse 1.0 1.0 1.0 1.0
+      specular 0.0 0.0 0.0 1.0 0.5
+
+      texture_unit
+      {
+        texture 36h11_506.png
+        filtering none
+      }
+    }
+  }
+}
+
+material a_507/Image
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.5 0.5 0.5 1.0
+      diffuse 1.0 1.0 1.0 1.0
+      specular 0.0 0.0 0.0 1.0 0.5
+
+      texture_unit
+      {
+        texture 36h11_507.png
         filtering none
       }
     }

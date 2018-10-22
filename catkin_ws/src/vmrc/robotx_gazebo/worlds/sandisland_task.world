@@ -88,7 +88,7 @@
        <include>
         <pose> 20 -12 0 0 0 0 </pose>
         <name>white_buoy_mark_4</name>
-        <uri>model://models/white_buoy</uri>        
+        <uri>model://models/white_buoy</uri>       
       </include>
 
       <!-- Totem -->

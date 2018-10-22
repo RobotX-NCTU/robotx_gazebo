@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro"
+       name="apriltage">
+  <!-- Defines the base vehicle -->
+  <xacro:include filename="$(find wamv_description)/urdf/apriltag_base.xacro" />
+
+
+  <!-- Attach hydrodynamics plugin -->
+  <xacro:include filename="$(find robotx_gazebo)/urdf/wamv_gazebo_dynamics_plugin.xacro" />
+  <xacro:usv_dynamics_gazebo name="$(arg robot_name)_dynamics_plugin"/>
+
+  <!-- Attach wind plugin -->
+  <xacro:if value="$(arg wind)">
+      <xacro:include filename="$(find robotx_gazebo)/urdf/wamv_gazebo_wind_plugin.xacro" />
+      <xacro:usv_wind_gazebo name="$(arg robot_name)_wind_plugin"/>
+  </xacro:if>
+
+  <!-- Attach p3d odometry plugin -->
+  <xacro:if value="$(arg p3d)">
+      <xacro:include filename="$(find robotx_gazebo)/urdf/wamv_gazebo_p3d_plugin.xacro" />
+      <xacro:wamv_p3d name="$(arg robot_name)_p3d">
+      </xacro:wamv_p3d>
+  </xacro:if> 
+
+
+</robot>

@@ -1,0 +1,75 @@
+material a_0/Image
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.5 0.5 0.5 1.0
+      diffuse 1.0 1.0 1.0 1.0
+      specular 0.0 0.0 0.0 1.0 0.5
+
+      texture_unit
+      {
+        texture a_00.png
+        filtering none
+      }
+    }
+  }
+}
+
+material a_1/Image
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.5 0.5 0.5 1.0
+      diffuse 1.0 1.0 1.0 1.0
+      specular 0.0 0.0 0.0 1.0 0.5
+
+      texture_unit
+      {
+        texture a_01.png
+        filtering none
+      }
+    }
+  }
+}
+
+material a_2/Image
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.5 0.5 0.5 1.0
+      diffuse 1.0 1.0 1.0 1.0
+      specular 0.0 0.0 0.0 1.0 0.5
+
+      texture_unit
+      {
+        texture a_02.png
+        filtering none
+      }
+    }
+  }
+}
+
+material a_3/Image
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.5 0.5 0.5 1.0
+      diffuse 1.0 1.0 1.0 1.0
+      specular 0.0 0.0 0.0 1.0 0.5
+
+      texture_unit
+      {
+        texture a_03.png
+        filtering none
+      }
+    }
+  }
+}

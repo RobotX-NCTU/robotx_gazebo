@@ -44,12 +44,12 @@
     <!-- Task 1 Demonstrate Navigation Control -->
       <!-- The entrance (-30, 00) (-40, 0)-->
       <include>
-        <pose> 10 -8 0 0 0 0 </pose>
+        <pose> 7 -9 0 0 0 0 </pose>
         <name>red_buoy_entrance</name>
         <uri>model://models/red_buoy</uri>       
       </include>
        <include>
-        <pose> 10 8 0 0 0 0 </pose>
+        <pose> 8 7 0 0 0 0 </pose>
         <name>green_buoy_entrance</name>
         <uri>model://models/green_buoy</uri>     
       </include>
@@ -61,7 +61,7 @@
         <uri>model://models/red_buoy</uri>
       </include>
        <include>
-        <pose> 25 5 0 0 0 0 </pose>
+        <pose> 24 5 0 0 0 0 </pose>
         <name>green_buoy_exit</name>
         <uri>model://models/green_buoy</uri>       
       </include>
@@ -201,6 +201,11 @@
        <include>
         <pose> 0 26 0 0 0 0 </pose>
         <name>obstacle_19</name>
+        <uri>model://models/buoy_a7</uri>
+       </include>
+       <include>
+        <pose> 20 20 0 0 0 0 </pose>
+        <name>obstacle_20</name>
         <uri>model://models/buoy_a7</uri>
        </include>
   </world>

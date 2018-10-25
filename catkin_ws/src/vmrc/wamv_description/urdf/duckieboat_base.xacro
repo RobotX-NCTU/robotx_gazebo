@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="watchtower">
+  <!--<xacro:include filename="properties_watchtower.urdf.xacro"/>-->
+
+  <gazebo reference="base_link">
+    <material>Gazebo/Orange</material>
+  </gazebo>
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-0 0 0.5"
+        rpy="0 0 0" />
+      <mass
+        value="200" />
+      <inertia
+        ixx="0.80923"
+        ixy="3.5773E-33"
+        ixz="1.063E-17"
+        iyy="0.80923"
+        iyz="-2.7232E-16"
+        izz="9.178E-32" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh scale="0.001 0.001 0.001"
+          filename="package://wamv_description/mesh/DUCKIEBOAT-Base.stl" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh scale="0.001 0.001 0.001"
+          filename="package://wamv_description/mesh/DUCKIEBOAT-Base.stl" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="base_link_joint" type="fixed">
+    <origin xyz="0 0 0"/>
+    <parent link="base_footprint2"/>
+    <child link="base_link"/>
+  </joint>
+
+  <link name="base_footprint2"/>
+
+
+</robot>

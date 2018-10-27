@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
-  <xacro:macro name="apriltag_base" params=" name tag_id:=0 tag_size:=0.8">
+  <xacro:macro name="apriltag_base" params=" name tag_id:=0 tag_id2:=0 tag_size:=0.8">
   <xacro:property name="size" value="${tag_size}"/>
 <!--
   <xacro:property name="tag_size" value="0.7" />
@@ -103,7 +103,7 @@
   <!-- apriltage id -->
   <gazebo reference="apriltag_1">
     <turnGravityOff>false</turnGravityOff>
-    <material>a_${tag_id}/Image</material>
+    <material>a_${tag_id2}/Image</material>
   </gazebo>
 
   <gazebo reference="apriltag_2">

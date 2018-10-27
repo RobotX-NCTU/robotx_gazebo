@@ -25,7 +25,8 @@
     <sensor type="camera" name="mid_camera">
       <update_rate>10.0</update_rate>
       <camera name="head">
-        <horizontal_fov>1.3962634</horizontal_fov>
+        <!--<horizontal_fov>1.3962634</horizontal_fov>-->
+        <horizontal_fov>1.57</horizontal_fov>
         <image>
           <width>1280</width>
           <height>720</height>

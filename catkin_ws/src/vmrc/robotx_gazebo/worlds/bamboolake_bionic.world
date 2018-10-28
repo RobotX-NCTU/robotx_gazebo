@@ -9,6 +9,12 @@
       </sky>
     </scene-->
 
+
+    <scene>
+      <ambient>1 1 1 1</ambient>
+      <shadows>true</shadows>
+    </scene>
+
     <wind>
       <linear_velocity>10 0 0</linear_velocity> <!-- Wind linear velocity -->
     </wind >
@@ -18,9 +24,21 @@
       <uri>model://sun</uri>
     </include>
 
+    <!-- Additional light -->
+<!--
+    <light type="directional" name="my_light">
+        <origin pose="0 0 30 0 0 0"/>
+        <diffuse rgba=".9 .9 .9 1"/>
+        <specular rgba=".1 .1 .1 1"/>
+        <attenuation range="20"/>
+        <direction xyz="0 0 -1"/>
+    </light>
+  -->
+
+
     <gui fullscreen='0'>
       <camera name='user_camera'>
-        <pose>240.235 110.553 61.4147 0 0.304 -2.78</pose>
+        <pose>39.683109 32.163109 23.040426 0 0.632000 -2</pose>
         <view_controller>orbit</view_controller>
       </camera>
     </gui>

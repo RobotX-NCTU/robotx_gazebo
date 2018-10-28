@@ -33,7 +33,7 @@
         </image>
         <clip>
           <near>0.02</near>
-          <far>300</far>
+          <far>50</far>
         </clip>
         <noise>
           <type>gaussian</type>
@@ -44,7 +44,7 @@
           <stddev>0.007</stddev>
         </noise>
       </camera>
-      <plugin name="camera_controller_front_right_front_camera" filename="libgazebo_ros_camera.so">
+      <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
         <alwaysOn>true</alwaysOn>
         <updateRate>0.0</updateRate>
         <cameraName>${robot_name}/zed_mid/rgb</cameraName>

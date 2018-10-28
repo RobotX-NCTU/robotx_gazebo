@@ -3,7 +3,7 @@
        name="apriltag">
   <!-- Defines the base vehicle -->
   <xacro:include filename="$(find wamv_description)/urdf/apriltag_base.xacro" />
-  <xacro:apriltag_base name="$(arg robot_name)_apriltag_base_plugin" tag_id="$(arg tag_id)" tag_size="$(arg tag_size)"/>
+  <xacro:apriltag_base name="$(arg robot_name)_apriltag_base_plugin" tag_id="$(arg tag_id)" tag_id2="$(arg tag_id2)" tag_size="$(arg tag_size)"/>
 
   <!-- Attach hydrodynamics plugin -->
   <xacro:include filename="$(find robotx_gazebo)/urdf/wamv_gazebo_dynamics_plugin.xacro" />

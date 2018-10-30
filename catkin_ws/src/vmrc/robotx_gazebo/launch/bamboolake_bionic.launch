@@ -21,10 +21,10 @@
   <arg name="P" default="0" />
   <arg name="R" default="0" />
   <arg name="Y" default="0" />
-  <arg name="top_edge" default="15"/>
+  <arg name="top_edge" default="40"/>
   <arg name="down_edge" default="10"/>
-  <arg name="left_edge" default="5"/>
-  <arg name="right_edge" default="-5"/>
+  <arg name="left_edge" default="10"/>
+  <arg name="right_edge" default="-10"/>
 
 
   <!-- The switch about sensors and wind -->
@@ -66,7 +66,7 @@
   <arg name="urdf_watchtower_down" default="$(find wamv_description)/urdf/watchtower.xacro"/>
   <param name="watchtower_down_description" command="$(find xacro)/xacro --inorder $(arg urdf_watchtower_down) wind:=$(arg wind) lidar:=false p3d:=$(arg p3d) robot_name:=watchtower_down"/>
   <node name="spawn_model_watchtower_down" pkg="gazebo_ros" type="spawn_model"
-  args="-x -8 -y $(arg y) -z $(arg z)
+  args="-x -12 -y $(arg y) -z $(arg z)
         -R $(arg R) -P $(arg P) -Y 0
         -unpause -urdf -param watchtower_down_description -model watchtower_down"/>
 

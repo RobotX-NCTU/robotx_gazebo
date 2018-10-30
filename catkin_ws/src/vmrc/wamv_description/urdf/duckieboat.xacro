@@ -1,24 +1,27 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro"
-       name="watchtower">
+       name="duckieboat">
   <!-- Defines the base vehicle -->
   <xacro:include filename="$(find wamv_description)/urdf/duckieboat_base.xacro" />
 
-
   <!-- Attach hydrodynamics plugin -->
   <xacro:include filename="$(find robotx_gazebo)/urdf/wamv_gazebo_dynamics_plugin.xacro" />
-  <xacro:usv_dynamics_gazebo name="$(arg robot_name)_dynamics_plugin"/>
+  <xacro:usv_dynamics_gazebo name="duckieboat_dynamics_plugin"/>
 
   <!-- Attach wind plugin -->
   <xacro:if value="$(arg wind)">
       <xacro:include filename="$(find robotx_gazebo)/urdf/wamv_gazebo_wind_plugin.xacro" />
-      <xacro:usv_wind_gazebo name="$(arg robot_name)_wind_plugin"/>
+      <xacro:usv_wind_gazebo name="duckieboat_wind_plugin"/>
   </xacro:if>
 
+  <!-- Attach thrust plugin -->
+  <xacro:include filename="$(find robotx_gazebo)/urdf/wamv_gazebo_thrust_plugin.xacro" />
+  <xacro:usv_thrust_gazebo name="duckieboat_thrust_plugin"/>
+
   <!-- Attach front camera plugin -->
-  <xacro:include filename="$(find robotx_gazebo)/urdf/watchtower_gazebo_camera_plugin.xacro" /> 
-      <xacro:watchtower_camera name="$(arg robot_name)_front_camera" robot_name="$(arg robot_name)">
-  </xacro:watchtower_camera>
+  <xacro:include filename="$(find robotx_gazebo)/urdf/duckieboat_gazebo_camera_plugin.xacro" /> 
+      <xacro:duckieboat_camera name="$(arg robot_name)_front_camera" robot_name="$(arg robot_name)">
+  </xacro:duckieboat_camera>
 
   <!-- Attach p3d odometry plugin -->
   <xacro:if value="$(arg p3d)">

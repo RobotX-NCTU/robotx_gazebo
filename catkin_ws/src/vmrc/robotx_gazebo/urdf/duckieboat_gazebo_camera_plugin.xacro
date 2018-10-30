@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:macro name="duckieboat_camera" params="name robot_name:=/ ">
+       
+  <!-- camera position -->
+  <xacro:property name="origin_mid">
+    <origin xyz="1 0 0.45" rpy="0 0 0" />
+  </xacro:property>
+
+  <!-- mid camera -->
+  <link name="camera_link">    
+    <visual>
+      <origin xyz="-0.01 0 0" rpy="1.57 0 1.57"/>
+      <geometry>
+        <mesh filename="model://zed/zed_model.dae" scale="0.02 0.02 0.02"/>  
+      </geometry>
+    </visual>
+  </link>
+  <joint name="camera_joint" type="fixed">
+    <xacro:insert_block name="origin_mid" />
+    <parent link="base_link"/>
+    <child link="camera_link"/>
+  </joint>
+  <gazebo reference="camera_link">
+    <sensor type="camera" name="mid_camera">
+      <update_rate>10.0</update_rate>
+      <camera name="head">
+        <!--<horizontal_fov>1.3962634</horizontal_fov>-->
+        <horizontal_fov>1.57</horizontal_fov>
+        <image>
+          <width>1280</width>
+          <height>720</height>
+          <format>B8G8R8</format>
+        </image>
+        <clip>
+          <near>0.02</near>
+          <far>50</far>
+        </clip>
+        <noise>
+          <type>gaussian</type>
+          <!-- Noise is sampled independently per pixel on each frame.
+               That pixel's noise value is added to each of its color
+               channels, which at that point lie in the range [0,1]. -->
+          <mean>0.0</mean>
+          <stddev>0.007</stddev>
+        </noise>
+      </camera>
+      <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+        <alwaysOn>true</alwaysOn>
+        <updateRate>0.0</updateRate>
+        <cameraName>${robot_name}/zed_mid/rgb</cameraName>
+        <imageTopicName>image_rect_color</imageTopicName>
+        <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+        <frameName>zed_mid</frameName>
+        <hackBaseline>0.07</hackBaseline>
+        <distortionK1>0.0</distortionK1>
+        <distortionK2>0.0</distortionK2>
+        <distortionK3>0.0</distortionK3>
+        <distortionT1>0.0</distortionT1>
+        <distortionT2>0.0</distortionT2>
+      </plugin>
+    </sensor>
+  </gazebo>  
+ </xacro:macro>
+</robot>

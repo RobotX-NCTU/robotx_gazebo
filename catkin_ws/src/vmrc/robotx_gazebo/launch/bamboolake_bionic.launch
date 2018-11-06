@@ -82,7 +82,7 @@
     
   <!-- down_left -->
   <arg name="urdf_apriltag_down_left" default="$(find wamv_description)/urdf/apriltag.xacro"/>
-  <param name="apriltag_down_left_description" command="$(find xacro)/xacro --inorder $(arg urdf_apriltag_down_left) wind:=$(arg wind) p3d:=$(arg p3d) robot_name:=apriltag_down_left tag_id:=504 tag_id2:=0 tag_size:=1.0"/>
+  <param name="apriltag_down_left_description" command="$(find xacro)/xacro --inorder $(arg urdf_apriltag_down_left) wind:=$(arg wind) p3d:=$(arg p3d) robot_name:=apriltag_down_left tag_id:=504 tag_id2:=508 tag_size:=1.0"/>
   <node name="spawn_model_apriltag_down_left" pkg="gazebo_ros" type="spawn_model"
   args="-x $(arg left_edge) -y $(arg down_edge) -z $(arg z)
         -R $(arg R) -P $(arg P) -Y 1.57079
@@ -90,7 +90,7 @@
 
   <!-- top_left -->
   <arg name="urdf_apriltag_top_left" default="$(find wamv_description)/urdf/apriltag.xacro"/>
-  <param name="apriltag_top_left_description" command="$(find xacro)/xacro --inorder $(arg urdf_apriltag_top_left) wind:=$(arg wind) p3d:=$(arg p3d) robot_name:=apriltag_top_left tag_id:=506 tag_id2:=0 tag_size:=1.0"/>
+  <param name="apriltag_top_left_description" command="$(find xacro)/xacro --inorder $(arg urdf_apriltag_top_left) wind:=$(arg wind) p3d:=$(arg p3d) robot_name:=apriltag_top_left tag_id:=506 tag_id2:=510 tag_size:=1.0"/>
   <node name="spawn_model_apriltag_top_left" pkg="gazebo_ros" type="spawn_model"
   args="-x $(arg left_edge) -y $(arg top_edge) -z $(arg z)
         -R $(arg R) -P $(arg P) -Y 1.57079
@@ -98,7 +98,7 @@
 
   <!-- top_right -->
   <arg name="urdf_apriltag_top_right" default="$(find wamv_description)/urdf/apriltag.xacro"/>
-  <param name="apriltag_top_right_description" command="$(find xacro)/xacro --inorder $(arg urdf_apriltag_top_right) wind:=$(arg wind) p3d:=$(arg p3d) robot_name:=apriltag_top_right tag_id:=507 tag_id2:=0 tag_size:=1.0"/>
+  <param name="apriltag_top_right_description" command="$(find xacro)/xacro --inorder $(arg urdf_apriltag_top_right) wind:=$(arg wind) p3d:=$(arg p3d) robot_name:=apriltag_top_right tag_id:=507 tag_id2:=511 tag_size:=1.0"/>
   <node name="spawn_model_apriltag_top_right" pkg="gazebo_ros" type="spawn_model"
   args="-x $(arg right_edge) -y $(arg top_edge) -z $(arg z)
         -R $(arg R) -P $(arg P) -Y 1.57079
@@ -106,7 +106,7 @@
 
   <!-- down_right -->
   <arg name="urdf_apriltag_down_right" default="$(find wamv_description)/urdf/apriltag.xacro"/>
-  <param name="apriltag_down_right_description" command="$(find xacro)/xacro --inorder $(arg urdf_apriltag_down_right) wind:=$(arg wind) p3d:=$(arg p3d) robot_name:=apriltag_down_right tag_id:=505 tag_id2:=0 tag_size:=1.0"/>
+  <param name="apriltag_down_right_description" command="$(find xacro)/xacro --inorder $(arg urdf_apriltag_down_right) wind:=$(arg wind) p3d:=$(arg p3d) robot_name:=apriltag_down_right tag_id:=505 tag_id2:=509 tag_size:=1.0"/>
   <node name="spawn_model_apriltag_down_right" pkg="gazebo_ros" type="spawn_model"
   args="-x $(arg right_edge) -y $(arg down_edge) -z $(arg z)
         -R $(arg R) -P $(arg P) -Y 1.5707

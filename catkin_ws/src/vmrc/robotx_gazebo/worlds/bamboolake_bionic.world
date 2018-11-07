@@ -16,7 +16,7 @@
     </scene>
 
     <wind>
-      <linear_velocity>10 0 0</linear_velocity> <!-- Wind linear velocity -->
+      <linear_velocity>0 0 0</linear_velocity> <!-- Wind linear velocity -->
     </wind >
     
     <!-- A global light source -->

@@ -64,17 +64,17 @@
 
       <xacro:include filename="$(find robotx_gazebo)/urdf/wamv_gazebo_apriltags_plugin.xacro" />
       <xacro:wamv_apriltags name="wamv_right_apriltag" tag_id="503" tag_size="1.00">
-        <origin xyz="-0.45 -0.5 1.5" rpy="0 0 -1.57079"/>
+        <origin xyz="-0.45 -0.5 1.7" rpy="0 0 -1.57079"/>
       </xacro:wamv_apriltags>
 502
       <xacro:include filename="$(find robotx_gazebo)/urdf/wamv_gazebo_apriltags_plugin.xacro" />
       <xacro:wamv_apriltags name="wamv_back_apriltag" tag_id="502" tag_size="1.00">
-        <origin xyz="-0.95 0.0 1.5" rpy="0 0 0"/>
+        <origin xyz="-0.95 0.0 1.7" rpy="0 0 0"/>
       </xacro:wamv_apriltags>
 
       <xacro:include filename="$(find robotx_gazebo)/urdf/wamv_gazebo_apriltags_plugin.xacro" />
       <xacro:wamv_apriltags name="wamv_left_apriltag" tag_id="501" tag_size="1.00">
-        <origin xyz="-0.45 0.5 1.5" rpy="0 0 1.57079"/>
+        <origin xyz="-0.45 0.5 1.7" rpy="0 0 1.57079"/>
       </xacro:wamv_apriltags>
   </xacro:if> 
 

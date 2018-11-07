@@ -197,6 +197,8 @@ class ang_PID:
 			# lock yaw
 			if waypoints[waypoint_index][2] != -10:
 				error = waypoints[waypoint_index][2] - yaw
+			elif waypoint_index == 0:
+				error = np.arctan2((waypoints[waypoint_index][1] - y_pos),(waypoints[waypoint_index][0] - x_pos)) - yaw
 			else:
 				error = np.arctan2((waypoints[waypoint_index][1] - waypoints[waypoint_index-1][1]),(waypoints[waypoint_index][0] - waypoints[waypoint_index-1][0])) - yaw
 		else:

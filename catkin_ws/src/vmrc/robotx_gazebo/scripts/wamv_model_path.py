@@ -44,14 +44,16 @@ class ModelStatePath(object):
     def cbModelStates2Pose(self, model_states):
         #print model_states
         wamv_id = 0
-        while (model_states.name[wamv_id] != 'wamv'):
-        	wamv_id = wamv_id + 1
-        if(self.verbose): print model_states.name[wamv_id], model_states.pose[wamv_id]
-        pose = Pose()
-        pose = model_states.pose[wamv_id]
-        pose.position.x = pose.position.x + 5
-        pose.position.y = pose.position.y - 5
-        self.cb_path(pose)
+        for name in model_states.name:
+            if(name != 'wamv'):
+                wamv_id = wamv_id + 1
+            else
+                if(self.verbose): print model_states.name[wamv_id], model_states.pose[wamv_id]
+                pose = Pose()
+                pose = model_states.pose[wamv_id]
+                pose.position.x = pose.position.x + 5
+                pose.position.y = pose.position.y - 5
+                self.cb_path(pose)
 
     def onShutdown(self):
         rospy.loginfo("[ModelStatePathNode] Shutdown.")

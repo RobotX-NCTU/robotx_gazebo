@@ -33,7 +33,7 @@
   <arg name="imu" default="true"/>
   <arg name="lidar" default="true"/>
   <arg name="wind" default="true"/> 
-  <arg name="p3d" default="true"/> 
+  <arg name="p3d" default="false"/> 
 
   <!-- The switch about apriltags on WAM-V -->
   <arg name="apriltags" default="true"/> 
@@ -54,7 +54,7 @@
   <!--<arg name="urdf" default="$(find nps_robotx)/urdf/nps_wamv.xacro"/> -->
   <param name="robot_description" command="$(find xacro)/xacro --inorder $(arg urdf) wind:=$(arg wind) 
   front_camera:=$(arg front_camera) lidar:=$(arg lidar) gps:=$(arg gps) imu:=$(arg imu)
-   p3d:=$(arg p3d) apriltags:=$(arg apriltags)"/>
+   p3d:=true apriltags:=$(arg apriltags)"/>
   <!-- Spawn model in Gazebo -->
   <node name="spawn_model" pkg="gazebo_ros" type="spawn_model"
   args="-x $(arg x) -y $(arg y) -z $(arg z)
@@ -121,6 +121,8 @@
   <!-- run waypoint navigation contoller -->
   <node pkg="robotx_gazebo" type="WAMV_PID_controller.py" name="wamv_pid_controller">
   </node>
+
+  <node pkg="robotx_gazebo" type="wamv_model_path.py" name="wamv_model_path"/>
 
   <!--<include file="$(find robotx_gazebo)/launch/usv_diffdrive.launch"/>-->
 

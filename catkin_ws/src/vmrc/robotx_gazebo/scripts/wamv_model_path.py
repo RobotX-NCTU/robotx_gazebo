@@ -47,7 +47,7 @@ class ModelStatePath(object):
         for name in model_states.name:
             if(name != 'wamv'):
                 wamv_id = wamv_id + 1
-            else
+            else:
                 if(self.verbose): print model_states.name[wamv_id], model_states.pose[wamv_id]
                 pose = Pose()
                 pose = model_states.pose[wamv_id]

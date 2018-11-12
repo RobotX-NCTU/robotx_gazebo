@@ -43,7 +43,6 @@
 
   <!-- apriltag_1 -->
   <link name="apriltag_1">
-    <gravity>0</gravity>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
@@ -70,7 +69,6 @@
 
   <!-- apriltag_2 -->
   <link name="apriltag_2">
-    <gravity>0</gravity>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
@@ -96,6 +94,26 @@
     </inertial>
   </link>
 
+  <!-- apriltag_1_back -->
+  <link name="apriltag_1_back">
+    <visual>
+      <origin xyz="-0.24 -0.25 0.75" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.01 ${size} ${size}"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <!-- apriltag_2_back -->
+  <link name="apriltag_2_back">
+    <visual>
+      <origin xyz="0.25 0.24  0.75" rpy="0 0 1.57"/>
+      <geometry>
+        <box size="0.01 ${size} ${size}"/>
+      </geometry>
+    </visual>
+  </link>
+
   <!-- joint -->
   <joint name="totem_to_apriltag_1" type="fixed">
     <parent link="base_link"/>
@@ -105,6 +123,16 @@
   <joint name="totem_to_apriltag_2" type="fixed">
     <parent link="base_link"/>
     <child link="apriltag_2"/>
+  </joint>
+
+  <joint name="totem_to_apriltag_1_back" type="fixed">
+    <parent link="base_link"/>
+    <child link="apriltag_1_back"/>
+  </joint>
+
+  <joint name="totem_to_apriltag_2_back" type="fixed">
+    <parent link="base_link"/>
+    <child link="apriltag_2_back"/>
   </joint>
 
   <!-- apriltage id -->

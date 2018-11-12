@@ -5,8 +5,6 @@
   <xacro:property name="size" value="${tag_size}"/>
 
     <link name="${name}">
-        <gravity>0</gravity>
-
         <inertial>
             <origin
                 xyz="0 0 0"
@@ -41,10 +39,29 @@
         </collision>
     </link>
 
+    <link name="${name}_back">
+        <visual>
+            <origin
+                xyz="-0.01 0 0"
+                rpy="0 0 0" />
+            <geometry>
+                <box size="0.01 ${size} ${size}"/>
+            </geometry>
+            <!--<material name="Hope"/>-->
+        </visual>
+    </link>
+
     <joint name="${name}_joint" type="fixed">
       <xacro:insert_block name="origin"/>
       <parent link="base_link"/>
       <child link="${name}"/>
+    </joint>
+
+
+    <joint name="${name}_back_joint" type="fixed">
+      <xacro:insert_block name="origin"/>
+      <parent link="base_link"/>
+      <child link="${name}_back"/>
     </joint>
 
     <gazebo reference="${name}">

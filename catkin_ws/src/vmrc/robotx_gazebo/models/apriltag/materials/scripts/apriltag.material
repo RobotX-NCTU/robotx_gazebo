@@ -282,3 +282,22 @@ material a_511/Image
     }
   }
 }
+
+material a_512/Image
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.5 0.5 0.5 1.0
+      diffuse 1.0 1.0 1.0 1.0
+      specular 0.0 0.0 0.0 1.0 0.5
+
+      texture_unit
+      {
+        texture 36h11_512.png
+        filtering none
+      }
+    }
+  }
+}

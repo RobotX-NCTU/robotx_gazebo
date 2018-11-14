@@ -53,7 +53,7 @@
   <arg name="urdf" default="$(find wamv_description)/urdf/wamv_robotx_nctu.xacro"/>
   <!--<arg name="urdf" default="$(find nps_robotx)/urdf/nps_wamv.xacro"/> -->
   <param name="robot_description" command="$(find xacro)/xacro --inorder $(arg urdf) wind:=$(arg wind) 
-  front_camera:=$(arg front_camera) lidar:=$(arg lidar) gps:=$(arg gps) imu:=$(arg imu)
+  front_camera:=false lidar:=false gps:=$(arg gps) imu:=$(arg imu)
    p3d:=true apriltags:=$(arg apriltags)"/>
   <!-- Spawn model in Gazebo -->
   <node name="spawn_model" pkg="gazebo_ros" type="spawn_model"

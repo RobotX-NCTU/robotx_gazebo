@@ -1,0 +1,72 @@
+<?xml version="1.0" ?>
+<sdf version="1.4">
+  <world name="SandIsland">
+
+    <wind>
+      <linear_velocity>10 0 0</linear_velocity> <!-- Wind linear velocity -->
+    </wind >
+    
+    <!-- A global light source -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose>240.235 110.553 61.4147 0 0.304 -2.78</pose>
+        <view_controller>orbit</view_controller>
+      </camera>
+    </gui>
+
+    <!-- Should be at the same height as the water level in USV and buoyancy 
+    plugin configurations -->
+    <include>
+      <pose> 0 0 0 0 0 0 </pose>
+      <uri>model://models/ocean</uri>      
+    </include>
+
+    <!-- Boundar buoy -->
+    <include>
+      <pose> 10 20 0 0 0 0 </pose>
+      <name>white_buoy_b1</name>
+      <uri>model://models/white_buoy</uri>       
+    </include>
+    <include>
+      <pose> 10 -20 0 0 0 0 </pose>
+      <name>white_buoy_b2</name>
+      <uri>model://models/white_buoy</uri>       
+    </include>
+    <include>
+      <pose> 50 20 0 0 0 0 </pose>
+      <name>white_buoy_b3</name>
+      <uri>model://models/white_buoy</uri>       
+    </include>
+    <include>
+      <pose> 50 -20 0 0 0 0 </pose>
+      <name>white_buoy_b4</name>
+      <uri>model://models/white_buoy</uri>       
+    </include>
+
+    <!-- Totems -->
+    <include>
+      <pose> 15 -10 0 0 0 0 </pose>
+      <name>green_buoy</name>
+      <uri>model://models/green_buoy</uri>       
+    </include>
+    <include>
+      <pose> 27 10 0 0 0 0 </pose>
+      <name>red_buoy</name>
+      <uri>model://models/red_buoy</uri>       
+    </include>    
+    <include>
+      <pose> 40 5 0 0 0 0 </pose>
+      <name>yellow_buoy</name>
+      <uri>model://models/yellow_buoy</uri>       
+    </include>   
+    <include>
+      <pose> 40 -8 0 0 0 0 </pose>
+      <name>blue_buoy</name>
+      <uri>model://models/blue_buoy</uri>       
+    </include>   
+  </world>
+</sdf>

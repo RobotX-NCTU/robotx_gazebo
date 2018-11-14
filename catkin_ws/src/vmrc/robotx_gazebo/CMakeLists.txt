@@ -103,6 +103,16 @@ install(TARGETS symbol_controller
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
+# Plugin for light buoy color sequence
+add_library(light_buoy_controller src/light_buoy_controller.cc)
+target_link_libraries(light_buoy_controller ${catkin_LIBRARIES})
+add_dependencies(light_buoy_controller ${catkin_EXPORTED_TARGETS})
+install(TARGETS light_buoy_controller
+  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
 ## Declare a C++ library
 add_library(buoyancy_gazebo_plugin
   src/buoyancy_gazebo_plugin.cc

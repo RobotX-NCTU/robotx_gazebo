@@ -10,7 +10,7 @@
    -->
   <!-- Command line arguments -->
 
-  <arg name="world" default="robotx_challenge_course.world"/>
+  <arg name="world" default="robotx_competition_course.world"/>
 
   <arg name="name" default="WAMV"/>
 

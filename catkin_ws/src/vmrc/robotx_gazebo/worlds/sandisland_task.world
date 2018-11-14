@@ -37,12 +37,12 @@
 
     <!-- Should be at the same height as the water level in USV and buoyancy 
     plugin configurations -->
-    <!--
+    
     <include>
       <pose> 0 0 0 0 0 0 </pose>
       <uri>model://models/ocean</uri>      
     </include>
-    -->
+    
     <!-- Task 1 Demonstrate Navigation Control -->
       <!-- The entrance (-30, 00) (-40, 0)-->
       <include>

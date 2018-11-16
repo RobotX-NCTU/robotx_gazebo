@@ -467,7 +467,7 @@ if __name__ == "__main__":
 	print "waiting for start srv"
 	while start_flag == 0 and waypoints is None:	
 		rospy.sleep(0.1)
-
+	print "debug"	
 	pos_vel_pid = pos_vel_PID()
 	pos_vel_pid.pos_SetPointx = waypoints[waypoint_index][0]
 	pos_vel_pid.pos_SetPointy = waypoints[waypoint_index][1]
@@ -480,7 +480,7 @@ if __name__ == "__main__":
 		rospy.sleep(0.1)
 
 		wpoints = []
-		while waypoints == None:
+		while waypoints is None:
 			print "no waypoints"
 		for i in range(waypoints.shape[0]):
 			p = Point()
@@ -512,7 +512,7 @@ if __name__ == "__main__":
 
 		
 		out = pos_vel_pid.vel_output
-		#print "linear: ", out, "angular: ", ang_pid.output
+		print "linear: ", out, "angular: ", ang_pid.output
 		if out > 0.3:
 			out = 0.3
 

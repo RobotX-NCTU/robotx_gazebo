@@ -75,6 +75,7 @@ class pos_vel_PID:
 				self.vel_output = linear_vel_const
 				print "const vel"
 			'''
+			
 			self.vel_output = linear_vel_const
 			return 0
 
@@ -234,7 +235,7 @@ class ang_PID:
 				tmp_x = x_pos - (line_slope/np.sqrt(line_slope*line_slope+1))*dist_to_line
 				tmp_y = y_pos + dist_to_line
 
-			dir_vectorx = 1
+			dir_vectorx = 1/np.sqrt(line_slope*line_slope+1)
 			dir_vectory = line_slope/np.sqrt(line_slope*line_slope+1)
 		#print dir_vectorx, dir_vectory
 		#print dist_to_line
@@ -251,7 +252,7 @@ class ang_PID:
 		if np.sqrt((tmp_x - x_pos)*(tmp_x - x_pos)+(tmp_y - y_pos)*(tmp_y - y_pos)) < 5 :
 			self.pos_SetPointx = aux_pointx
 			self.pos_SetPointy = aux_pointy
-			print "aux", aux_pointx, aux_pointy
+			#print "aux", aux_pointx, aux_pointy
 
 			wpoints = []
 			for i in range(1):
@@ -332,7 +333,7 @@ class ang_PID:
 				error = error-2*np.pi
 			else:
 				error = error+2*np.pi
-		if station_keep_flag == 1:
+		if station_keep_flag == 1 and np.abs(waypoint_error) > 3:
 			if np.abs(error) > np.pi/2:
 				if error < 0:
 					error = error + np.pi
@@ -407,10 +408,11 @@ def pause_waypoint_handler(req):
 	return res
 
 def clear_waypoints_handler(req):
-	global waypoints, waypoint_index, start_flag
+	global waypoints, waypoint_index, start_flag, station_keep_flag
 	print "clear waypoints"
 	waypoints = None
 	waypoint_index = 0
+	station_keep_flag = 0
 	start_flag = 0
 	res = TriggerResponse()
 	res.success = True

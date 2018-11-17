@@ -331,25 +331,25 @@ class ang_PID:
 				p.y = waypoints[waypoint_index][1]
 				p.z = 0
 				wpoints.append(p)
-			marker = Marker()
-			marker.header.frame_id = "/odom"
+			marker2 = Marker()
+			marker2.header.frame_id = "/odom"
 
-			marker.type = marker.POINTS
-			marker.action = marker.ADD
-			marker.pose.orientation.w = 1
+			marker2.type = marker.POINTS
+			marker2.action = marker.ADD
+			marker2.pose.orientation.w = 1
 
-			marker.points = wpoints;
+			marker2.points = wpoints;
 			t = rospy.Duration()
-			marker.lifetime = t
-			marker.scale.x = 0.4
-			marker.scale.y = 0.4
-			marker.scale.z = 0.4
-			marker.color.a = 1.0
-			marker.color.r = 0
-			marker.color.g = 0
-			marker.color.b = 1.0
+			marker2.lifetime = t
+			marker2.scale.x = 0.4
+			marker2.scale.y = 0.4
+			marker2.scale.z = 0.4
+			marker2.color.a = 1.0
+			marker2.color.r = 0.5
+			marker2.color.g = 0
+			marker2.color.b = 0.5
 
-			self.pub_tgwp.publish(marker)	
+			self.pub_tgwp.publish(marker2)	
 		'''
 		#print np.abs(waypoint_error)
 		if np.abs(waypoint_error) < 5 and waypoints is not None:

@@ -190,7 +190,7 @@ class ang_PID:
 		last_waypoint_index = waypoint_index
 		for i in range(waypoints.shape[0]):
 			if np.sqrt((waypoints[i][0] - x_pos)*(waypoints[i][0] - x_pos) + (waypoints[i][1] - y_pos)*(waypoints[i][1] - y_pos)) < 5:
-				if i > last_waypoint_index
+				if i > last_waypoint_index:
 					if i == waypoints.shape[0]-1:
 						waypoint_index = i
 					else:

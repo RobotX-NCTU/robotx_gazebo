@@ -166,7 +166,7 @@ class ang_PID:
 		self.lock_aux_pointx = 0
 		self.lock_aux_pointy = 0
 		self.pub_aux = rospy.Publisher("/aux_marker", Marker, queue_size = 10)
-		self.pub_tgwp = rospy.Publisher("/target_waypoiny", Marker, queue_size = 10)
+		self.pub_tgwp = rospy.Publisher("/target_waypoint", Marker, queue_size = 10)
 		self.clear()
 
 	def clear(self):

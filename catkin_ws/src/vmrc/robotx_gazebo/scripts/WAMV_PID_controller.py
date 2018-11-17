@@ -20,6 +20,7 @@ yaw = 0
 linear_vel_const = 100
 waypoint_index = 0
 waypoints = None
+new_waypoints = None
 
 class pos_vel_PID:
 	
@@ -220,8 +221,11 @@ class ang_PID:
 			last_waypointx = waypoints[waypoint_index-1][0]
 			last_waypointy = waypoints[waypoint_index-1][1]
 		else:
-			last_waypointx = x_pos
-			last_waypointy = y_pos
+			if self.lock_aux_pointx == 0:
+				self.lock_aux_pointx = x_pos
+				self.lock_aux_pointy = y_pos
+			last_waypointx = self.lock_aux_pointx
+			last_waypointy = self.lock_aux_pointy
 
 		if np.abs(waypoints[waypoint_index][0]-last_waypointx) < 1:
 			
@@ -355,8 +359,8 @@ class ang_PID:
 		wpoints = []
 		for i in range(1):
 			p = Point()
-			p.x = waypoints[last_waypoint_index][0]
-			p.y = waypoints[last_waypoint_index][1]
+			p.x = last_waypointx
+			p.y = last_waypointy
 			p.z = 0
 			wpoints.append(p)
 		marker2 = Marker()
@@ -448,14 +452,24 @@ class ang_PID:
 		self.sample_time = sample_time
 
 def add_waypoint_handler(req):
-	global waypoints
+	global new_waypoints
 	print "add waypoint:", req.waypointx, req.waypointy
-	if waypoints is None:
-		waypoints = np.array([[req.waypointx, req.waypointy, req.yaw]])
+	if new_waypoints is None:
+		new_waypoints = np.array([[req.waypointx, req.waypointy, req.yaw]])
 	else:
-		waypoints = np.vstack((waypoints, np.array([req.waypointx, req.waypointy, req.yaw])))
-	return waypoints.shape[0]
-
+		new_waypoints = np.vstack((new_waypoints, np.array([req.waypointx, req.waypointy, req.yaw])))
+	return new_waypoints.shape[0]
+def add_current_loc_handler(req):
+	global x_pos, y_pos, yaw	
+	global new_waypoints
+	if new_waypoints is None:
+		new_waypoints = np.array([[x_pos, y_pos, yaw]])
+	else:
+		new_waypoints = np.vstack((new_waypoints, np.array([x_pos, y_pos, yaw])))
+	res = TriggerResponse()
+	res.success = True
+	res.message = "waypoint nav started"
+	return res
 def start_waypoint_handler(req):
 	global start_flag
 	print "start waypoints nav"
@@ -475,9 +489,9 @@ def pause_waypoint_handler(req):
 	return res
 
 def clear_waypoints_handler(req):
-	global waypoints, waypoint_index, start_flag, station_keep_flag
+	global new_waypoints, waypoint_index, start_flag, station_keep_flag
 	print "clear waypoints"
-	waypoints = None
+	new_waypoints = None
 	waypoint_index = 0
 	station_keep_flag = 0
 	start_flag = 0
@@ -531,12 +545,14 @@ if __name__ == "__main__":
 	station_keep_srv = rospy.Service("/station_keep_unlock", Trigger, station_keep_unlock_handler)
 	clear_waypoints_srv = rospy.Service("/clear_waypoints", Trigger, clear_waypoints_handler)
 	add_waypoint_srv = rospy.Service("/add_waypoint", waypoint, add_waypoint_handler)
+	add_current_loc_srv = rospy.Service("/add_current_loc", Trigger, add_current_loc_handler)	
 	pub_marker = rospy.Publisher("/waypoint_marker", Marker, queue_size = 10)
 
 	print "waiting for start srv"
 	while start_flag == 0 and waypoints is None:	
 		rospy.sleep(0.1)
-	print "debug"	
+	
+	waypoints = new_waypoints
 	pos_vel_pid = pos_vel_PID()
 	pos_vel_pid.pos_SetPointx = waypoints[waypoint_index][0]
 	pos_vel_pid.pos_SetPointy = waypoints[waypoint_index][1]
@@ -547,10 +563,12 @@ if __name__ == "__main__":
 
 	while not rospy.is_shutdown():
 		rospy.sleep(0.1)
-
+		waypoints = new_waypoints
 		wpoints = []
 		while waypoints is None:
 			print "no waypoints"
+			ang_pid.lock_aux_pointx = 0
+			waypoints = new_waypoints
 		for i in range(waypoints.shape[0]):
 			p = Point()
 			p.x = waypoints[i][0]

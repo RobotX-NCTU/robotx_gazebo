@@ -166,7 +166,7 @@ class ang_PID:
 		self.lock_aux_pointx = 0
 		self.lock_aux_pointy = 0
 		self.pub_aux = rospy.Publisher("/aux_marker", Marker, queue_size = 10)
-
+		self.pub_tgwp = rospy.Publisher("/target_waypoiny", Marker, queue_size = 10)
 		self.clear()
 
 	def clear(self):
@@ -186,6 +186,15 @@ class ang_PID:
 
 	def update(self, x_pos, y_pos, yaw):
 		global waypoints, waypoint_index, station_keep_flag
+		# get waypoint index
+		last_waypoint_index = waypoint_index
+		for i in range(waypoints.shape[0]):
+			if np.sqrt((waypoints[i][0] - x_pos)*(waypoints[i][0] - x_pos) + (waypoints[i][1] - y_pos)*(waypoints[i][1] - y_pos)) < 5:
+				if i > last_waypoint_index
+					if i == waypoints.shape[0]-1:
+						waypoint_index = i
+					else:
+						waypoint_index = i + 1
 		
 
 
@@ -312,8 +321,36 @@ class ang_PID:
 			marker.color.g = 1.0
 			marker.color.b = 0
 
-			self.pub_aux.publish(marker)	
-			
+			self.pub_aux.publish(marker)
+
+
+		wpoints = []
+			for i in range(1):
+				p = Point()
+				p.x = waypoints[waypoint_index][0]
+				p.y = waypoints[waypoint_index][1]
+				p.z = 0
+				wpoints.append(p)
+			marker = Marker()
+			marker.header.frame_id = "/odom"
+
+			marker.type = marker.POINTS
+			marker.action = marker.ADD
+			marker.pose.orientation.w = 1
+
+			marker.points = wpoints;
+			t = rospy.Duration()
+			marker.lifetime = t
+			marker.scale.x = 0.4
+			marker.scale.y = 0.4
+			marker.scale.z = 0.4
+			marker.color.a = 1.0
+			marker.color.r = 0
+			marker.color.g = 0
+			marker.color.b = 1.0
+
+			self.pub_tgwp.publish(marker)	
+		'''
 		#print np.abs(waypoint_error)
 		if np.abs(waypoint_error) < 5 and waypoints is not None:
 			if waypoint_index < waypoints.shape[0]-1:
@@ -326,7 +363,7 @@ class ang_PID:
 			else:
 				station_keep_flag = 1
 				print "station keep in last waypoint"
-
+		'''
 		#print "error", np.arctan((self.pos_SetPointy - y_pos)/(self.pos_SetPointx - x_pos)) - yaw
 		if np.abs(error)> np.pi:
 			if error > 0:

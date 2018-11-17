@@ -324,7 +324,7 @@ class ang_PID:
 			self.pub_aux.publish(marker)
 
 
-		wpoints = []
+			wpoints = []
 			for i in range(1):
 				p = Point()
 				p.x = waypoints[waypoint_index][0]

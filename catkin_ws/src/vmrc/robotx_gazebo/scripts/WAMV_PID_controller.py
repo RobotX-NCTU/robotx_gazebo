@@ -167,6 +167,7 @@ class ang_PID:
 		self.lock_aux_pointy = 0
 		self.pub_aux = rospy.Publisher("/aux_marker", Marker, queue_size = 10)
 		self.pub_tgwp = rospy.Publisher("/target_waypoint", Marker, queue_size = 10)
+		self.pub_lwp = rospy.Publisher("/last_waypoint", Marker, queue_size = 10)
 		self.clear()
 
 	def clear(self):
@@ -349,7 +350,36 @@ class ang_PID:
 		marker2.color.g = 0
 		marker2.color.b = 0.5
 
-		self.pub_tgwp.publish(marker2)	
+		self.pub_tgwp.publish(marker2)
+
+		wpoints = []
+		for i in range(1):
+			p = Point()
+			p.x = waypoints[last_waypoint_index][0]
+			p.y = waypoints[last_waypoint_index][1]
+			p.z = 0
+			wpoints.append(p)
+		marker2 = Marker()
+		marker2.header.frame_id = "/odom"
+
+		marker2.type = marker.POINTS
+		marker2.action = marker.ADD
+		marker2.pose.orientation.w = 1
+
+		marker2.points = wpoints;
+		t = rospy.Duration()
+		marker2.lifetime = t
+		marker2.scale.x = 0.4
+		marker2.scale.y = 0.4
+		marker2.scale.z = 0.4
+		marker2.color.a = 1.0
+		marker2.color.r = 0
+		marker2.color.g = 0.5
+		marker2.color.b = 0.5
+
+		self.pub_lwp.publish(marker2)
+
+
 		'''
 		#print np.abs(waypoint_error)
 		if np.abs(waypoint_error) < 5 and waypoints is not None:

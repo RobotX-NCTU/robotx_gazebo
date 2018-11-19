@@ -17,18 +17,22 @@ y_pos = 0
 x_vel = 0
 y_vel = 0
 yaw = 0
-linear_vel_const = 100
+last_time = -1
+last_x_pos = -1
+last_y_pos = -1
+linear_vel_const = 0.3
 waypoint_index = 0
 waypoints = None
 new_waypoints = None
-
+stable = 0
+lock = 0
 class pos_vel_PID:
 	
 
-	def __init__(self, pos_P=0.5, pos_I=0.01, pos_D=0.2, vel_P=0.2, vel_I=0.0, vel_D=0.2):
+	def __init__(self, pos_P=0.7, pos_I=0.005, pos_D=0.2, vel_P=0.4, vel_I=0.0, vel_D=0.0):
 		self.wait_flag = 0
 		self.wait_start = 0
-		self.is_close_distance = 5
+		self.is_close_distance = 3
 		self.pos_Kp = pos_P
 		self.pos_Ki = pos_I
 		self.pos_Kd = pos_D
@@ -65,20 +69,8 @@ class pos_vel_PID:
 		self.output = 0.0
 
 	def update(self, x_pos, y_pos, x_vel, y_vel, yaw):
-		global waypoints, waypoint_index, station_keep_flag
-		if station_keep_flag == 0:
-			'''
-			if np.sqrt((self.pos_SetPointx - x_pos)*(self.pos_SetPointx - x_pos)+(self.pos_SetPointy - y_pos)*(self.pos_SetPointy - y_pos)) < 3:
-				self.vel_output = 0
-				print "stop"
-
-			else:
-				self.vel_output = linear_vel_const
-				print "const vel"
-			'''
-			
-			self.vel_output = linear_vel_const
-			return 0
+		global waypoints, waypoint_index, station_keep_flag, stable
+		
 
 		self.pos_SetPointx = (waypoints[waypoint_index][0])
 		self.pos_SetPointy = (waypoints[waypoint_index][1])
@@ -91,6 +83,22 @@ class pos_vel_PID:
 				error = error-2*np.pi
 			else:
 				error = error+2*np.pi
+
+		if station_keep_flag == 0:
+			'''
+			if np.sqrt((self.pos_SetPointx - x_pos)*(self.pos_SetPointx - x_pos)+(self.pos_SetPointy - y_pos)*(self.pos_SetPointy - y_pos)) < 3:
+				self.vel_output = 0
+				print "stop"
+
+			else:
+				self.vel_output = linear_vel_const
+				print "const vel"
+			'''
+			if pos_error > (3+0.2):
+				self.vel_output = linear_vel_const
+			else:
+				self.vel_output = 0
+			return 0
 
 		#print pos_error
 		self.pos_current_time = time.time()
@@ -118,7 +126,9 @@ class pos_vel_PID:
 
 			self.pos_output = self.pos_PTerm + (self.pos_Ki * self.pos_ITerm) + (self.pos_Kd * self.pos_DTerm)
 
-		vel_error = self.pos_output - np.sqrt(x_vel*x_vel+y_vel*y_vel)
+
+		vel_error = self.pos_output - np.sqrt(x_vel*x_vel + y_vel*y_vel)
+		print vel_error, self.pos_output, np.sqrt(x_vel*x_vel + y_vel*y_vel)
 		self.vel_current_time = time.time()
 		vel_delta_time = self.vel_current_time - self.vel_last_time
 		vel_delta_error = vel_error - self.vel_last_error
@@ -140,8 +150,18 @@ class pos_vel_PID:
 			self.vel_last_error = vel_error
 
 			self.vel_output = self.vel_PTerm + (self.vel_Ki * self.vel_ITerm) + (self.vel_Kd * self.vel_DTerm)
+			if pos_error < 1.5:
+				self.vel_output = 0				
+				if np.sqrt(x_vel*x_vel+y_vel*y_vel) < 0.1:
+					stable = 1
 			if np.abs(error) > np.pi/2:
+				print "reverse"
 				self.vel_output = -self.vel_output
+				if np.abs(error) > np.pi*3/4:
+					self.vel_output = self.vel_output * 0.3
+			if np.abs(error) < np.pi/2 and np.abs(error) > np.pi/4:
+				self.vel_output = self.vel_output * 0.3
+
 			
 
 
@@ -153,7 +173,7 @@ class pos_vel_PID:
 
 class ang_PID:
 	
-	def __init__(self, P=0.5, I=0.005, D=0.1):
+	def __init__(self, P=0.5, I=0.01, D=0.4):
 		self.wait_flag = 0
 		self.wait_start = 0
 		self.Kp = P
@@ -174,7 +194,8 @@ class ang_PID:
 	def clear(self):
 		self.pos_SetPointx = 0.0
 		self.pos_SetPointy = 0.0
-
+		self.SetPointx = 0.0
+		self.SetPointy = 0.0
 		self.PTerm = 0.0
 		self.ITerm = 0.0
 		self.DTerm = 0.0
@@ -187,34 +208,38 @@ class ang_PID:
 		self.output = 0.0
 
 	def update(self, x_pos, y_pos, yaw):
-		global waypoints, waypoint_index, station_keep_flag
+		global waypoints, waypoint_index, station_keep_flag, stable, lock
+		
+		self.pos_SetPointx = waypoints[waypoint_index][0]
+		self.pos_SetPointy = waypoints[waypoint_index][1]
 		# get waypoint index
 		last_waypoint_index = waypoint_index
 		for i in range(waypoints.shape[0]):
-			if np.sqrt((waypoints[i][0] - x_pos)*(waypoints[i][0] - x_pos) + (waypoints[i][1] - y_pos)*(waypoints[i][1] - y_pos)) < 5:
-				if i > last_waypoint_index:
+			if np.sqrt((waypoints[i][0] - x_pos)*(waypoints[i][0] - x_pos) + (waypoints[i][1] - y_pos)*(waypoints[i][1] - y_pos)) < 3:
+				if i >= last_waypoint_index:
 					if i == waypoints.shape[0]-1:
 						waypoint_index = i
 					else:
 						waypoint_index = i + 1
 		
-
+		if waypoint_index == waypoints.shape[0]-1 and np.sqrt((waypoints[waypoint_index][0] - x_pos)*(waypoints[waypoint_index][0] - x_pos) + (waypoints[waypoint_index][1] - y_pos)*(waypoints[waypoint_index][1] - y_pos)) < 3:
+			station_keep_flag = 1
 
 		if time.time() - self.wait_start > 10:
 			self.wait_flag = 0
 		#print "delta t", time.time() - self.wait_start
 		pos_error = np.sqrt((self.pos_SetPointx - x_pos)*(self.pos_SetPointx - x_pos)+(self.pos_SetPointy - y_pos)*(self.pos_SetPointy - y_pos))
 		waypoint_error = np.sqrt((waypoints[waypoint_index][0] - x_pos)*(waypoints[waypoint_index][0] - x_pos)+(waypoints[waypoint_index][1] - y_pos)*(waypoints[waypoint_index][1] - y_pos))
-		if np.abs(waypoint_error) < 5 and station_keep_flag == 1:
+		if np.abs(waypoint_error) < 3 and station_keep_flag == 1 and stable == 1:
+			print "turn to desired yaw"
 			# lock yaw
 			if waypoints[waypoint_index][2] != -10:
 				error = waypoints[waypoint_index][2] - yaw
-			elif waypoint_index == 0:
-				error = np.arctan2((waypoints[waypoint_index][1] - y_pos),(waypoints[waypoint_index][0] - x_pos)) - yaw
 			else:
 				error = np.arctan2((waypoints[waypoint_index][1] - waypoints[waypoint_index-1][1]),(waypoints[waypoint_index][0] - waypoints[waypoint_index-1][0])) - yaw
+			
 		else:
-			error = np.arctan2((self.pos_SetPointy - y_pos),(self.pos_SetPointx - x_pos)) - yaw
+			error = np.arctan2((self.SetPointy - y_pos),(self.SetPointx - x_pos)) - yaw
 		
 
 		if waypoint_index >= 1:
@@ -253,19 +278,36 @@ class ang_PID:
 			dir_vectory = line_slope/np.sqrt(line_slope*line_slope+1)
 		#print dir_vectorx, dir_vectory
 		#print dist_to_line
-		proc_dist = np.sqrt(5*5-dist_to_line*dist_to_line)
+		proc_dist = np.sqrt(3*3-dist_to_line*dist_to_line)
 
 		aux_pointx = tmp_x + dir_vectorx * proc_dist
+		aux_point2x = tmp_x + 2 * dir_vectorx * proc_dist
 		aux_pointy = tmp_y + dir_vectory * proc_dist
-
+		aux_point2y = tmp_y + 2 * dir_vectory * proc_dist
 		if np.abs((waypoints[waypoint_index][0] - tmp_x) * (waypoints[waypoint_index][0] - tmp_x) + (waypoints[waypoint_index][1] - tmp_y) * (waypoints[waypoint_index][1] - tmp_y)) < np.abs((waypoints[waypoint_index][0] - aux_pointx) * (waypoints[waypoint_index][0] - aux_pointx) + (waypoints[waypoint_index][1] - aux_pointy) * (waypoints[waypoint_index][1] - aux_pointy)):
 			aux_pointx = tmp_x - dir_vectorx * proc_dist
+			aux_point2x = tmp_x - 2 * dir_vectorx * proc_dist
 			aux_pointy = tmp_y - dir_vectory * proc_dist
-
+			aux_point2y = tmp_y - 2 * dir_vectory * proc_dist
 		#print np.sqrt((tmp_x - x_pos)*(tmp_x - x_pos)+(tmp_y - y_pos)*(tmp_y - y_pos))
-		if np.sqrt((tmp_x - x_pos)*(tmp_x - x_pos)+(tmp_y - y_pos)*(tmp_y - y_pos)) < 5 :
-			self.pos_SetPointx = aux_pointx
-			self.pos_SetPointy = aux_pointy
+		if np.sqrt((tmp_x - x_pos)*(tmp_x - x_pos)+(tmp_y - y_pos)*(tmp_y - y_pos)) < 3 :
+			
+			
+			if station_keep_flag == 1 and pos_error < 3:
+				if lock == 0:
+					self.SetPointx = aux_point2x
+					self.SetPointy = aux_point2y
+					aux_pointx = aux_point2x
+					aux_pointy = aux_point2y
+					lock = 1
+				aux_pointx = self.SetPointx
+				aux_pointy = self.SetPointy
+				
+			else:
+				self.SetPointx = aux_pointx
+				self.SetPointy = aux_pointy
+				lock = 0
+
 			#print "aux", aux_pointx, aux_pointy
 
 			wpoints = []
@@ -297,8 +339,9 @@ class ang_PID:
 
 			
 		else:
-			self.pos_SetPointx = tmp_x
-			self.pos_SetPointx = tmp_y
+			lock = 0
+			self.SetPointx = tmp_x
+			self.SetPointy = tmp_y
 			print "tmp", tmp_x, tmp_y
 			
 			wpoints = []
@@ -489,12 +532,13 @@ def pause_waypoint_handler(req):
 	return res
 
 def clear_waypoints_handler(req):
-	global new_waypoints, waypoint_index, start_flag, station_keep_flag
+	global new_waypoints, waypoint_index, start_flag, station_keep_flag, lock
 	print "clear waypoints"
 	new_waypoints = None
 	waypoint_index = 0
 	station_keep_flag = 0
 	start_flag = 0
+	lock = 0
 	res = TriggerResponse()
 	res.success = True
 	res.message = "waypoints flushed"
@@ -521,12 +565,18 @@ def station_keep_unlock_handler(req):
 
 
 def cb_nav(msg):
-	global x_pos, x_vel, y_pos, y_vel, yaw
+	global x_pos, x_vel, y_pos, y_vel, yaw, last_time, last_x_pos, last_y_pos
 	# get pos, vel
 	x_pos = msg.pose.pose.position.x
 	y_pos = msg.pose.pose.position.y
-	x_vel = msg.twist.twist.linear.x
-	y_vel = msg.twist.twist.linear.y
+	if last_time != -1:
+		delta_t = time.time() - last_time		
+		x_vel = (x_pos - last_x_pos)/delta_t
+		y_vel = (y_pos - last_y_pos)/delta_t
+	last_time = time.time()
+	#print x_vel, y_vel
+	last_x_pos = x_pos
+	last_y_pos = y_pos
 	quaternion = (
 	msg.pose.pose.orientation.x,
 	msg.pose.pose.orientation.y,
@@ -600,8 +650,8 @@ if __name__ == "__main__":
 		
 		out = pos_vel_pid.vel_output
 		print "linear: ", out, "angular: ", ang_pid.output
-		if out > 0.3:
-			out = 0.3
+		if out > 1:
+			out = 1
 
 
 		if abs(ang_pid.output) < 0.05:
@@ -614,10 +664,12 @@ if __name__ == "__main__":
 		else:
 			out = out*(1-abs(ang_left))*(1-abs(ang_left))
 
-		if abs(ang_left) > 0.3:
-			ang_left = (ang_left/abs(ang_left))*0.3
-		if abs(ang_right) > 0.3:
-			ang_right = (ang_right/abs(ang_right))*0.3
+		if abs(ang_left) > 0.6:
+			ang_left = (ang_left/abs(ang_left))*0.6
+			out = 0
+		if abs(ang_right) > 0.6:
+			ang_right = (ang_right/abs(ang_right))*0.6
+			out = 0
 
 		#print "linear: ", out, "angular: ", ang_left
 		#print waypoints

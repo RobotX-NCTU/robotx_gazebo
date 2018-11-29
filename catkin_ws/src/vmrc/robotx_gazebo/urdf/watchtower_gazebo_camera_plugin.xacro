@@ -28,6 +28,8 @@
         <!--<horizontal_fov>1.3962634</horizontal_fov>-->
         <horizontal_fov>1.57</horizontal_fov>
         <image>
+          <!--<width>1280</width>
+          <height>720</height>-->
           <width>1280</width>
           <height>720</height>
           <format>B8G8R8</format>

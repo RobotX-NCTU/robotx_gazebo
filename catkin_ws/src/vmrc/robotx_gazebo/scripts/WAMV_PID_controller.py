@@ -4,7 +4,7 @@ import time
 import rospy
 from nav_msgs.msg import Odometry
 import numpy as np
-from robotx_gazebo.msg import UsvDrive
+from robotx_gazebo.msg import UsvDrive, Wp_nav_state
 from robotx_gazebo.srv import waypoint
 from std_srvs.srv import *
 import tf
@@ -26,6 +26,7 @@ waypoints = None
 new_waypoints = None
 stable = 0
 lock = 0
+State = 0
 class pos_vel_PID:
 	
 
@@ -173,7 +174,7 @@ class pos_vel_PID:
 
 class ang_PID:
 	
-	def __init__(self, P=0.5, I=0.01, D=0.4):
+	def __init__(self, P=0.3, I=0.01, D=0.4):
 		self.wait_flag = 0
 		self.wait_start = 0
 		self.Kp = P
@@ -597,7 +598,7 @@ if __name__ == "__main__":
 	add_waypoint_srv = rospy.Service("/add_waypoint", waypoint, add_waypoint_handler)
 	add_current_loc_srv = rospy.Service("/add_current_loc", Trigger, add_current_loc_handler)	
 	pub_marker = rospy.Publisher("/waypoint_marker", Marker, queue_size = 10)
-
+	pub_wp_nav_state = rospy.Publisher("/wp_nav_state", Wp_nav_state, queue_size = 10)
 	print "waiting for start srv"
 	while start_flag == 0 and waypoints is None:	
 		rospy.sleep(0.1)
@@ -646,7 +647,9 @@ if __name__ == "__main__":
 		pub_marker.publish(marker)
 		pos_vel_pid.update(x_pos, y_pos, x_vel, y_vel, yaw)
 		ang_pid.update(x_pos, y_pos, yaw)
-
+		msg_state = Wp_nav_state()
+		msg_state.state = station_keep_flag
+		pub_wp_nav_state.publish(msg_state)
 		
 		out = pos_vel_pid.vel_output
 		print "linear: ", out, "angular: ", ang_pid.output

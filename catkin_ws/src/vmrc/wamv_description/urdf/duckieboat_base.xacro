@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="duckieboat">
+  <xacro:include filename="propeties_duckieboat.urdf.xacro"/>
+
+  <gazebo reference="base_link">
+    <material>Gazebo/Orange</material>
+  </gazebo>
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0 -0.48 0.5"
+        rpy="0 0 0" />
+      <mass
+        value="200" />
+      <inertia
+        ixx="0.80923"
+        ixy="3.5773E-33"
+        ixz="1.063E-17"
+        iyy="0.80923"
+        iyz="-2.7232E-16"
+        izz="9.178E-32" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 -0.48 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh scale="0.001 0.001 0.001"
+          filename="package://wamv_description/mesh/DUCKIEBOAT-Base.stl" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 -0.48 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh scale="0.001 0.001 0.001"
+          filename="package://wamv_description/mesh/DUCKIEBOAT-Base.stl" />
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- right motor -->
+  <link name="right_motor">
+    <visual>
+     <geometry>
+       <mesh filename="package://wamv_description/mesh/PROPELLER.dae"/>
+     </geometry>
+    </visual>
+    <collision name="right_motor_collision">
+      <geometry>
+        <mesh filename="package://wamv_description/mesh/PROPELLER.dae"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.01"/>
+      <inertia ixx="0.00086" ixy="0.00" ixz="0.00" iyy="0.00086" iyz="0.00" izz="0.0017"/>
+    </inertial>
+  </link>
+
+  <joint name="right_motor_joint" type="continuous">
+    <origin xyz="${motor_position_x} -${motor_position_y} ${motor_position_z}"/>
+    <parent link="base_link"/>
+    <child link="right_motor"/>
+    <limit effort="0.5293" velocity="100${pi}" />
+  </joint>
+
+  <transmission name="right_motor_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="right_motor_joint">
+      <hardwareInterface>VelocityJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="right_motor_actuator">
+      <hardwareInterface>VelocityJointInterface</hardwareInterface>
+      <mechanicalReduction>30</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+
+  <!-- left motor -->
+  <link name="left_motor">
+    <visual>
+     <geometry>
+       <mesh filename="package://wamv_description/mesh/PROPELLER.dae"/>
+     </geometry>
+    </visual>
+    <collision name="left_motor_collision">
+      <geometry>
+        <mesh filename="package://wamv_description/mesh/PROPELLER.dae"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.01"/>
+      <inertia ixx="0.00086" ixy="0.00" ixz="0.00" iyy="0.00086" iyz="0.00" izz="0.0017"/>
+    </inertial>
+  </link>
+
+  <joint name="left_motor_joint" type="continuous">
+    <origin xyz="${motor_position_x} ${motor_position_y} ${motor_position_z}"/>
+    <parent link="base_link"/>
+    <child link="left_motor"/>
+    <limit effort="0.5293" velocity="100${pi}" />
+  </joint>
+
+  <transmission name="left_motor_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="left_motor_joint">
+      <hardwareInterface>VelocityJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="left_motor_actuator">
+      <hardwareInterface>VelocityJointInterface</hardwareInterface>
+      <mechanicalReduction>30</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+
+  <joint name="base_link_joint" type="fixed">
+    <origin xyz="0 0 0"/>
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+  </joint>
+
+  <link name="base_footprint"/>
+
+
+</robot>

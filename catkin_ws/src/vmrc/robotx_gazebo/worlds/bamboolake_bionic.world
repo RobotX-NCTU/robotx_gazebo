@@ -1,0 +1,74 @@
+<?xml version="1.0" ?>
+<sdf version="1.4">
+  <world name="SandIsland">
+    <!--scene>
+      <sky>
+        <clouds>
+          <speed>12</speed>
+        </clouds>
+      </sky>
+    </scene-->
+
+
+    <scene>
+      <ambient>1 1 1 1</ambient>
+      <shadows>true</shadows>
+    </scene>
+
+    <wind>
+      <linear_velocity>0 0 0</linear_velocity> <!-- Wind linear velocity -->
+    </wind >
+    
+    <!-- A global light source -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <!-- Additional light -->
+<!--
+    <light type="directional" name="my_light">
+        <origin pose="0 0 30 0 0 0"/>
+        <diffuse rgba=".9 .9 .9 1"/>
+        <specular rgba=".1 .1 .1 1"/>
+        <attenuation range="20"/>
+        <direction xyz="0 0 -1"/>
+    </light>
+  -->
+
+
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose>-5 -26.7 28 0 0.74 1.2</pose>
+        <view_controller>orbit</view_controller>
+      </camera>
+    </gui>
+
+     
+    <!-- The models below should be included in kingfisher_gazebo package -->
+    <!--include-->
+      <!-- Note - the pose tag doesn't seem to work for heightmaps, so you need
+      to go into the model file to change the altitutde/height!-->
+      <!--pose> 0 0 0 0 0 0 </pose>
+      <uri>model://models/sandisland</uri>
+      <!--<uri>model://models/lake</uri>-->
+    <!--/include>
+
+    <!-- Should be at the same height as the water level in USV and buoyancy 
+    plugin configurations -->
+    <include>
+      <pose> 0 0 0 0 0 0 </pose>
+      <uri>model://models/ocean</uri>      
+    </include>
+
+
+    <!-- AprilTag -->
+    
+    <include>
+      <pose> 300 -10 0.8 0 0 0 </pose>
+      <name>top_left</name>
+      <uri>model://models/apriltag</uri>
+      <param>value 2</param>    
+    </include>   
+
+  </world>
+</sdf>

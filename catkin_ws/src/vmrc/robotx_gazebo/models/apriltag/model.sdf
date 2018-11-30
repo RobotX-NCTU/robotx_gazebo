@@ -1,0 +1,193 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+
+  <model name="apriltag">
+    <static>true</static>
+    <pose>0 0 -0.2 0 0 0</pose>
+
+    <link name="link">
+      <pose>0.25 -0.25 -0.3 0 0 0</pose>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>1 1 0.4</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>model://dock_block_2x2/mesh/dock_block_2x2.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+
+    <link name="apriltag_1">
+      <pose>0 -0.5 0 0 0 0</pose>
+      <gravity>0</gravity>
+
+     <inertial>
+        <mass>0.001</mass>
+        <inertia> <!-- inertias are tricky to compute -->
+          <!-- http://gazebosim.org/tutorials?tut=inertia&cat=build_robot -->
+          <ixx>0.001</ixx>       <!-- for a box: ixx = 0.083 * mass * (y*y + z*z) -->
+          <ixy>0.001</ixy>         <!-- for a box: ixy = 0 -->
+          <ixz>0.001</ixz>         <!-- for a box: ixz = 0 -->
+          <iyy>0.001</iyy>       <!-- for a box: iyy = 0.083 * mass * (x*x + z*z) -->
+          <iyz>0.001</iyz>         <!-- for a box: iyz = 0 -->
+          <izz>0.001</izz>       <!-- for a box: izz = 0.083 * mass * (x*x + y*y) -->
+        </inertia>
+      </inertial>
+
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>0.01 1 1</size>
+          </box>
+        </geometry>
+      </collision>
+
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>0.01 1 1</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://apriltag/materials/scripts</uri>
+            <uri>model://apriltag/materials/textures</uri>
+            <name>a_0/Image</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+
+
+    <link name="apriltag_2">
+      <pose>1 -0.5 0 0 0 0</pose>
+      <gravity>0</gravity>
+
+     <inertial>
+        <mass>0.001</mass>
+        <inertia> <!-- inertias are tricky to compute -->
+          <!-- http://gazebosim.org/tutorials?tut=inertia&cat=build_robot -->
+          <ixx>0.001</ixx>       <!-- for a box: ixx = 0.083 * mass * (y*y + z*z) -->
+          <ixy>0.001</ixy>         <!-- for a box: ixy = 0 -->
+          <ixz>0.001</ixz>         <!-- for a box: ixz = 0 -->
+          <iyy>0.001</iyy>       <!-- for a box: iyy = 0.083 * mass * (x*x + z*z) -->
+          <iyz>0.001</iyz>         <!-- for a box: iyz = 0 -->
+          <izz>0.001</izz>       <!-- for a box: izz = 0.083 * mass * (x*x + y*y) -->
+        </inertia>
+      </inertial>
+
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>0.01 1 1</size>
+          </box>
+        </geometry>
+      </collision>
+
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>0.01 1 1</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://apriltag/materials/scripts</uri>
+            <uri>model://apriltag/materials/textures</uri>
+            <name>a_0/Image</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+  
+    <link name="apriltag_3">
+      <pose>0.5 0 0 0 0 1.570796327</pose>
+      <gravity>0</gravity>
+
+     <inertial>
+        <mass>0.001</mass>
+        <inertia> <!-- inertias are tricky to compute -->
+          <!-- http://gazebosim.org/tutorials?tut=inertia&cat=build_robot -->
+          <ixx>0.001</ixx>       <!-- for a box: ixx = 0.083 * mass * (y*y + z*z) -->
+          <ixy>0.001</ixy>         <!-- for a box: ixy = 0 -->
+          <ixz>0.001</ixz>         <!-- for a box: ixz = 0 -->
+          <iyy>0.001</iyy>       <!-- for a box: iyy = 0.083 * mass * (x*x + z*z) -->
+          <iyz>0.001</iyz>         <!-- for a box: iyz = 0 -->
+          <izz>0.001</izz>       <!-- for a box: izz = 0.083 * mass * (x*x + y*y) -->
+        </inertia>
+      </inertial>
+
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>0.01 1 1</size>
+          </box>
+        </geometry>
+      </collision>
+
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>0.01 1 1</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://apriltag/materials/scripts</uri>
+            <uri>model://apriltag/materials/textures</uri>
+            <name>a_1/Image</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+
+
+    <link name="apriltag_4">
+      <pose>0.5 -1 0 0 0 1.570796327</pose>
+      <gravity>0</gravity>
+
+     <inertial>
+        <mass>0.001</mass>
+        <inertia> <!-- inertias are tricky to compute -->
+          <!-- http://gazebosim.org/tutorials?tut=inertia&cat=build_robot -->
+          <ixx>0.001</ixx>       <!-- for a box: ixx = 0.083 * mass * (y*y + z*z) -->
+          <ixy>0.001</ixy>         <!-- for a box: ixy = 0 -->
+          <ixz>0.001</ixz>         <!-- for a box: ixz = 0 -->
+          <iyy>0.001</iyy>       <!-- for a box: iyy = 0.083 * mass * (x*x + z*z) -->
+          <iyz>0.001</iyz>         <!-- for a box: iyz = 0 -->
+          <izz>0.001</izz>       <!-- for a box: izz = 0.083 * mass * (x*x + y*y) -->
+        </inertia>
+      </inertial>
+
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>0.01 1 1</size>
+          </box>
+        </geometry>
+      </collision>
+
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>0.01 1 1</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://apriltag/materials/scripts</uri>
+            <uri>model://apriltag/materials/textures</uri>
+            <name>a_1/Image</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+
+  </model>
+</sdf>

@@ -10,17 +10,17 @@
    -->
   <!-- Command line arguments -->
 
-  <arg name="world" default="robotx_competition_course.world"/>
+  <arg name="world" default="bamboolake_bionic.world"/>
 
-  <arg name="name" default="WAMV"/>
 
   <!-- Initial USV location and attitude-->
-  <arg name="x" default="0" />
+  <arg name="x" default="10" />
   <arg name="y" default="0" />
   <arg name="z" default="0.1" />
   <arg name="P" default="0" />
   <arg name="R" default="0" />
   <arg name="Y" default="0" />
+
 
   <!-- The switch about sensors and wind -->
   <arg name="front_camera" default="true"/>
@@ -31,7 +31,7 @@
   <arg name="p3d" default="true"/> 
 
   <!-- The switch about apriltags on WAM-V -->
-  <arg name="apriltags" default="false"/> 
+  <arg name="apriltags" default="true"/> 
 
   <param name="use_sim_time" value="true" />
   <!-- Start Gazebo with the world file -->
@@ -44,18 +44,26 @@
     <arg name="headless" value="false"/>
   </include>
 
-  <!-- Load robot model -->
+  <!-- Load WAM-V robot model -->
   <arg name="urdf" default="$(find wamv_description)/urdf/wamv_robotx_nctu.xacro"/>
-  <!--<arg name="urdf" default="$(find nps_robotx)/urdf/nps_wamv.xacro"/> -->
   <param name="robot_description" command="$(find xacro)/xacro --inorder $(arg urdf) wind:=$(arg wind) 
   front_camera:=$(arg front_camera) lidar:=$(arg lidar) gps:=$(arg gps) imu:=$(arg imu)
    p3d:=$(arg p3d) apriltags:=$(arg apriltags)"/>
-
   <!-- Spawn model in Gazebo -->
   <node name="spawn_model" pkg="gazebo_ros" type="spawn_model"
-	args="-x $(arg x) -y $(arg y) -z $(arg z)
-	      -R $(arg R) -P $(arg P) -Y $(arg Y)
-	      -unpause -urdf -param robot_description -model wamv"/>
+  args="-x $(arg x) -y $(arg y) -z $(arg z)
+        -R $(arg R) -P $(arg P) -Y $(arg Y)
+        -unpause -urdf -param robot_description -model wamv"/>
+
+  <!-- Load Duckieboat robot model -->
+  <!-- down -->
+  <arg name="urdf_duckieboat" default="$(find wamv_description)/urdf/duckieboat.xacro"/>
+  <param name="duckieboat_description" command="$(find xacro)/xacro --inorder $(arg urdf_duckieboat) wind:=$(arg wind) p3d:=$(arg p3d) robot_name:=duckieboat"/>
+  <node name="spawn_model_duckieboat" pkg="gazebo_ros" type="spawn_model"
+  args="-x 0 -y $(arg y) -z $(arg z)
+        -R $(arg R) -P $(arg P) -Y 0
+        -unpause -urdf -param duckieboat_description -model duckieboat"/>
+
 
   <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
     <param name="publish_frequency" type="double" value="10.0" />
@@ -64,11 +72,14 @@
   <!--<include file="$(find robotx_gazebo)/launch/usv_diffdrive.launch"/>-->
 
   <!-- Utility for publishing rpy for plotting -->
-  <node pkg="robotx_gazebo" type="quat2rpy.py" name="quat2rpy" output="screen">
+  <node pkg="robotx_gazebo" type="quat2rpy.py" name="wamv_quat2rpy" output="screen">
       <remap from="in_topic" to="/gazebo/model_states" />
       <remap from="out_topic" to="wamv_rpy" />
       <param name="input_msg_type" value="ModelStates" />
       <param name="modelstates_index" value="1" type="int" />
+  </node>
+
+  <node name="wamv_pid_controller" pkg ="robotx_gazebo" type="WAMV_PID_controller.py">
   </node>
 
 </launch>

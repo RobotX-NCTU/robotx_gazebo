@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:macro name="wamv_apriltags" params="*origin name longitude:=-157.8901 latitude:=21.30996 altitude:=1.5 tag_id:=0 tag_size:=0.54">
+  <!--xacro:arg name="tag_id" default="0"/-->
+  <xacro:property name="size" value="${tag_size}"/>
+
+    <link name="${name}">
+        <inertial>
+            <origin
+                xyz="0 0 0"
+                rpy="0 0 0" />
+            <mass
+                value="1e-3" />
+            <inertia
+                ixx="1e-3"
+                ixy="1e-3"
+                ixz="1e-3"
+                iyy="1e-3"
+                iyz="1e-3"
+                izz="1e-3" />
+        </inertial>
+        <visual>
+            <origin
+                xyz="0 0 0"
+                rpy="0 0 0" />
+            <geometry>
+                <box size="0.01 ${size} ${size}"/>
+            </geometry>
+            <!--<material name="Hope"/>-->
+        </visual>
+        <collision>
+            <origin
+                xyz="0 0 0"
+                rpy="0 0 0" />
+            <geometry>
+                <box size="0.01 ${size} ${size}"/>
+                <!--box size="0.01 $(arg tag_size) $(arg tag_size)"/-->
+            </geometry>
+        </collision>
+    </link>
+
+    <link name="${name}_back">
+        <visual>
+            <origin
+                xyz="-0.01 0 0"
+                rpy="0 0 0" />
+            <geometry>
+                <box size="0.01 ${size} ${size}"/>
+            </geometry>
+            <!--<material name="Hope"/>-->
+        </visual>
+    </link>
+
+    <joint name="${name}_joint" type="fixed">
+      <xacro:insert_block name="origin"/>
+      <parent link="base_link"/>
+      <child link="${name}"/>
+    </joint>
+
+
+    <joint name="${name}_back_joint" type="fixed">
+      <xacro:insert_block name="origin"/>
+      <parent link="base_link"/>
+      <child link="${name}_back"/>
+    </joint>
+
+    <gazebo reference="${name}">
+        <turnGravityOff>true</turnGravityOff>
+        <material>a_${tag_id}/Image</material>
+    </gazebo> 
+  </xacro:macro>
+</robot>

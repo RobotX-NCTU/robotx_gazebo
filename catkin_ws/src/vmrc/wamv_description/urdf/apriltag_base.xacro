@@ -1,0 +1,145 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:macro name="apriltag_base" params=" name tag_id:=0 tag_id2:=0 tag_size:=0.8">
+  <xacro:property name="size" value="${tag_size}"/>
+<!--
+  <xacro:property name="tag_size" value="0.7" />
+  <xacro:property name="M_PI" value="3.1415926535897931" />
+  <xacro:property name="tag_1" value="0" />
+-->
+
+  <!-- totem -->
+  <link name="base_link">
+    <inertial>
+      <origin xyz="0 0 0.25" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia
+        ixx="1.0" ixy="0.0" ixz="0.0"
+        iyy="1.0" iyz="0.0"
+        izz="1.0"/>
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0.25"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robotx_gazebo/models/dock_block_2x2/mesh/dock_block_2x2.dae" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0.25"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robotx_gazebo/models/dock_block_2x2/mesh/dock_block_2x2.dae" />
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- apriltag_1 -->
+  <link name="apriltag_1">
+    <collision>
+      <origin xyz="-0.25 -0.25 0.75" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.01 ${size} ${size}"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="-0.25 -0.25 0.75" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.01 ${size} ${size}"/>
+      </geometry>
+    </visual>
+
+    <inertial>
+      <origin xyz="-0.25 -0.25 0.75" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia
+        ixx="1.0" ixy="0.0" ixz="0.0"
+        iyy="1.0" iyz="0.0"
+        izz="1.0"/>
+    </inertial>
+  </link>
+
+  <!-- apriltag_1_back -->
+  <link name="apriltag_1_back">
+    <visual>
+      <origin xyz="-0.24 -0.25 0.75" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.01 ${size} ${size}"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <!-- apriltag_2 -->
+  <link name="apriltag_2">
+    <collision>
+      <origin xyz="0.25 0.25  0.75" rpy="0 0 1.57"/>
+      <geometry>
+        <box size="0.01 ${size} ${size}"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0.25 0.25  0.75" rpy="0 0 1.57"/>
+      <geometry>
+        <box size="0.01 ${size} ${size}"/>
+      </geometry>
+    </visual>
+
+    <inertial>
+      <origin xyz="0.25 0.25  0.75" rpy="0 0 1.57"/>
+      <mass value="1"/>
+      <inertia
+        ixx="1.0" ixy="0.0" ixz="0.0"
+        iyy="1.0" iyz="0.0"
+        izz="1.0"/>
+    </inertial>
+  </link>
+
+  <!-- apriltag_2_back -->
+  <link name="apriltag_2_back">
+    <visual>
+      <origin xyz="0.25 0.24  0.75" rpy="0 0 1.57"/>
+      <geometry>
+        <box size="0.01 ${size} ${size}"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <!-- joint -->
+  <joint name="totem_to_apriltag_1" type="fixed">
+    <parent link="base_link"/>
+    <child link="apriltag_1"/>
+  </joint>
+
+  <joint name="totem_to_apriltag_1_back" type="fixed">
+    <parent link="base_link"/>
+    <child link="apriltag_1_back"/>
+  </joint>
+
+  <joint name="totem_to_apriltag_2" type="fixed">
+    <parent link="base_link"/>
+    <child link="apriltag_2"/>
+  </joint>
+
+  <joint name="totem_to_apriltag_2_back" type="fixed">
+    <parent link="base_link"/>
+    <child link="apriltag_2_back"/>
+  </joint>
+
+  <!-- apriltage id -->
+  <gazebo reference="apriltag_1">
+    <turnGravityOff>false</turnGravityOff>
+    <material>a_${tag_id2}/Image</material>
+  </gazebo>
+
+  <gazebo reference="apriltag_2">
+    <turnGravityOff>false</turnGravityOff>
+    <material>a_${tag_id}/Image</material>
+  </gazebo> 
+
+  </xacro:macro> 
+
+</robot>

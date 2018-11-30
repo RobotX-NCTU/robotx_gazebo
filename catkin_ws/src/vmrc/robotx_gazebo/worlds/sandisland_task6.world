@@ -30,7 +30,7 @@
 
     <light type="point" name="point1">
       <cast_shadows>false</cast_shadows>
-      <pose>40 -3 1 0 0 0</pose>
+      <pose>40 17 1 0 0 0</pose>
       <diffuse>127 127 127 1</diffuse>
       <specular>25 25 25 1</specular>
       <attenuation>
@@ -42,7 +42,7 @@
     </light>
     <light type="point" name="point2">
       <cast_shadows>false</cast_shadows>
-      <pose>40 -6 1 0 0 0</pose>
+      <pose>40 14 1 0 0 0</pose>
       <diffuse>127 127 127 1</diffuse>
       <specular>25 25 25 1</specular>
       <attenuation>
@@ -54,7 +54,7 @@
     </light>
     <light type="point" name="point3">
       <cast_shadows>false</cast_shadows>
-      <pose>40 3 1 0 0 0</pose>
+      <pose>40 23 1 0 0 0</pose>
       <diffuse>127 127 127 1</diffuse>
       <specular>25 25 25 1</specular>
       <attenuation>
@@ -66,7 +66,7 @@
     </light>
     <light type="point" name="point4">
       <cast_shadows>false</cast_shadows>
-      <pose>40 6 1 0 0 0</pose>
+      <pose>40 26 1 0 0 0</pose>
       <diffuse>127 127 127 1</diffuse>
       <specular>25 25 25 1</specular>
       <attenuation>
@@ -91,20 +91,14 @@
     </include>   
 
 
-    <!-- Task 6 Docking  -->
+   <!-- Task 6 Docking  -->
    <include>
-    <pose> 40 0.1 0 0 0 0 </pose>
-    <name>dock_cross</name>
-    <uri>model://models/dock_cross</uri> 
+    <pose> 40 20 0 0 0 0 </pose>
+    <name>dock_2018</name>
+    <uri>model://models/dock_2018</uri> 
     <static>1</static>       
    </include>
-
-   <include>
-    <pose> 40 -0.1 0 0 0 -3.14 </pose>
-    <name>dock_triangle</name>
-    <uri>model://models/dock_triangle</uri> 
-    <static>1</static>       
-   </include>
+        
 
   </world>
 </sdf>

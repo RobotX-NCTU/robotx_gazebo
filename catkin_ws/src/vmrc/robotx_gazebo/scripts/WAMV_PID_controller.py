@@ -6,7 +6,7 @@ from nav_msgs.msg import Odometry
 import numpy as np
 from robotx_gazebo.msg import UsvDrive
 from robotx_gazebo.srv import waypoint
-from std_msgs.mgs import Int32
+from std_msgs.msg import Int32
 from std_srvs.srv import *
 import tf
 from visualization_msgs.msg import Marker

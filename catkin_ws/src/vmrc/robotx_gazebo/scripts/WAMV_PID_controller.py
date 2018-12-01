@@ -99,7 +99,7 @@ class pos_vel_PID:
 			if pos_error > (3+0.2):
 				self.vel_output = linear_vel_const
 			else:
-				self.vel_output = 0
+				self.vel_output = -0.5*linear_vel_const
 			return 0
 
 		#print pos_error

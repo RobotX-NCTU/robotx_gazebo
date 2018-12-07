@@ -604,26 +604,25 @@ if __name__ == "__main__":
 	pub_marker = rospy.Publisher("/waypoint_marker", Marker, queue_size = 10)
 	pub_wp_nav_state = rospy.Publisher("/wp_nav_state", Int32, queue_size = 10)
 	print "waiting for start srv"
-	while start_flag == 0 and waypoints is None:	
-		rospy.sleep(0.1)
 	
-	waypoints = new_waypoints
-	pos_vel_pid = pos_vel_PID()
-	pos_vel_pid.pos_SetPointx = waypoints[waypoint_index][0]
-	pos_vel_pid.pos_SetPointy = waypoints[waypoint_index][1]
-	
-	ang_pid = ang_PID()
-	ang_pid.pos_SetPointx = waypoints[waypoint_index][0]
-	ang_pid.pos_SetPointy = waypoints[waypoint_index][1]
 
 	while not rospy.is_shutdown():
 		rospy.sleep(0.1)
 		waypoints = new_waypoints
 		wpoints = []
-		while waypoints is None:
+		while waypoints is None and start_flag == 0:
 			print "no waypoints"
 			ang_pid.lock_aux_pointx = 0
 			waypoints = new_waypoints
+
+		pos_vel_pid = pos_vel_PID()
+		pos_vel_pid.pos_SetPointx = waypoints[waypoint_index][0]
+		pos_vel_pid.pos_SetPointy = waypoints[waypoint_index][1]
+		
+		ang_pid = ang_PID()
+		ang_pid.pos_SetPointx = waypoints[waypoint_index][0]
+		ang_pid.pos_SetPointy = waypoints[waypoint_index][1]
+
 		for i in range(waypoints.shape[0]):
 			p = Point()
 			p.x = waypoints[i][0]

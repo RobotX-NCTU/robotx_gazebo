@@ -610,16 +610,18 @@ if __name__ == "__main__":
 		rospy.sleep(0.1)
 		waypoints = new_waypoints
 		wpoints = []
+		pos_vel_pid = pos_vel_PID()
+		ang_pid = ang_PID()
 		while waypoints is None and start_flag == 0:
 			print "no waypoints"
 			ang_pid.lock_aux_pointx = 0
 			waypoints = new_waypoints
 
-		pos_vel_pid = pos_vel_PID()
+		
 		pos_vel_pid.pos_SetPointx = waypoints[waypoint_index][0]
 		pos_vel_pid.pos_SetPointy = waypoints[waypoint_index][1]
 		
-		ang_pid = ang_PID()
+		
 		ang_pid.pos_SetPointx = waypoints[waypoint_index][0]
 		ang_pid.pos_SetPointy = waypoints[waypoint_index][1]
 

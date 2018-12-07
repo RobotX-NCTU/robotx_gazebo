@@ -614,7 +614,7 @@ if __name__ == "__main__":
 		ang_pid = ang_PID()
 		while waypoints is None or start_flag == 0:
 			print "no waypoints"
-			ang_pid.lock_aux_pointx = 0
+			#ang_pid.lock_aux_pointx = 0
 			waypoints = new_waypoints
 
 		

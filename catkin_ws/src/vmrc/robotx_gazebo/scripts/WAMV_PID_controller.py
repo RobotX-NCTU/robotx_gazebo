@@ -175,7 +175,7 @@ class pos_vel_PID:
 
 class ang_PID:
 	
-	def __init__(self, P=0.3, I=0.01, D=0.4):
+	def __init__(self, P=0.2, I=0.01, D=0.4):
 		self.wait_flag = 0
 		self.wait_start = 0
 		self.Kp = P

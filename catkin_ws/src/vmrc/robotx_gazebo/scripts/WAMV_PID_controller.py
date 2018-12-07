@@ -7,7 +7,7 @@ from sensor_msgs.msg import NavSatFix
 import numpy as np
 from robotx_gazebo.msg import UsvDrive
 from robotx_gazebo.srv import waypoint
-from std_msgs.mgs import Int32
+from std_msgs.msg import Int32
 from std_srvs.srv import *
 import tf
 from visualization_msgs.msg import Marker
@@ -100,7 +100,7 @@ class pos_vel_PID:
 			if pos_error > (3+0.2):
 				self.vel_output = linear_vel_const
 			else:
-				self.vel_output = 0
+				self.vel_output = -0.5*linear_vel_const
 			return 0
 
 		#print pos_error
@@ -176,7 +176,7 @@ class pos_vel_PID:
 
 class ang_PID:
 	
-	def __init__(self, P=0.3, I=0.01, D=0.4):
+	def __init__(self, P=0.2, I=0.01, D=0.4):
 		self.wait_flag = 0
 		self.wait_start = 0
 		self.Kp = P

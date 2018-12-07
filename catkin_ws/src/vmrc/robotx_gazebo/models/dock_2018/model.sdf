@@ -8,15 +8,15 @@
       <uri>model://dock_2018_base</uri>
     </include>
 
-    <!-- Placard #1 -->
+    <!--Placard #1 -->
     <model name="dock_2018_placard1">
       <include>
-        <pose>7.75 2.75 1.5 0 0 1.5708</pose>
+        <pose>8.25 2.75 1.5 0 0 1.5708</pose>
         <uri>model://placard</uri>
       </include>
       <link name="link_symbols">
         <visual name="visual_circle">
-          <pose>7.81 2.75 2.1 0 1.5708 0</pose>
+          <pose>8.31 2.75 2.1 0 1.5708 0</pose>
           <geometry>
             <cylinder>
               <radius>0.5</radius>
@@ -30,7 +30,7 @@
           </plugin>
         </visual>
         <visual name="visual_h_cross">
-          <pose>7.81 2.75 2.1 0 1.5708 0</pose>
+          <pose>8.31 2.75 2.1 0 1.5708 0</pose>
           <geometry>
             <box>
               <size>0.99 0.33 0.001</size>
@@ -43,7 +43,7 @@
           </plugin>
         </visual>
         <visual name="visual_v_cross">
-          <pose>7.81 2.75 2.1 0 1.5708 0</pose>
+          <pose>8.31 2.75 2.1 0 1.5708 0</pose>
           <geometry>
             <box>
               <size>0.33 0.99 0.001</size>
@@ -56,7 +56,7 @@
           </plugin>
         </visual>
         <visual name="visual_triangle">
-          <pose>7.81 2.25 1.7 1.5708 0 1.5708</pose>
+          <pose>8.31 2.25 1.7 1.5708 0 1.5708</pose>
           <geometry>
             <mesh><uri>model://symbol_triangle/mesh/triangle.dae</uri></mesh>
           </geometry>
@@ -71,15 +71,15 @@
       </plugin>
     </model>
 
-    <!-- Placard #2 -->
+    <!--Placard #2 -->
     <model name="dock_2018_placard2">
       <include>
         <uri>model://placard</uri>
-        <pose>6.75 2.75 1.5 0 0 1.5708</pose>
+        <pose>6.25 2.75 1.5 0 0 1.5708</pose>
       </include>
       <link name="link_symbols">
         <visual name="visual_circle">
-          <pose>6.69 2.75 2.1 0 1.5708 0</pose>
+          <pose>6.19 2.75 2.1 0 1.5708 0</pose>
           <geometry>
             <cylinder>
               <radius>0.5</radius>
@@ -93,7 +93,7 @@
           </plugin>
         </visual>
         <visual name="visual_h_cross">
-          <pose>6.69 2.75 2.1 0 1.5708 0</pose>
+          <pose>6.19 2.75 2.1 0 1.5708 0</pose>
           <geometry>
             <box>
               <size>0.99 0.33 0.001</size>
@@ -106,7 +106,7 @@
           </plugin>
         </visual>
         <visual name="visual_v_cross">
-          <pose>6.69 2.75 2.1 0 1.5708 0</pose>
+          <pose>6.19 2.75 2.1 0 1.5708 0</pose>
           <geometry>
             <box>
               <size>0.33 0.99 0.001</size>
@@ -119,7 +119,7 @@
           </plugin>
         </visual>
         <visual name="visual_triangle">
-          <pose>6.69 2.25 1.7 1.5708 0 1.5708</pose>
+          <pose>6.19 2.25 1.7 1.5708 0 1.5708</pose>
           <geometry>
             <mesh><uri>model://symbol_triangle/mesh/triangle.dae</uri></mesh>
           </geometry>
@@ -133,6 +133,136 @@
       <plugin name="controller_plugin" filename="libsymbol_controller.so">
       </plugin>
     </model>
+
+
+    <!-- Placard #3 -->
+    <model name="dock_2018_placard3">
+      <include>
+        <uri>model://placard</uri>
+        <pose>7.25 1.35 1.5 0 0 0</pose>
+      </include>
+      <link name="link_symbols">
+        <visual name="visual_circle">
+          <pose>7.25 1.29 2.10 0 1.5708 1.5708</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.5</radius>
+              <length>0.001</length>
+            </cylinder>
+          </geometry>
+          <transparency>1</transparency>
+          <plugin name="symbol_circle_plugin" filename="libgazebo_ros_color.so">
+            <robotNamespace>dock_2018_placard3</robotNamespace>
+            <topicName>circle</topicName>
+          </plugin>
+        </visual>
+        <visual name="visual_h_cross">
+          <pose>7.25 1.29 2.10 0 1.5708 1.5708</pose>
+          <geometry>
+            <box>
+              <size>0.99 0.33 0.001</size>
+            </box>
+          </geometry>
+          <transparency>1</transparency>
+          <plugin name="symbol_cross_h_plugin" filename="libgazebo_ros_color.so">
+            <robotNamespace>dock_2018_placard3</robotNamespace>
+            <topicName>cross</topicName>
+          </plugin>
+        </visual>
+        <visual name="visual_v_cross">
+          <pose>7.25 1.29 2.10 0 1.5708 1.5708</pose>
+          <geometry>
+            <box>
+              <size>0.33 0.99 0.001</size>
+            </box>
+          </geometry>
+          <transparency>1</transparency>
+          <plugin name="symbol_cross_v_plugin" filename="libgazebo_ros_color.so">
+            <robotNamespace>dock_2018_placard3</robotNamespace>
+            <topicName>cross</topicName>
+          </plugin>
+        </visual>
+        <visual name="visual_triangle">
+          <pose>6.75 1.29 1.7 1.5708 0 0</pose>
+          <geometry>
+            <mesh><uri>model://symbol_triangle/mesh/triangle.dae</uri></mesh>
+          </geometry>
+          <transparency>1</transparency>
+          <plugin name="symbol_triangle_plugin" filename="libgazebo_ros_color.so">
+            <robotNamespace>dock_2018_placard3</robotNamespace>
+            <topicName>triangle</topicName>
+          </plugin>
+        </visual>
+      </link>
+      <plugin name="controller_plugin" filename="libsymbol_controller.so">
+      </plugin>
+    </model>
+
+    <!-- Placard #4 -->
+    <model name="dock_2018_placard4">
+      <include>
+        <uri>model://placard</uri>
+        <pose>7.25 4.35 1.5 0 0 0</pose>
+      </include>
+      <link name="link_symbols">
+        <visual name="visual_circle">
+          <pose>7.25 4.41 2.1 0 1.5708 1.5708</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.5</radius>
+              <length>0.001</length>
+            </cylinder>
+          </geometry>
+          <transparency>1</transparency>
+          <plugin name="symbol_circle_plugin" filename="libgazebo_ros_color.so">
+            <robotNamespace>dock_2018_placard4</robotNamespace>
+            <topicName>circle</topicName>
+          </plugin>
+        </visual>
+        <visual name="visual_h_cross">
+          <pose>7.25 4.41 2.1 0 1.5708 1.5708</pose>
+          <geometry>
+            <box>
+              <size>0.99 0.33 0.001</size>
+            </box>
+          </geometry>
+          <transparency>1</transparency>
+          <plugin name="symbol_cross_h_plugin" filename="libgazebo_ros_color.so">
+            <robotNamespace>dock_2018_placard4</robotNamespace>
+            <topicName>cross</topicName>
+          </plugin>
+        </visual>
+        <visual name="visual_v_cross">
+          <pose>7.25 4.41 2.1 0 1.5708 1.5708</pose>
+          <geometry>
+            <box>
+              <size>0.33 0.99 0.001</size>
+            </box>
+          </geometry>
+          <transparency>1</transparency>
+          <plugin name="symbol_cross_v_plugin" filename="libgazebo_ros_color.so">
+            <robotNamespace>dock_2018_placard4</robotNamespace>
+            <topicName>cross</topicName>
+          </plugin>
+        </visual>
+        <visual name="visual_triangle">
+          <pose>6.75 4.41 1.7 1.5708 0 0</pose>
+          <geometry>
+            <mesh><uri>model://symbol_triangle/mesh/triangle.dae</uri></mesh>
+          </geometry>
+          <transparency>1</transparency>
+          <plugin name="symbol_triangle_plugin" filename="libgazebo_ros_color.so">
+            <robotNamespace>dock_2018_placard4</robotNamespace>
+            <topicName>triangle</topicName>
+          </plugin>
+        </visual>
+      </link>
+      <plugin name="controller_plugin" filename="libsymbol_controller.so">
+      </plugin>
+    </model>
+
+
+
 
   </model>
 </sdf>

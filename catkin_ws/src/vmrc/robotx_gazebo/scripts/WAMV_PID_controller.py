@@ -620,9 +620,10 @@ if __name__ == "__main__":
 		rospy.sleep(0.1)
 		waypoints = new_waypoints
 		wpoints = []
-		while waypoints is None:
-			print "no waypoints"
-			ang_pid.lock_aux_pointx = 0
+		while waypoints is None or start_flag == 0:
+			if waypoints is None:
+				print "no waypoints"
+				ang_pid.lock_aux_pointx = 0
 			waypoints = new_waypoints
 		for i in range(waypoints.shape[0]):
 			p = Point()

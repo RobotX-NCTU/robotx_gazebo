@@ -3,6 +3,7 @@
 import time
 import rospy
 from nav_msgs.msg import Odometry
+from sensor_msgs.msg import NavSatFix
 import numpy as np
 from robotx_gazebo.msg import UsvDrive
 from robotx_gazebo.srv import waypoint
@@ -175,7 +176,7 @@ class pos_vel_PID:
 
 class ang_PID:
 	
-	def __init__(self, P=0.3, I=0.01, D=0.4):
+	def __init__(self, P=0.2, I=0.01, D=0.4):
 		self.wait_flag = 0
 		self.wait_start = 0
 		self.Kp = P
@@ -225,8 +226,10 @@ class ang_PID:
 						waypoint_index = i + 1
 		
 		if waypoint_index == waypoints.shape[0]-1 and np.sqrt((waypoints[waypoint_index][0] - x_pos)*(waypoints[waypoint_index][0] - x_pos) + (waypoints[waypoint_index][1] - y_pos)*(waypoints[waypoint_index][1] - y_pos)) < 3:
+			print waypoint_index, waypoints.shape[0]-1, waypoints[waypoint_index][0], waypoints[waypoint_index][1]
 			station_keep_flag = 1
-
+		else:
+			station_keep_flag = 0
 		if time.time() - self.wait_start > 10:
 			self.wait_flag = 0
 		#print "delta t", time.time() - self.wait_start

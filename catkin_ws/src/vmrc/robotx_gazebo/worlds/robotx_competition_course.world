@@ -182,7 +182,7 @@
     <include>
       <name>light_buoy</name>
       <pose> 20 24 0 0 0 0 </pose>
-      <uri>model://models/light_buoy</uri>      
+      <uri>model://models/robotx_light_buoy</uri>      
     </include> 
 
     <!-- Detect and Deliver && Dock -->

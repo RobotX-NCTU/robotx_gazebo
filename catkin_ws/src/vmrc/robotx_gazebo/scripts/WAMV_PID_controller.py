@@ -226,6 +226,7 @@ class ang_PID:
 						waypoint_index = i + 1
 		
 		if waypoint_index == waypoints.shape[0]-1 and np.sqrt((waypoints[waypoint_index][0] - x_pos)*(waypoints[waypoint_index][0] - x_pos) + (waypoints[waypoint_index][1] - y_pos)*(waypoints[waypoint_index][1] - y_pos)) < 3:
+			print waypoint_index, waypoints.shape[0]-1, waypoints[waypoint_index][0], waypoints[waypoint_index][1]
 			station_keep_flag = 1
 		else:
 			station_keep_flag = 0

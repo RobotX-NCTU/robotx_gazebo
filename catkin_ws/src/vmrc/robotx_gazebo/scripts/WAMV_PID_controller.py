@@ -612,7 +612,7 @@ if __name__ == "__main__":
 		wpoints = []
 		pos_vel_pid = pos_vel_PID()
 		ang_pid = ang_PID()
-		while waypoints is None and start_flag == 0:
+		while waypoints is None or start_flag == 0:
 			print "no waypoints"
 			ang_pid.lock_aux_pointx = 0
 			waypoints = new_waypoints

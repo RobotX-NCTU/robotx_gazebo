@@ -1,0 +1,1081 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+
+  <model name="dd_dock_deliever">
+
+    <!-- Detect and Deliver #1 -->
+    <model name="deliver_2018_placard1">
+      <include>
+        <pose>1.45 0 0.2 0 0 1.5708</pose>
+        <uri>model://dd_deliver</uri>
+      </include>
+      <link name="link_symbols">
+        <visual name="visual_circle">
+          <pose>1.65 0 1.0 1.5708 -1.5708</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.5</radius>
+              <length>0.001</length>
+            </cylinder>
+          </geometry>
+          <transparency>1</transparency>
+          <plugin name="symbol_circle_plugin" filename="libgazebo_ros_color.so">
+            <robotNamespace>deliver_2018_placard1</robotNamespace>
+            <topicName>circle</topicName>
+          </plugin>
+        </visual>
+        <visual name="visual_h_cross">
+          <pose>1.65 0 1.0 1.5708 -1.5708</pose>
+          <geometry>
+            <box>
+              <size>0.99 0.33 0.001</size>
+            </box>
+          </geometry>
+          <transparency>1</transparency>
+          <plugin name="symbol_cross_h_plugin" filename="libgazebo_ros_color.so">
+            <robotNamespace>deliver_2018_placard1</robotNamespace>
+            <topicName>cross</topicName>
+          </plugin>
+        </visual>
+        <visual name="visual_v_cross">
+          <pose>1.65 0 1.0 1.5708 -1.5708</pose>
+          <geometry>
+            <box>
+              <size>0.33 0.99 0.001</size>
+            </box>
+          </geometry>
+          <transparency>1</transparency>
+          <plugin name="symbol_cross_v_plugin" filename="libgazebo_ros_color.so">
+            <robotNamespace>deliver_2018_placard1</robotNamespace>
+            <topicName>cross</topicName>
+          </plugin>
+        </visual>
+        <visual name="visual_triangle">
+          <pose>1.65 0 1.0 1.5708 -1.5708</pose>
+          <geometry>
+            <mesh><uri>model://symbol_triangle/mesh/triangle.dae</uri></mesh>
+          </geometry>
+          <transparency>1</transparency>
+          <plugin name="symbol_triangle_plugin" filename="libgazebo_ros_color.so">
+            <robotNamespace>deliver_2018_placard1</robotNamespace>
+            <topicName>triangle</topicName>
+          </plugin>
+        </visual>
+      </link>
+      <plugin name="controller_plugin" filename="libsymbol_controller.so">
+      </plugin>
+    </model>
+
+    <!-- Detect and Deliver #2 -->
+    <model name="deliver_2018_placard2">
+      <include>
+        <pose>-1.5 0 0.2 0 0 -1.5708</pose>
+        <uri>model://dd_deliver</uri>
+      </include>
+      <link name="link_symbols">
+        <visual name="visual_circle">
+          <pose>-2.1 0 1.0 1.5708 -1.5708</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.5</radius>
+              <length>0.001</length>
+            </cylinder>
+          </geometry>
+          <transparency>1</transparency>
+          <plugin name="symbol_circle_plugin" filename="libgazebo_ros_color.so">
+            <robotNamespace>deliver_2018_placard2</robotNamespace>
+            <topicName>circle</topicName>
+          </plugin>
+        </visual>
+        <visual name="visual_h_cross">
+          <pose>-2.1 0 1.0 1.5708 -1.5708</pose>
+          <geometry>
+            <box>
+              <size>0.99 0.33 0.001</size>
+            </box>
+          </geometry>
+          <transparency>1</transparency>
+          <plugin name="symbol_cross_h_plugin" filename="libgazebo_ros_color.so">
+            <robotNamespace>deliver_2018_placard2</robotNamespace>
+            <topicName>cross</topicName>
+          </plugin>
+        </visual>
+        <visual name="visual_v_cross">
+          <pose>-2.1 0 1.0 1.5708 -1.5708</pose>
+          <geometry>
+            <box>
+              <size>0.33 0.99 0.001</size>
+            </box>
+          </geometry>
+          <transparency>1</transparency>
+          <plugin name="symbol_cross_v_plugin" filename="libgazebo_ros_color.so">
+            <robotNamespace>deliver_2018_placard2</robotNamespace>
+            <topicName>cross</topicName>
+          </plugin>
+        </visual>
+        <visual name="visual_triangle">
+          <pose>-2.1 0 1.0 1.5708 -1.5708</pose>
+          <geometry>
+            <mesh><uri>model://symbol_triangle/mesh/triangle.dae</uri></mesh>
+          </geometry>
+          <transparency>1</transparency>
+          <plugin name="symbol_triangle_plugin" filename="libgazebo_ros_color.so">
+            <robotNamespace>deliver_2018_placard2</robotNamespace>
+            <topicName>triangle</topicName>
+          </plugin>
+        </visual>
+      </link>
+      <plugin name="controller_plugin" filename="libsymbol_controller.so">
+      </plugin>
+    </model>
+
+    <!-- Dock #1 -->
+    <model name="dock_2018_dock1">
+      <include>
+        <pose>0 0.95 1.5 0 0 0</pose>
+        <uri>model://placard</uri>
+      </include>
+      <link name="link_symbols">
+        <visual name="visual_circle">
+          <pose>0 1 1 0 1.5708 1.5708</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.5</radius>
+              <length>0.001</length>
+            </cylinder>
+          </geometry>
+          <transparency>1</transparency>
+          <plugin name="symbol_circle_plugin" filename="libgazebo_ros_color.so">
+            <robotNamespace>dock_2018_dock1</robotNamespace>
+            <topicName>circle</topicName>
+          </plugin>
+        </visual>
+        <visual name="visual_h_cross">
+          <pose>0 1 1 0 1.5708 1.5708</pose>
+          <geometry>
+            <box>
+              <size>0.99 0.33 0.001</size>
+            </box>
+          </geometry>
+          <transparency>1</transparency>
+          <plugin name="symbol_cross_h_plugin" filename="libgazebo_ros_color.so">
+            <robotNamespace>dock_2018_dock1</robotNamespace>
+            <topicName>cross</topicName>
+          </plugin>
+        </visual>
+        <visual name="visual_v_cross">
+          <pose>0 1 1 0 1.5708 1.5708</pose>
+          <geometry>
+            <box>
+              <size>0.33 0.99 0.001</size>
+            </box>
+          </geometry>
+          <transparency>1</transparency>
+          <plugin name="symbol_cross_v_plugin" filename="libgazebo_ros_color.so">
+            <robotNamespace>dock_2018_dock1</robotNamespace>
+            <topicName>cross</topicName>
+          </plugin>
+        </visual>
+        <visual name="visual_triangle">
+          <pose>0 1 1 1.5708 -0.5 -0.5</pose>
+          <geometry>
+            <mesh><uri>model://symbol_triangle/mesh/triangle.dae</uri></mesh>
+          </geometry>
+          <transparency>1</transparency>
+          <plugin name="symbol_triangle_plugin" filename="libgazebo_ros_color.so">
+            <robotNamespace>dock_2018_dock1</robotNamespace>
+            <topicName>triangle</topicName>
+          </plugin>
+        </visual>
+      </link>
+      <plugin name="controller_plugin" filename="libsymbol_controller.so">
+      </plugin>
+    </model>
+
+    <!-- Dock #2 -->
+    <model name="dock_2018_dock2">
+      <include>
+        <uri>model://placard</uri>
+        <pose>0 -0.95 1.5 0 0 3.14159</pose>
+      </include>
+      <link name="link_symbols">
+        <visual name="visual_circle">
+          <pose>0 -1 1 0 1.5708 -1.5708</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.5</radius>
+              <length>0.001</length>
+            </cylinder>
+          </geometry>
+          <transparency>1</transparency>
+          <plugin name="symbol_circle_plugin" filename="libgazebo_ros_color.so">
+            <robotNamespace>dock_2018_dock2</robotNamespace>
+            <topicName>circle</topicName>
+          </plugin>
+        </visual>
+        <visual name="visual_h_cross">
+          <pose>0 -1 1 0 1.5708 -1.5708</pose>
+          <geometry>
+            <box>
+              <size>0.99 0.33 0.001</size>
+            </box>
+          </geometry>
+          <transparency>1</transparency>
+          <plugin name="symbol_cross_h_plugin" filename="libgazebo_ros_color.so">
+            <robotNamespace>dock_2018_dock2</robotNamespace>
+            <topicName>cross</topicName>
+          </plugin>
+        </visual>
+        <visual name="visual_v_cross">
+          <pose>0 -1 1 0 1.5708 -1.5708</pose>
+          <geometry>
+            <box>
+              <size>0.33 0.99 0.001</size>
+            </box>
+          </geometry>
+          <transparency>1</transparency>
+          <plugin name="symbol_cross_v_plugin" filename="libgazebo_ros_color.so">
+            <robotNamespace>dock_2018_dock2</robotNamespace>
+            <topicName>cross</topicName>
+          </plugin>
+        </visual>
+        <visual name="visual_triangle">
+          <pose>0 -1 1 1.5708 -0.5 -0.5</pose>
+          <geometry>
+            <mesh><uri>model://symbol_triangle/mesh/triangle.dae</uri></mesh>
+          </geometry>
+          <transparency>1</transparency>
+          <plugin name="symbol_triangle_plugin" filename="libgazebo_ros_color.so">
+            <robotNamespace>dock_2018_dock2</robotNamespace>
+            <topicName>triangle</topicName>
+          </plugin>
+        </visual>
+      </link>
+      <plugin name="controller_plugin" filename="libsymbol_controller.so">
+      </plugin>
+    </model>
+
+    <!-- The dock base -->
+    <include>
+      <name>dock_block_1</name>
+      <pose>-2.5 -6 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_2</name>
+      <pose>-2 -6 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_3</name>
+      <pose>2 -6 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_4</name>
+      <pose>2.5 -6 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_5</name>
+      <pose>-2.5 -5.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_6</name>
+      <pose>-2 -5.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_7</name>
+      <pose>2 -5.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_8</name>
+      <pose>2.5 -5.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_9</name>
+      <pose>-2.5 -5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_10</name>
+      <pose>-2 -5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_11</name>
+      <pose>2 -5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_12</name>
+      <pose>2.5 -5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_13</name>
+      <pose>-2.5 -4.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_14</name>
+      <pose>-2 -4.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_15</name>
+      <pose>2 -4.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_16</name>
+      <pose>2.5 -4.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_17</name>
+      <pose>-2.5 -4 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_18</name>
+      <pose>-2 -4 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_19</name>
+      <pose>2 -4 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_20</name>
+      <pose>2.5 -4 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_21</name>
+      <pose>-2.5 -3.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_22</name>
+      <pose>-2 -3.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_23</name>
+      <pose>2 -3.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_24</name>
+      <pose>2.5 -3.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_25</name>
+      <pose>-2.5 -3 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_26</name>
+      <pose>-2 -3 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_27</name>
+      <pose>2 -3 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_28</name>
+      <pose>2.5 -3 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_29</name>
+      <pose>-2.5 -2.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_30</name>
+      <pose>-2 -2.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_31</name>
+      <pose>2 -2.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_32</name>
+      <pose>2.5 -2.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_33</name>
+      <pose>-2.5 -2 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_34</name>
+      <pose>-2 -2 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_35</name>
+      <pose>2 -2 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_36</name>
+      <pose>2.5 -2 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_37</name>
+      <pose>-2.5 -1.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_38</name>
+      <pose>-2 -1.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_39</name>
+      <pose>-1.5 -1.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_40</name>
+      <pose>-1 -1.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_41</name>
+      <pose>-0.5 -1.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_42</name>
+      <pose>0 -1.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_43</name>
+      <pose>0.5 -1.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_44</name>
+      <pose>1 -1.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_45</name>
+      <pose>1.5 -1.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_46</name>
+      <pose>2 -1.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_47</name>
+      <pose>2.5 -1.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_48</name>
+      <pose>-2.5 -1 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_49</name>
+      <pose>-2 -1 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_50</name>
+      <pose>-1.5 -1 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_51</name>
+      <pose>-1 -1 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_52</name>
+      <pose>-0.5 -1 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_53</name>
+      <pose>0 -1 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_54</name>
+      <pose>0.5 -1 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_55</name>
+      <pose>1 -1 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_56</name>
+      <pose>1.5 -1 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_57</name>
+      <pose>2 -1 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_58</name>
+      <pose>2.5 -1 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_59</name>
+      <pose>-2.5 -0.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_60</name>
+      <pose>-2 -0.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_61</name>
+      <pose>-1.5 -0.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_62</name>
+      <pose>-1 -0.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_63</name>
+      <pose>-0.5 -0.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_64</name>
+      <pose>0 -0.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_65</name>
+      <pose>0.5 -0.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_66</name>
+      <pose>1 -0.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_67</name>
+      <pose>1.5 -0.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_68</name>
+      <pose>2 -0.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_69</name>
+      <pose>2.5 -0.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_70</name>
+      <pose>-2.5 0 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_71</name>
+      <pose>-2 0 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_72</name>
+      <pose>-1.5 0 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_73</name>
+      <pose>-1 0 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_74</name>
+      <pose>-0.5 0 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_75</name>
+      <pose>0 0 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_76</name>
+      <pose>0.5 0 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_77</name>
+      <pose>1 0 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_78</name>
+      <pose>1.5 0 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_79</name>
+      <pose>2 0 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_80</name>
+      <pose>2.5 0 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_81</name>
+      <pose>-2.5 0 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_82</name>
+      <pose>-2 0 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_83</name>
+      <pose>-1.5 0 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_84</name>
+      <pose>-1 0 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_85</name>
+      <pose>-0.5 0 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_86</name>
+      <pose>0 0 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_87</name>
+      <pose>0.5 0 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_88</name>
+      <pose>1 0 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_89</name>
+      <pose>1.5 0 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_90</name>
+      <pose>2 0 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_91</name>
+      <pose>2.5 0 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_92</name>
+      <pose>-2.5 0.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_93</name>
+      <pose>-2 0.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_94</name>
+      <pose>-1.5 0.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_95</name>
+      <pose>-1 0.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_96</name>
+      <pose>-0.5 0.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_97</name>
+      <pose>0 0.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_98</name>
+      <pose>0.5 0.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_99</name>
+      <pose>1 0.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_100</name>
+      <pose>1.5 0.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_101</name>
+      <pose>2 0.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_102</name>
+      <pose>2.5 0.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_103</name>
+      <pose>-2.5 1 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_104</name>
+      <pose>-2 1 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_105</name>
+      <pose>-1.5 1 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_106</name>
+      <pose>-1 1 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_107</name>
+      <pose>-0.5 1 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_108</name>
+      <pose>0 1 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_109</name>
+      <pose>0.5 1 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_110</name>
+      <pose>1 1 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_111</name>
+      <pose>1.5 1 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_112</name>
+      <pose>2 1 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_113</name>
+      <pose>2.5 1 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_114</name>
+      <pose>-2.5 1.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_115</name>
+      <pose>-2 1.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_116</name>
+      <pose>-1.5 1.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_117</name>
+      <pose>-1 1.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_118</name>
+      <pose>-0.5 1.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_119</name>
+      <pose>0 1.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_120</name>
+      <pose>0.5 1.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_121</name>
+      <pose>1 1.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_122</name>
+      <pose>1.5 1.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_123</name>
+      <pose>2 1.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_124</name>
+      <pose>2.5 1.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_125</name>
+      <pose>-2.5 2 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_126</name>
+      <pose>-2 2 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_127</name>
+      <pose>2 2 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_128</name>
+      <pose>2.5 2 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_129</name>
+      <pose>-2.5 2.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_130</name>
+      <pose>-2 2.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_131</name>
+      <pose>2 2.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_132</name>
+      <pose>2.5 2.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_133</name>
+      <pose>-2.5 2.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_134</name>
+      <pose>-2 2.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_135</name>
+      <pose>2 2.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_136</name>
+      <pose>2.5 2.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_137</name>
+      <pose>-2.5 3 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_138</name>
+      <pose>-2 3 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_139</name>
+      <pose>2 3 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_140</name>
+      <pose>2.5 3 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_141</name>
+      <pose>-2.5 3.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_142</name>
+      <pose>-2 3.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_143</name>
+      <pose>2 3.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_144</name>
+      <pose>2.5 3.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_145</name>
+      <pose>-2.5 4 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_146</name>
+      <pose>-2 4 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_147</name>
+      <pose>2 4 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_148</name>
+      <pose>2.5 4 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_149</name>
+      <pose>-2.5 4.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_150</name>
+      <pose>-2 4.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_151</name>
+      <pose>2 4.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_152</name>
+      <pose>2.5 4.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_153</name>
+      <pose>-2.5 5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_154</name>
+      <pose>-2 5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_155</name>
+      <pose>2 5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_156</name>
+      <pose>2.5 5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_157</name>
+      <pose>-2.5 5.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_158</name>
+      <pose>-2 5.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_159</name>
+      <pose>2 5.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_160</name>
+      <pose>2.5 5.5 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_161</name>
+      <pose>-2.5 6 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_162</name>
+      <pose>-2 6 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_163</name>
+      <pose>2 6 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+    <include>
+      <name>dock_block_164</name>
+      <pose>2.5 6 0.2 0 0 0</pose>
+      <uri>model://dock_block</uri>
+    </include>
+
+  </model>
+</sdf>

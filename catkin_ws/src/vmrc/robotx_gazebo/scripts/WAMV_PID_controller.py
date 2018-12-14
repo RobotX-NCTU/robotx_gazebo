@@ -345,12 +345,12 @@ class ang_PID:
 			
 		else:
 			lock = 0
-			if (last_waypointx-pos_x)*(waypoints[waypoint_index][0]) + (last_waypointy-pos_y-pos_y)*(waypoints[waypoint_index][1]) > 0:
+			if (last_waypointx-x_pos)*(waypoints[waypoint_index][0]-last_waypointx) + (last_waypointy-y_pos)*(waypoints[waypoint_index][1]-last_waypointy) > 0:
 				self.SetPointx = tmp_x
 				self.SetPointy = tmp_y
 			else:
-				self.SetPointx = waypoint[waypoint_index][0]
-				self.SetPointy = waypoint[waypoint_index][1]
+				self.SetPointx = waypoints[waypoint_index][0]
+				self.SetPointy = waypoints[waypoint_index][1]
 
 
 			print "tmp", tmp_x, tmp_y

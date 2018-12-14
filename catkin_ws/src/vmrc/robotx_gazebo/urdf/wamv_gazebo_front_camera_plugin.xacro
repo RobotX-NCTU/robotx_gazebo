@@ -33,7 +33,7 @@
       <camera name="head">
         <horizontal_fov>1.3962634</horizontal_fov>
         <image>
-          <width>1920</width>
+          <width>1280</width>
           <height>1080</height>
           <format>B8G8R8</format>
         </image>
@@ -87,7 +87,7 @@
       <camera name="head">
         <horizontal_fov>1.3962634</horizontal_fov>
         <image>
-          <width>1920</width>
+          <width>1280</width>
           <height>1080</height>
           <format>B8G8R8</format>
         </image>
@@ -142,7 +142,7 @@
       <camera name="head">
         <horizontal_fov>1.3962634</horizontal_fov>
         <image>
-          <width>1920</width>
+          <width>1280</width>
           <height>1080</height>
           <format>B8G8R8</format>
         </image>
